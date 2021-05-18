@@ -42,11 +42,17 @@
     <Reference Include="Leopotam.Ecs">
       <HintPath>..\..\Libraries\Leopotam.Ecs\Leopotam.Ecs.dll</HintPath>
     </Reference>
+    <Reference Include="Leopotam.Ecs.Threads">
+      <HintPath>..\..\Libraries\Leopotam.Ecs\Leopotam.Ecs.Threads.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup Label="Leopotam.EcsLite 490016a3485df81f496f01813f1ce0302c1d1ad9">
     <Reference Include="Leopotam.EcsLite">
       <HintPath>..\..\Libraries\Leopotam.EcsLite\Leopotam.EcsLite.dll</HintPath>
+    </Reference>
+    <Reference Include="Leopotam.EcsLite.Threads">
+      <HintPath>..\..\Libraries\Leopotam.EcsLite\Leopotam.EcsLite.Threads.dll</HintPath>
     </Reference>
   </ItemGroup>
 

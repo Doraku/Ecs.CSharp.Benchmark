@@ -8,6 +8,7 @@ namespace Ecs.CSharp.Benchmark
     {
         private class LeopotamEcsLiteContext : IDisposable
         {
+#pragma warning disable CS0649
             public struct Component
             {
                 public int Value;

@@ -8,6 +8,7 @@ namespace Ecs.CSharp.Benchmark
     {
         private class EntitasContext : IDisposable
         {
+#pragma warning disable CS0649
             public class Component : IComponent
             {
                 public int Value;

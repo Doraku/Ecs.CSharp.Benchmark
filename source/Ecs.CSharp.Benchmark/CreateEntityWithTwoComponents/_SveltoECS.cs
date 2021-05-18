@@ -9,6 +9,7 @@ namespace Ecs.CSharp.Benchmark
     {
         private class SveltoECSContext : IDisposable
         {
+#pragma warning disable CS0649
             public struct Component1 : IEntityComponent
             {
                 public int Value;
