@@ -5,7 +5,7 @@ namespace Ecs.CSharp.Benchmark
     [MemoryDiagnoser]
     public partial class SystemWithOneComponent
     {
-        [Params(10000)]
+        [Params(100000)]
         public int EntityCount { get; set; }
 
         [IterationSetup]
