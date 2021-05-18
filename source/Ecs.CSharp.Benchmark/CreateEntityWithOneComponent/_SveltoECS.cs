@@ -5,14 +5,17 @@ using Svelto.ECS.Schedulers;
 
 namespace Ecs.CSharp.Benchmark
 {
-    public partial class CreateEntity
+    public partial class CreateEntityWithOneComponent
     {
         private class SveltoECSContext : IDisposable
         {
-            public sealed class Entity : IEntityDescriptor
+            public struct Component : IEntityComponent
             {
-                public IComponentBuilder[] componentsToBuild => Array.Empty<IComponentBuilder>();
+                public int Value;
             }
+
+            public sealed class Entity : GenericEntityDescriptor<Component>
+            { }
 
             public static ExclusiveGroup Group { get; } = new();
 

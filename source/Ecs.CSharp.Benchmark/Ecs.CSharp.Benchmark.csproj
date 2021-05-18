@@ -35,6 +35,7 @@
 
   <ItemGroup Label="MonoGame.Extended">
     <PackageReference Include="MonoGame.Extended.Entities" Version="3.8.0" />
+    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />
   </ItemGroup>
 
   <ItemGroup Label="Leopotam.Ecs 2021.4.22">

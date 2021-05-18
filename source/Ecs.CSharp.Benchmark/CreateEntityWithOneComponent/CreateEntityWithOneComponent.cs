@@ -3,7 +3,7 @@
 namespace Ecs.CSharp.Benchmark
 {
     [MemoryDiagnoser]
-    public partial class CreateEntity
+    public partial class CreateEntityWithOneComponent
     {
         [Params(100000)]
         public int EntityCount { get; set; }

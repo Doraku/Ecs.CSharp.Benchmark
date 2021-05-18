@@ -9,6 +9,7 @@ namespace Ecs.CSharp.Benchmark
             BenchmarkSwitcher.FromTypes(new[]
             {
                 typeof(CreateEntity),
+                typeof(CreateEntityWithOneComponent),
             }).RunAll();
         }
     }
