@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <TargetFrameworks>
+      net48;
+    </TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3" />
+    <PackageReference Include="Roslynator.Analyzers" Version="3.1.0" />
+    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="1.0.0" />
+  </ItemGroup>
+  
+  <ItemGroup Label="Benchmark">
+    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.12.1" />
+  </ItemGroup>
+
+  <ItemGroup Label="DefaultEcs">
+    <PackageReference Include="DefaultEcs" Version="0.15.2" />
+    <PackageReference Include="DefaultEcs.Analyzer" Version="0.15.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="Entitas 1.13.0">
+    <Reference Include="DesperateDevs.Utils">
+      <HintPath>..\..\Libraries\Entitas\DesperateDevs.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Entitas">
+      <HintPath>..\..\Libraries\Entitas\Entitas.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Label="MonoGame.Extended">
+    <PackageReference Include="MonoGame.Extended.Entities" Version="3.8.0" />
+  </ItemGroup>
+
+  <ItemGroup Label="Leopotam.Ecs 2021.4.22">
+    <Reference Include="Leopotam.Ecs">
+      <HintPath>..\..\Libraries\Leopotam.Ecs\Leopotam.Ecs.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Label="Leopotam.EcsLite 490016a3485df81f496f01813f1ce0302c1d1ad9">
+    <Reference Include="Leopotam.EcsLite">
+      <HintPath>..\..\Libraries\Leopotam.EcsLite\Leopotam.EcsLite.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Label="Svelto.ECS 3.1.3">
+    <Reference Include="Svelto.Common">
+      <HintPath>..\..\Libraries\Svelto.ECS\Svelto.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Svelto.ECS">
+      <HintPath>..\..\Libraries\Svelto.ECS\Svelto.ECS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
