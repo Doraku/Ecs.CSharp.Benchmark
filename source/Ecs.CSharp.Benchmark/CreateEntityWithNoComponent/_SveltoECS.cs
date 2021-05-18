@@ -5,7 +5,7 @@ using Svelto.ECS.Schedulers;
 
 namespace Ecs.CSharp.Benchmark
 {
-    public partial class CreateEntity
+    public partial class CreateEntityWithNoComponent
     {
         private class SveltoECSContext : IDisposable
         {

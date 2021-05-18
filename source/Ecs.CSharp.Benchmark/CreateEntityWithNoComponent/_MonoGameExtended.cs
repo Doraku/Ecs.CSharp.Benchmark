@@ -4,7 +4,7 @@ using MonoGame.Extended.Entities;
 
 namespace Ecs.CSharp.Benchmark
 {
-    public partial class CreateEntity
+    public partial class CreateEntityWithNoComponent
     {
         private class MonoGameExtendedContext : IDisposable
         {

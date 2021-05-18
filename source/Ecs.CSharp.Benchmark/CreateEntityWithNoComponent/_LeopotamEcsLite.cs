@@ -1,16 +1,16 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace Ecs.CSharp.Benchmark
 {
-    public partial class CreateEntity
+    public partial class CreateEntityWithNoComponent
     {
-        private class LeopotamEcsContext : IDisposable
+        private class LeopotamEcsLiteContext : IDisposable
         {
             public EcsWorld World { get; }
 
-            public LeopotamEcsContext()
+            public LeopotamEcsLiteContext()
             {
                 World = new EcsWorld();
             }
@@ -21,14 +21,14 @@ namespace Ecs.CSharp.Benchmark
             }
         }
 
-        private LeopotamEcsContext _leopotamEcs;
+        private LeopotamEcsLiteContext _leopotamEcsLite;
 
         [Benchmark]
-        public void LeopotamEcs()
+        public void LeopotamEcsLite()
         {
             for (int i = 0; i < EntityCount; ++i)
             {
-                _leopotamEcs.World.NewEntity();
+                _leopotamEcsLite.World.NewEntity();
             }
         }
     }

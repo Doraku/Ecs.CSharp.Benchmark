@@ -4,7 +4,7 @@ using Entitas;
 
 namespace Ecs.CSharp.Benchmark
 {
-    public partial class CreateEntity
+    public partial class CreateEntityWithNoComponent
     {
         private class EntitasContext : IDisposable
         {
