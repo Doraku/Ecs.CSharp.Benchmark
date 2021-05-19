@@ -22,6 +22,7 @@
   <ItemGroup Label="DefaultEcs">
     <PackageReference Include="DefaultEcs" Version="0.15.2" />
     <PackageReference Include="DefaultEcs.Analyzer" Version="0.15.0" PrivateAssets="all" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup Label="Entitas 1.13.0">

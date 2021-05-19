@@ -1,0 +1,64 @@
+﻿using BenchmarkDotNet.Attributes;
+using Ecs.CSharp.Benchmark.Context;
+using Microsoft.Xna.Framework;
+using MonoGame.Extended.Entities;
+using MonoGame.Extended.Entities.Systems;
+
+namespace Ecs.CSharp.Benchmark
+{
+    public partial class SystemWithOneComponent
+    {
+        private class MonoGameExtendedContext : MonoGameExtendedBaseContext
+        {
+            public class UpdateSystem : EntityUpdateSystem
+            {
+                private ComponentMapper<Component1> _components;
+
+                public UpdateSystem()
+                    : base(Aspect.All(typeof(Component1)))
+                { }
+
+                public override void Initialize(IComponentMapperService mapperService)
+                {
+                    _components = mapperService.GetMapper<Component1>();
+                }
+
+                public override void Update(GameTime gameTime)
+                {
+                    foreach (int entityId in ActiveEntities)
+                    {
+                        ++_components.Get(entityId).Value;
+                    }
+                }
+            }
+
+            public new World World { get; }
+
+            public GameTime Time { get; }
+
+            public MonoGameExtendedContext(int entityCount)
+            {
+                World = new WorldBuilder().AddSystem(new UpdateSystem()).Build();
+                Time = new GameTime();
+
+                for (int i = 0; i < entityCount; ++i)
+                {
+                    Entity entity = World.CreateEntity();
+                    entity.Attach(new Component1());
+                }
+            }
+
+            public override void Dispose()
+            {
+                World.Dispose();
+
+                base.Dispose();
+            }
+        }
+
+        private MonoGameExtendedContext _monoGameExtended;
+
+        [Benchmark]
+        public void MonoGameExtended() => _monoGameExtended.World.Update(_monoGameExtended.Time);
+    }
+}

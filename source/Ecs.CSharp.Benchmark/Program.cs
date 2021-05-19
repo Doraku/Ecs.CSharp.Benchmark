@@ -14,6 +14,8 @@ namespace Ecs.CSharp.Benchmark
                 typeof(CreateEntityWithThreeComponents),
 
                 typeof(SystemWithOneComponent),
+                typeof(SystemWithTwoComponents),
+                typeof(SystemWithThreeComponents),
             }).RunAll();
         }
     }

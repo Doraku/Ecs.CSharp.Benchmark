@@ -1,0 +1,19 @@
+﻿using BenchmarkDotNet.Attributes;
+using Ecs.CSharp.Benchmark.Context;
+
+namespace Ecs.CSharp.Benchmark
+{
+    public partial class CreateEntityWithOneComponent
+    {
+        private EntitasBaseContext _entitas;
+
+        [Benchmark]
+        public void Entitas()
+        {
+            for (int i = 0; i < EntityCount; ++i)
+            {
+                _entitas.Context.CreateEntity().AddComponent(0, new EntitasBaseContext.Component1());
+            }
+        }
+    }
+}
