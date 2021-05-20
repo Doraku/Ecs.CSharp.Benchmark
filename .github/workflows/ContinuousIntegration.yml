@@ -36,7 +36,7 @@ jobs:
       working-directory: build
 
     - name: Copy results
-      run: Copy-Item -Path "build\BenchmarkDotNet.Artifacts\results\*.md" -Destination "results"
+      run: Copy-Item -Path "build\BenchmarkDotNet.Artifacts\results\*.md" -Destination "results" -Force
       
     - name: Commit results
       run: |
