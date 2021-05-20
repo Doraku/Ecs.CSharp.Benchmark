@@ -44,20 +44,17 @@ namespace Ecs.CSharp.Benchmark
                 }
             }
 
-            public IEcsRunSystem MonoThreadSystem { get; }
+            public EcsSystems MonoThreadSystem { get; }
 
-            public IEcsRunSystem MultiThreadSystem { get; }
+            public EcsSystems MultiThreadSystem { get; }
 
             public LeopotamEcsContext(int entityCount, int entityPadding)
             {
-                MonoThreadSystem = new MonoThreadRunSystem();
-                MultiThreadSystem = new MultiThreadRunSystem();
+                MonoThreadSystem = new EcsSystems(World).Add(new MonoThreadRunSystem()).ProcessInjects();
+                MultiThreadSystem = new EcsSystems(World).Add(new MultiThreadRunSystem()).ProcessInjects();
 
-                new EcsSystems(World)
-                    .Add(MonoThreadSystem)
-                    .Add(MultiThreadSystem)
-                    .ProcessInjects()
-                    .Init();
+                MonoThreadSystem.Init();
+                MultiThreadSystem.Init();
 
                 for (int i = 0; i < entityCount; ++i)
                 {
