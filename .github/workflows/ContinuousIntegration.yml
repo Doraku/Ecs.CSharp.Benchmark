@@ -1,0 +1,43 @@
+name: continuous integration
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/ContinuousIntegration.yml'
+      - 'source/**'
+
+jobs:
+  continuous_integration:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: master
+
+    - name: Set up dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.100'
+        source-url: https://nuget.pkg.github.com/Doraku/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Build
+      run: dotnet build source -c Release
+
+    - name: Run benchmark
+      run: source\Ecs.CSharp.Benchmark\bin\Release\net48\Ecs.CSharp.Benchmark.exe
+
+    - name: Copy results
+      run: Copy-Item -Path "source\Ecs.CSharp.Benchmark\bin\Release\net48\BenchmarkDotNet.Artifacts\results\*.md" -Destination "results"
+      
+    - name: Commit results
+      run: |
+        git config --local user.email "$(git log --format='%ae' HEAD^!)"
+        git config --local user.name "$(git log --format='%an' HEAD^!)"
+        git add .
+        git commit -m "Updated results"
+        git push

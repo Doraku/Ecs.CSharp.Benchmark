@@ -11,6 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{FCF463F0-45FF-44D1-A5AF-8EDB5BB3E527}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\ContinuousIntegration.yml = ..\.github\workflows\ContinuousIntegration.yml
+		..\.github\workflows\PullRequest.yml = ..\.github\workflows\PullRequest.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +30,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FCF463F0-45FF-44D1-A5AF-8EDB5BB3E527} = {A2B996C4-02B6-4688-B4AB-DB24AF92BC1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {607C6B32-EA61-40B7-AEBF-1D6B5E765A3B}
