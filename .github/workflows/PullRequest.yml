@@ -20,7 +20,10 @@ jobs:
         
     - name: Build
       run: dotnet build source -c Release
+      
+    - name: Create build dir
+      run: New-Item -Path ".\" -Name "build" -ItemType "directory"
 
     - name: Run benchmark
-      run: source\Ecs.CSharp.Benchmark\bin\Release\net48\Ecs.CSharp.Benchmark.exe
+      run: ..\source\Ecs.CSharp.Benchmark\bin\Release\net48\Ecs.CSharp.Benchmark.exe
       working-directory: build
