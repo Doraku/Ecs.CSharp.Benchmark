@@ -38,13 +38,28 @@ namespace Ecs.CSharp.Benchmark
 
             public GameTime Time { get; }
 
-            public MonoGameExtendedContext(int entityCount)
+            public MonoGameExtendedContext(int entityCount, int entityPadding)
             {
                 World = new WorldBuilder().AddSystem(new UpdateSystem()).Build();
                 Time = new GameTime();
 
                 for (int i = 0; i < entityCount; ++i)
                 {
+                    for (int j = 0; j < entityPadding; ++j)
+                    {
+                        Entity padding = World.CreateEntity();
+                        switch (j % 2)
+                        {
+                            case 0:
+                                padding.Attach(new Component1());
+                                break;
+
+                            case 1:
+                                padding.Attach(new Component2());
+                                break;
+                        }
+                    }
+
                     Entity entity = World.CreateEntity();
                     entity.Attach(new Component1());
                     entity.Attach(new Component2 { Value = 1 });
@@ -61,6 +76,7 @@ namespace Ecs.CSharp.Benchmark
 
         private MonoGameExtendedContext _monoGameExtended;
 
+        [BenchmarkCategory(Categories.MonoGameExtended)]
         [Benchmark]
         public void MonoGameExtended() => _monoGameExtended.World.Update(_monoGameExtended.Time);
     }

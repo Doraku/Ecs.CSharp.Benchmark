@@ -8,6 +8,7 @@ namespace Ecs.CSharp.Benchmark
     {
         private EntitasBaseContext _entitas;
 
+        [BenchmarkCategory(Categories.Entitas)]
         [Benchmark]
         public void Entitas()
         {

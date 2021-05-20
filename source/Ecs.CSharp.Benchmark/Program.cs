@@ -4,9 +4,9 @@ namespace Ecs.CSharp.Benchmark
 {
     internal static class Program
     {
-        private static void Main()
+        private static void Main(string[] args)
         {
-            BenchmarkSwitcher.FromTypes(new[]
+            BenchmarkSwitcher benchmark = BenchmarkSwitcher.FromTypes(new[]
             {
                 typeof(CreateEntityWithNoComponent),
                 typeof(CreateEntityWithOneComponent),
@@ -16,7 +16,16 @@ namespace Ecs.CSharp.Benchmark
                 typeof(SystemWithOneComponent),
                 typeof(SystemWithTwoComponents),
                 typeof(SystemWithThreeComponents),
-            }).RunAll();
+            });
+
+            if (args.Length > 0)
+            {
+                benchmark.Run(args);
+            }
+            else
+            {
+                benchmark.RunAll();
+            }
         }
     }
 }

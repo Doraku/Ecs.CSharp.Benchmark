@@ -34,6 +34,7 @@ namespace Ecs.CSharp.Benchmark
 
         private DefaultEcsBaseContext _defaultEcs;
 
+        [BenchmarkCategory(Categories.DefaultEcs)]
         [Benchmark(Baseline = true)]
         public void DefaultEcs()
         {

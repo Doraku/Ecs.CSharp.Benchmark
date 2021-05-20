@@ -27,19 +27,40 @@ namespace Ecs.CSharp.Benchmark
                 }
             }
 
+            public sealed class Padding1Entity : GenericEntityDescriptor<Component1>
+            { }
+
+            public sealed class Padding2Entity : GenericEntityDescriptor<Component2>
+            { }
+
             public sealed class Entity : GenericEntityDescriptor<Component1, Component2>
             { }
 
             public SveltoEngine Engine { get; }
 
-            public SveltoECSContext(int entityCount)
+            public SveltoECSContext(int entityCount, int entityPadding)
             {
                 Engine = new SveltoEngine();
                 Root.AddEngine(Engine);
 
+                uint id = 0;
                 for (int i = 0; i < entityCount; ++i)
                 {
-                    EntityInitializer entity = Factory.BuildEntity<Entity>((uint)i, Group);
+                    for (int j = 0; j < entityPadding; ++j)
+                    {
+                        switch (j % 2)
+                        {
+                            case 0:
+                                Factory.BuildEntity<Padding1Entity>(id++, Group);
+                                break;
+
+                            case 1:
+                                Factory.BuildEntity<Padding2Entity>(id++, Group);
+                                break;
+                        }
+                    }
+
+                    EntityInitializer entity = Factory.BuildEntity<Entity>(id++, Group);
                     entity.GetOrCreate<Component2>() = new Component2 { Value = 1 };
                 }
 
@@ -49,6 +70,7 @@ namespace Ecs.CSharp.Benchmark
 
         private SveltoECSContext _sveltoECS;
 
+        [BenchmarkCategory(Categories.SveltoECS)]
         [Benchmark]
         public void SveltoECS() => _sveltoECS.Engine.Update();
     }

@@ -8,6 +8,7 @@ namespace Ecs.CSharp.Benchmark
     {
         private LeopotamEcsBaseContext _leopotamEcs;
 
+        [BenchmarkCategory(Categories.LeopotamEcs)]
         [Benchmark]
         public void LeopotamEcs()
         {

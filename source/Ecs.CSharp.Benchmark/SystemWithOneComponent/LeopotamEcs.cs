@@ -48,7 +48,7 @@ namespace Ecs.CSharp.Benchmark
 
             public IEcsRunSystem MultiThreadSystem { get; }
 
-            public LeopotamEcsContext(int entityCount)
+            public LeopotamEcsContext(int entityCount, int entityPadding)
             {
                 MonoThreadSystem = new MonoThreadRunSystem();
                 MultiThreadSystem = new MultiThreadRunSystem();
@@ -61,6 +61,11 @@ namespace Ecs.CSharp.Benchmark
 
                 for (int i = 0; i < entityCount; ++i)
                 {
+                    for (int j = 0; j < entityPadding; ++j)
+                    {
+                        World.NewEntity();
+                    }
+
                     World.NewEntity()
                         .Replace(new Component1());
                 }
@@ -69,9 +74,11 @@ namespace Ecs.CSharp.Benchmark
 
         private LeopotamEcsContext _leopotamEcs;
 
+        [BenchmarkCategory(Categories.LeopotamEcs)]
         [Benchmark]
         public void LeopotamEcs_MonoThread() => _leopotamEcs.MonoThreadSystem.Run();
 
+        [BenchmarkCategory(Categories.LeopotamEcs)]
         [Benchmark]
         public void LeopotamEcs_MultiThread() => _leopotamEcs.MultiThreadSystem.Run();
     }

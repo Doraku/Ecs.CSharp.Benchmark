@@ -7,6 +7,7 @@ namespace Ecs.CSharp.Benchmark
     {
         private MonoGameExtendedBaseContext _monoGameExtended;
 
+        [BenchmarkCategory(Categories.MonoGameExtended)]
         [Benchmark]
         public void MonoGameExtended()
         {

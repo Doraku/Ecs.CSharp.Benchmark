@@ -32,13 +32,28 @@ namespace Ecs.CSharp.Benchmark
 
             public IExecuteSystem MultiThreadSystem { get; }
 
-            public EntitasContext(int entityCount)
+            public EntitasContext(int entityCount, int entityPadding)
             {
                 MonoThreadSystem = new EntitasSystem(Context);
                 MultiThreadSystem = new EntitasSystem(Context, Environment.ProcessorCount);
 
                 for (int i = 0; i < entityCount; ++i)
                 {
+                    for (int j = 0; j < entityPadding; ++j)
+                    {
+                        Entity padding = Context.CreateEntity();
+                        switch (j % 2)
+                        {
+                            case 0:
+                                padding.AddComponent(0, new Component1());
+                                break;
+
+                            case 1:
+                                padding.AddComponent(1, new Component2());
+                                break;
+                        }
+                    }
+
                     Entity entity = Context.CreateEntity();
                     entity.AddComponent(0, new Component1());
                     entity.AddComponent(1, new Component2 { Value = 1 });
@@ -48,9 +63,11 @@ namespace Ecs.CSharp.Benchmark
 
         private EntitasContext _entitas;
 
+        [BenchmarkCategory(Categories.Entitas)]
         [Benchmark]
         public void Entitas_MonoThread() => _entitas.MonoThreadSystem.Execute();
 
+        [BenchmarkCategory(Categories.Entitas)]
         [Benchmark]
         public void Entitas_MultiThread() => _entitas.MultiThreadSystem.Execute();
     }

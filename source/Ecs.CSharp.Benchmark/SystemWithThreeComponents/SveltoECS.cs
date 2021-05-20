@@ -27,19 +27,47 @@ namespace Ecs.CSharp.Benchmark
                 }
             }
 
+            public sealed class Padding1Entity : GenericEntityDescriptor<Component1>
+            { }
+
+            public sealed class Padding2Entity : GenericEntityDescriptor<Component2>
+            { }
+
+            public sealed class Padding3Entity : GenericEntityDescriptor<Component3>
+            { }
+
             public sealed class Entity : GenericEntityDescriptor<Component1, Component2, Component3>
             { }
 
             public SveltoEngine Engine { get; }
 
-            public SveltoECSContext(int entityCount)
+            public SveltoECSContext(int entityCount, int entityPadding)
             {
                 Engine = new SveltoEngine();
                 Root.AddEngine(Engine);
 
+                uint id = 0;
                 for (int i = 0; i < entityCount; ++i)
                 {
-                    EntityInitializer entity = Factory.BuildEntity<Entity>((uint)i, Group);
+                    for (int j = 0; j < entityPadding; ++j)
+                    {
+                        switch (j % 3)
+                        {
+                            case 0:
+                                Factory.BuildEntity<Padding1Entity>(id++, Group);
+                                break;
+
+                            case 1:
+                                Factory.BuildEntity<Padding2Entity>(id++, Group);
+                                break;
+
+                            case 2:
+                                Factory.BuildEntity<Padding3Entity>(id++, Group);
+                                break;
+                        }
+                    }
+
+                    EntityInitializer entity = Factory.BuildEntity<Entity>(id++, Group);
                     entity.GetOrCreate<Component2>() = new Component2 { Value = 1 };
                     entity.GetOrCreate<Component3>() = new Component3 { Value = 1 };
                 }
