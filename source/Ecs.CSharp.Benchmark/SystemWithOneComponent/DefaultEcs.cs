@@ -76,7 +76,7 @@ namespace Ecs.CSharp.Benchmark
         [Params(100000)]
         public int EntityCount { get; set; }
 
-        [IterationSetup]
+        [GlobalSetup]
         public void Setup()
         {
             _defaultEcs = new(EntityCount);
@@ -87,7 +87,7 @@ namespace Ecs.CSharp.Benchmark
             _sveltoECS = new(EntityCount);
         }
 
-        [IterationCleanup]
+        [GlobalCleanup]
         public void Cleanup()
         {
             _defaultEcs.Dispose();
