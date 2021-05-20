@@ -24,15 +24,12 @@ jobs:
         source-url: https://nuget.pkg.github.com/Doraku/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-    - name: Build
-      run: dotnet build source -c Release
-
+        
     - name: Create build dir
       run: New-Item -Path ".\" -Name "build" -ItemType "directory"
 
     - name: Run benchmark
-      run: ..\source\Ecs.CSharp.Benchmark\bin\Release\net48\Ecs.CSharp.Benchmark.exe
+      run: dotnet run --project ..\source\Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj -c Release
       working-directory: build
 
     - name: Copy results

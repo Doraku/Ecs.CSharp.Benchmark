@@ -18,12 +18,9 @@ jobs:
       with:
         dotnet-version: '5.0.100'
         
-    - name: Build
-      run: dotnet build source -c Release
-      
     - name: Create build dir
       run: New-Item -Path ".\" -Name "build" -ItemType "directory"
 
     - name: Run benchmark
-      run: ..\source\Ecs.CSharp.Benchmark\bin\Release\net48\Ecs.CSharp.Benchmark.exe
+      run: dotnet run --project ..\source\Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj -c Release
       working-directory: build
