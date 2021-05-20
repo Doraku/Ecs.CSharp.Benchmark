@@ -28,11 +28,15 @@ jobs:
     - name: Build
       run: dotnet build source -c Release
 
+    - name: Create build dir
+      run: New-Item -Path ".\" -Name "build" -ItemType "directory"
+
     - name: Run benchmark
       run: source\Ecs.CSharp.Benchmark\bin\Release\net48\Ecs.CSharp.Benchmark.exe
+      working-directory: build
 
     - name: Copy results
-      run: Copy-Item -Path "source\Ecs.CSharp.Benchmark\bin\Release\net48\BenchmarkDotNet.Artifacts\results\*.md" -Destination "results"
+      run: Copy-Item -Path "build\BenchmarkDotNet.Artifacts\results\*.md" -Destination "results"
       
     - name: Commit results
       run: |
