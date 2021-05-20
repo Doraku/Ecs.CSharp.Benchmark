@@ -8,5 +8,8 @@
         public const string LeopotamEcsLite = "Leopotam.EcsLite";
         public const string MonoGameExtended = "MonoGame.Extended";
         public const string SveltoECS = "Svelto.ECS";
+
+        public const string CreateEntity = "CreateEntity";
+        public const string System = "System";
     }
 }

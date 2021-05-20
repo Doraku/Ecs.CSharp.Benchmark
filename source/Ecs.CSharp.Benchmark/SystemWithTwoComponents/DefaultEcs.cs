@@ -7,6 +7,7 @@ using Ecs.CSharp.Benchmark.Context;
 
 namespace Ecs.CSharp.Benchmark
 {
+    [BenchmarkCategory(Categories.System)]
     [MemoryDiagnoser]
     public partial class SystemWithTwoComponents
     {

@@ -4,6 +4,7 @@ using Ecs.CSharp.Benchmark.Context;
 
 namespace Ecs.CSharp.Benchmark
 {
+    [BenchmarkCategory(Categories.CreateEntity)]
     [MemoryDiagnoser]
     public partial class CreateEntityWithTwoComponents
     {
