@@ -22,9 +22,12 @@ namespace Ecs.CSharp.Benchmark
                     : base(world)
                 { }
 
-                protected override void Update(int state, ref Component1 component)
+                protected override void Update(int state, Span<Component1> components)
                 {
-                    ++component.Value;
+                    foreach (ref Component1 component in components)
+                    {
+                        ++component.Value;
+                    }
                 }
             }
 
