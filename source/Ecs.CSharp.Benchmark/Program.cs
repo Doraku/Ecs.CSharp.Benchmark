@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Running;
+﻿using System.Globalization;
+using BenchmarkDotNet.Running;
 
 namespace Ecs.CSharp.Benchmark
 {
@@ -6,6 +7,13 @@ namespace Ecs.CSharp.Benchmark
     {
         private static void Main(string[] args)
         {
+            CultureInfo cultureInfo = new("en-US");
+
+            CultureInfo.CurrentCulture = cultureInfo;
+            CultureInfo.CurrentUICulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
             BenchmarkSwitcher benchmark = BenchmarkSwitcher.FromTypes(new[]
             {
                 typeof(CreateEntityWithNoComponent),

@@ -3,8 +3,7 @@ name: pull request
 on:
   pull_request:
     paths:
-      - 'source/DefaultEcs/**'
-      - 'source/DefaultEcs.Test/**'
+      - 'source/**'
 
 jobs:
   pull_request:
