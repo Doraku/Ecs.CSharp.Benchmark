@@ -22,5 +22,5 @@ jobs:
       run: New-Item -Path ".\" -Name "build" -ItemType "directory"
 
     - name: Run benchmark
-      run: dotnet run --project ..\source\Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj -c Release
+      run: dotnet run --project ..\source\Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj -c Release --filter * --job Dry
       working-directory: build
