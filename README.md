@@ -1,5 +1,5 @@
 # ECS c# Benchmark
-This repo contains benchmarks of some c# ECS frameworks. Feel free to add your own or correct usage of existing ones!
+This repo contains benchmarks of some c# ECS frameworks. Feel free to add your own or correct usage of existing ones! Please make you framework available as a nuget package to ease referencing and updating versions.
 
 Tested frameworks include:
 - [DefaultEcs](https://github.com/Doraku/DefaultEcs)
