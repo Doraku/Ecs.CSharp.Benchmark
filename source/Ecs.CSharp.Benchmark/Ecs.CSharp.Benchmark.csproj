@@ -10,6 +10,7 @@
     <AnalysisLevel>latest</AnalysisLevel>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+    <!--<DefineConstants>CHECK_CACHE_MISSES</DefineConstants>-->
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">

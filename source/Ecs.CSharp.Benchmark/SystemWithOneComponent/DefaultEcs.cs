@@ -10,7 +10,9 @@ namespace Ecs.CSharp.Benchmark
 {
     [BenchmarkCategory(Categories.System)]
     [MemoryDiagnoser]
+#if CHECK_CACHE_MISSES
     [HardwareCounters(HardwareCounter.CacheMisses)]
+#endif
     public partial class SystemWithOneComponent
     {
         private partial class DefaultEcsContext : DefaultEcsBaseContext

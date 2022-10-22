@@ -26,10 +26,10 @@ jobs:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
     - name: Run benchmark
-      run: dotnet run --project source\Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj -c Release
+      run: dotnet run --project source\Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj -c Release --filter * --job Dry
 
-    - name: Copy results
-      run: Copy-Item -Path "BenchmarkDotNet.Artifacts\results\*.md" -Destination "results" -Force
+    #- name: Copy results
+    #  run: Copy-Item -Path "BenchmarkDotNet.Artifacts\results\*.md" -Destination "results" -Force
       
     #- name: Commit results
     #  run: |
