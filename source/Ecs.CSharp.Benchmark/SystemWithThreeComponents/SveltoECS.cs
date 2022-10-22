@@ -1,6 +1,7 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Context;
+using Svelto.DataStructures;
 using Svelto.ECS;
 
 namespace Ecs.CSharp.Benchmark
@@ -18,9 +19,9 @@ namespace Ecs.CSharp.Benchmark
 
                 public void Update()
                 {
-                    var (c1, c2, c3, count) = entitiesDB.QueryEntities<Component1, Component2, Component3>(Group);
+                    (NB<Component1> c1, NB<Component2> c2, NB<Component3> c3, int count) = entitiesDB.QueryEntities<Component1, Component2, Component3>(Group);
 
-                    for (var i = 0; i < count; i++)
+                    for (int i = 0; i < count; i++)
                     {
                         c1[i].Value += c2[i].Value + c3[i].Value;
                     }
@@ -68,8 +69,8 @@ namespace Ecs.CSharp.Benchmark
                     }
 
                     EntityInitializer entity = Factory.BuildEntity<Entity>(id++, Group);
-                    entity.GetOrCreate<Component2>() = new Component2 { Value = 1 };
-                    entity.GetOrCreate<Component3>() = new Component3 { Value = 1 };
+                    entity.GetOrAdd<Component2>() = new Component2 { Value = 1 };
+                    entity.GetOrAdd<Component3>() = new Component3 { Value = 1 };
                 }
 
                 Scheduler.SubmitEntities();

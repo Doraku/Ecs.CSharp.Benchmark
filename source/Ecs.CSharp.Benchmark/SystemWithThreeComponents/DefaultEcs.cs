@@ -1,5 +1,6 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Diagnosers;
 using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
@@ -9,6 +10,7 @@ namespace Ecs.CSharp.Benchmark
 {
     [BenchmarkCategory(Categories.System)]
     [MemoryDiagnoser]
+    [HardwareCounters(HardwareCounter.CacheMisses)]
     public partial class SystemWithThreeComponents
     {
         private partial class DefaultEcsContext : DefaultEcsBaseContext

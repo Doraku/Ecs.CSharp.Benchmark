@@ -32,13 +32,16 @@ namespace Ecs.CSharp.Benchmark
                 }
             }
 
+            private readonly UpdateSystem _system;
+
             public new World World { get; }
 
             public GameTime Time { get; }
 
             public MonoGameExtendedContext(int entityCount, int entityPadding)
             {
-                World = new WorldBuilder().AddSystem(new UpdateSystem()).Build();
+                _system = new UpdateSystem();
+                World = new WorldBuilder().AddSystem(_system).Build();
                 Time = new GameTime();
 
                 for (int i = 0; i < entityCount; ++i)
@@ -56,6 +59,7 @@ namespace Ecs.CSharp.Benchmark
             public override void Dispose()
             {
                 World.Dispose();
+                _system.Dispose();
 
                 base.Dispose();
             }

@@ -16,11 +16,7 @@ jobs:
     - name: Set up dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.100'
-        
-    - name: Create build dir
-      run: New-Item -Path ".\" -Name "build" -ItemType "directory"
-
+        dotnet-version: '6.0.x'
+      
     - name: Run benchmark
-      run: dotnet run --project ..\source\Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj -c Release --filter * --job Dry
-      working-directory: build
+      run: dotnet run --project source\Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj -c Release --filter * --job Dry

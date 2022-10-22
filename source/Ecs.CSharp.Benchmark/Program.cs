@@ -1,39 +1,33 @@
 ﻿using System.Globalization;
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Running;
+using Ecs.CSharp.Benchmark;
 
-namespace Ecs.CSharp.Benchmark
+CultureInfo cultureInfo = new("en-US");
+
+CultureInfo.CurrentCulture = cultureInfo;
+CultureInfo.CurrentUICulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+BenchmarkSwitcher benchmark = BenchmarkSwitcher.FromTypes(new[]
 {
-    internal static class Program
-    {
-        private static void Main(string[] args)
-        {
-            CultureInfo cultureInfo = new("en-US");
+    typeof(CreateEntityWithOneComponent),
+    typeof(CreateEntityWithTwoComponents),
+    typeof(CreateEntityWithThreeComponents),
 
-            CultureInfo.CurrentCulture = cultureInfo;
-            CultureInfo.CurrentUICulture = cultureInfo;
-            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
-            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+    typeof(SystemWithOneComponent),
+    typeof(SystemWithTwoComponents),
+    typeof(SystemWithThreeComponents),
+});
 
-            BenchmarkSwitcher benchmark = BenchmarkSwitcher.FromTypes(new[]
-            {
-                typeof(CreateEntityWithNoComponent),
-                typeof(CreateEntityWithOneComponent),
-                typeof(CreateEntityWithTwoComponents),
-                typeof(CreateEntityWithThreeComponents),
+IConfig configuration = DefaultConfig.Instance.WithOptions(ConfigOptions.DisableOptimizationsValidator);
 
-                typeof(SystemWithOneComponent),
-                typeof(SystemWithTwoComponents),
-                typeof(SystemWithThreeComponents),
-            });
-
-            if (args.Length > 0)
-            {
-                benchmark.Run(args);
-            }
-            else
-            {
-                benchmark.RunAll();
-            }
-        }
-    }
+if (args.Length > 0)
+{
+    benchmark.Run(args, configuration);
+}
+else
+{
+    benchmark.RunAll(configuration);
 }

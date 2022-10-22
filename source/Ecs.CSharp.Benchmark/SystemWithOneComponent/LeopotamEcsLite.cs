@@ -1,7 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Context;
 using Leopotam.EcsLite;
-using Leopotam.EcsLite.Threads;
 
 namespace Ecs.CSharp.Benchmark
 {
@@ -14,7 +13,7 @@ namespace Ecs.CSharp.Benchmark
                 private EcsFilter _filter;
                 private EcsPool<Component1> _components;
 
-                public void Init(EcsSystems systems)
+                public void Init(IEcsSystems systems)
                 {
                     EcsWorld world = systems.GetWorld();
 
@@ -22,9 +21,9 @@ namespace Ecs.CSharp.Benchmark
                     _components = world.GetPool<Component1>();
                 }
 
-                public void Run(EcsSystems systems)
+                public void Run(IEcsSystems systems)
                 {
-                    var entities = _filter.GetRawEntities();
+                    int[] entities = _filter.GetRawEntities();
                     for (int i = 0, iMax = _filter.GetEntitiesCount(); i < iMax; i++)
                     {
                         ++_components.Get(entities[i]).Value;
@@ -32,54 +31,23 @@ namespace Ecs.CSharp.Benchmark
                 }
             }
 
-            private struct Thread : IEcsThread<Component1>
-            {
-                private int[] _entities;
-                private EcsPool<Component1>.PoolItem[] _pool;
-
-                public void Init(int[] entities, EcsPool<Component1>.PoolItem[] pool)
-                {
-                    _entities = entities;
-                    _pool = pool;
-                }
-
-                public void Execute(int fromIndex, int beforeIndex)
-                {
-                    for (int i = fromIndex; i < beforeIndex; i++)
-                    {
-                        ++_pool[_entities[i]].Data.Value;
-                    }
-                }
-            }
-
-            private sealed class MultiThreadRunSystem : EcsThreadSystem<Thread, Component1>
-            {
-                protected override int GetChunkSize(EcsSystems systems) => 1000;
-
-                protected override EcsWorld GetWorld(EcsSystems systems) => systems.GetWorld();
-
-                protected override EcsFilter GetFilter(EcsWorld world) => world.Filter<Component1>().End();
-            }
-
-            public EcsSystems MonoThreadSystem { get; }
-
-            public EcsSystems MultiThreadSystem { get; }
+            public IEcsSystems MonoThreadSystem { get; }
 
             public LeopotamEcsLiteContext(int entityCount, int entityPadding)
             {
                 MonoThreadSystem = new EcsSystems(World).Add(new MonoThreadRunSystem());
-                MultiThreadSystem = new EcsSystems(World).Add(new MultiThreadRunSystem());
 
                 MonoThreadSystem.Init();
-                MultiThreadSystem.Init();
 
                 EcsPool<Component1> c1 = World.GetPool<Component1>();
+                EcsPool<Component2> c2 = World.GetPool<Component2>();
 
                 for (int i = 0; i < entityCount; ++i)
                 {
                     for (int j = 0; j < entityPadding; ++j)
                     {
-                        World.NewEntity();
+                        // LeopotamEcsLite does not support empty entities
+                        c2.Add(World.NewEntity());
                     }
 
                     int entity = World.NewEntity();
@@ -93,9 +61,5 @@ namespace Ecs.CSharp.Benchmark
         [BenchmarkCategory(Categories.LeopotamEcsLite)]
         [Benchmark]
         public void LeopotamEcsLite_MonoThread() => _leopotamEcsLite.MonoThreadSystem.Run();
-
-        [BenchmarkCategory(Categories.LeopotamEcsLite)]
-        [Benchmark]
-        public void LeopotamEcsLite_MultiThread() => _leopotamEcsLite.MultiThreadSystem.Run();
     }
 }

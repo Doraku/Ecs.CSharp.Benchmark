@@ -1,12 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31025.194
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecs.CSharp.Benchmark", "Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj", "{66637992-8C7F-44DB-BBE5-7AE008FC9BA9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{A2B996C4-02B6-4688-B4AB-DB24AF92BC1B}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		..\.gitignore = ..\.gitignore
 		NuGet.config = NuGet.config
 		..\README.md = ..\README.md

@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Diagnosers;
 using DefaultEcs;
 using Ecs.CSharp.Benchmark.Context;
 
@@ -6,6 +7,7 @@ namespace Ecs.CSharp.Benchmark
 {
     [BenchmarkCategory(Categories.CreateEntity)]
     [MemoryDiagnoser]
+    [HardwareCounters(HardwareCounter.CacheMisses)]
     public partial class CreateEntityWithTwoComponents
     {
         [Params(100000)]

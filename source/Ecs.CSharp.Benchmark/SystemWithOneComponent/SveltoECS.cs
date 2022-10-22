@@ -1,6 +1,7 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Context;
+using Svelto.DataStructures;
 using Svelto.ECS;
 
 namespace Ecs.CSharp.Benchmark
@@ -18,9 +19,9 @@ namespace Ecs.CSharp.Benchmark
 
                 public void Update()
                 {
-                    var (entityViews, count) = entitiesDB.QueryEntities<Component1>(Group);
+                    (NB<Component1> entityViews, int count) = entitiesDB.QueryEntities<Component1>(Group);
 
-                    for (var i = 0; i < count; i++)
+                    for (int i = 0; i < count; i++)
                     {
                         ++entityViews[i].Value;
                     }

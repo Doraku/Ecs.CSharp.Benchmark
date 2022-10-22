@@ -1,16 +1,13 @@
 # ECS c# Benchmark
 This repo contains benchmarks of some c# ECS frameworks. Feel free to add your own or correct usage of existing ones! Please make you framework available as a nuget package to ease referencing and updating versions.
 
-Tested frameworks include:
+Tested frameworks:
 - [DefaultEcs](https://github.com/Doraku/DefaultEcs)
 - [Entitas](https://github.com/sschmid/Entitas-CSharp)
-- [Leopotam.Ecs](https://github.com/Leopotam/ecs)
-- [Leopotam.EcsLite](https://github.com/Leopotam/ecslite)
+- [Leopotam.Ecs](https://github.com/Leopotam/ecs) using what I believe is a nuget package not made by the actual author and compiled in debug...
+- [Leopotam.EcsLite](https://github.com/Leopotam/ecslite) using what I believe is a nuget package not made by the actual author and compiled in debug...
 - [MonoGame.Extended](https://github.com/craftworkgames/MonoGame.Extended)
 - [Svelto.ECS](https://github.com/sebas77/Svelto.ECS)
-
-## [CreateEntityWithNoComponent](results/Ecs.CSharp.Benchmark.CreateEntityWithNoComponent-report-github.md)
-Create empty entities.
 
 ## [CreateEntityWithOneComponent](results/Ecs.CSharp.Benchmark.CreateEntityWithOneComponent-report-github.md)
 Create entities with one component.
