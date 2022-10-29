@@ -1,18 +1,19 @@
 ``` ini
 
-BenchmarkDotNet=v0.13.0, OS=Windows 10.0.19043.985 (21H1/May2021Update)
-Intel Core i5-3570K CPU 3.40GHz (Ivy Bridge), 1 CPU, 4 logical and 4 physical cores
-  [Host]     : .NET Framework 4.8 (4.8.4341.0), X64 RyuJIT
-  Job-FEFVFA : .NET Framework 4.8 (4.8.4341.0), X64 RyuJIT
+BenchmarkDotNet=v0.13.2, OS=Windows 10 (10.0.18363.2274/1909/November2019Update/19H2)
+Intel Xeon W-2135 CPU 3.70GHz, 1 CPU, 12 logical and 6 physical cores
+.NET SDK=6.0.400
+  [Host]     : .NET 6.0.8 (6.0.822.36306), X64 RyuJIT AVX2
+  Job-LFXTQC : .NET 6.0.8 (6.0.822.36306), X64 RyuJIT AVX2
 
 InvocationCount=1  UnrollFactor=1  
 
 ```
-|           Method | EntityCount |       Mean |     Error |    StdDev | Ratio | RatioSD |      Gen 0 |     Gen 1 |     Gen 2 |    Allocated |
-|----------------- |------------ |-----------:|----------:|----------:|------:|--------:|-----------:|----------:|----------:|-------------:|
-|       DefaultEcs |      100000 |  19.902 ms | 0.1389 ms | 0.1299 ms |  1.00 |    0.00 |  2000.0000 | 1000.0000 | 1000.0000 | 19,999,424 B |
-|          Entitas |      100000 | 122.856 ms | 2.3781 ms | 3.5594 ms |  6.11 |    0.23 | 10000.0000 | 4000.0000 | 1000.0000 | 62,207,248 B |
-|      LeopotamEcs |      100000 |  18.304 ms | 0.1678 ms | 0.1488 ms |  0.92 |    0.01 |  2000.0000 | 1000.0000 | 1000.0000 | 16,143,544 B |
-|  LeopotamEcsLite |      100000 |   8.143 ms | 0.1587 ms | 0.1827 ms |  0.41 |    0.01 |  1000.0000 | 1000.0000 | 1000.0000 |  7,332,968 B |
-| MonoGameExtended |      100000 |  67.507 ms | 1.3248 ms | 1.3012 ms |  3.39 |    0.08 |  5000.0000 | 3000.0000 | 3000.0000 | 30,925,568 B |
-|        SveltoECS |      100000 |  70.538 ms | 0.2854 ms | 0.2669 ms |  3.54 |    0.03 |          - |         - |         - |            - |
+|           Method | EntityCount |     Mean |    Error |    StdDev | Ratio | RatioSD | CacheMisses/Op |      Gen0 |      Gen1 |      Gen2 |   Allocated | Alloc Ratio |
+|----------------- |------------ |---------:|---------:|----------:|------:|--------:|---------------:|----------:|----------:|----------:|------------:|------------:|
+|       DefaultEcs |      100000 | 12.38 ms | 0.247 ms |  0.451 ms |  1.00 |    0.00 |              - | 2000.0000 | 2000.0000 | 2000.0000 | 19523.18 KB |       1.000 |
+|          Entitas |      100000 | 81.99 ms | 2.144 ms |  6.116 ms |  6.55 |    0.46 |      3,490,161 | 9000.0000 | 4000.0000 | 1000.0000 | 59021.77 KB |       3.023 |
+|  LeopotamEcsLite |      100000 | 15.53 ms | 0.294 ms |  0.260 ms |  1.24 |    0.05 |              - | 2000.0000 | 2000.0000 | 2000.0000 | 12268.15 KB |       0.628 |
+|      LeopotamEcs |      100000 | 19.10 ms | 2.094 ms |  6.042 ms |  1.49 |    0.49 |              - | 2000.0000 | 2000.0000 | 2000.0000 | 15735.11 KB |       0.806 |
+| MonoGameExtended |      100000 | 50.39 ms | 3.689 ms | 10.876 ms |  4.01 |    0.95 |              - | 4000.0000 | 3000.0000 | 3000.0000 | 30152.91 KB |       1.544 |
+|        SveltoECS |      100000 | 73.45 ms | 1.439 ms |  1.768 ms |  5.92 |    0.27 |        934,442 |         - |         - |         - |     2.66 KB |       0.000 |

@@ -72,6 +72,6 @@ namespace Ecs.CSharp.Benchmark
 
         [BenchmarkCategory(Categories.LeopotamEcsLite)]
         [Benchmark]
-        public void LeopotamEcsLite_MonoThread() => _leopotamEcsLite.MonoThreadSystem.Run();
+        public void LeopotamEcsLite() => _leopotamEcsLite.MonoThreadSystem.Run();
     }
 }
