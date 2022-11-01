@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="Arch" Version="1.0.3" />
+    <PackageReference Include="Arch" Version="1.0.4" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0" PrivateAssets="all" />
     <PackageReference Include="Roslynator.Analyzers" Version="4.1.1" PrivateAssets="all" />
     <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.1.1" PrivateAssets="all" />
