@@ -76,8 +76,9 @@ namespace Ecs.CSharp.Benchmark
         public int EntityPadding { get; set; }
 
         [GlobalSetup]
-        public void Setup()
+        public void Setup() 
         {
+            _arch = new(filter, EntityCount);
             _defaultEcs = new(EntityCount, EntityPadding);
             _entitas = new(EntityCount, EntityPadding);
             _leopotamEcs = new(EntityCount, EntityPadding);
@@ -89,6 +90,7 @@ namespace Ecs.CSharp.Benchmark
         [GlobalCleanup]
         public void Cleanup()
         {
+            _arch.Dispose();
             _defaultEcs.Dispose();
             _entitas.Dispose();
             _leopotamEcs.Dispose();

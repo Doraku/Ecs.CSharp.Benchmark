@@ -18,6 +18,7 @@ namespace Ecs.CSharp.Benchmark
         [IterationSetup]
         public void Setup()
         {
+            _arch = new();
             _defaultEcs = new();
             _entitas = new();
             _leopotamEcs = new();
@@ -29,6 +30,7 @@ namespace Ecs.CSharp.Benchmark
         [IterationCleanup]
         public void Cleanup()
         {
+            _arch.Dispose();
             _defaultEcs.Dispose();
             _entitas.Dispose();
             _leopotamEcs.Dispose();
