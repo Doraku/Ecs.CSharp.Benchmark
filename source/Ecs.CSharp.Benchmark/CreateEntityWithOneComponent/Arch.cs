@@ -1,25 +1,27 @@
 ﻿using System;
+using Arch.Core;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Context;
 
-namespace Ecs.CSharp.Benchmark {
-
+namespace Ecs.CSharp.Benchmark
+{
     public partial class CreateEntityWithOneComponent
     {
+        private static readonly Type[] _archetype = { typeof(ArchBaseContext.Component1) };
 
         private ArchBaseContext _arch;
-        private Type[] archetype = { typeof(ArchBaseContext.Component1) };
-        
+
         [BenchmarkCategory(Categories.Arch)]
         [Benchmark]
-        public void Arch() 
+        public void Arch()
         {
-            var world = _arch.World;
-            world.Reserve(archetype, EntityCount);  // Optional, bulk allocates 
-            for (int i = 0; i < EntityCount; ++i) {
-                world.Create(archetype);
+            World world = _arch.World;
+            world.Reserve(_archetype, EntityCount);
+
+            for (int i = 0; i < EntityCount; ++i)
+            {
+                world.Create(_archetype);
             }
         }
     }
-
 }

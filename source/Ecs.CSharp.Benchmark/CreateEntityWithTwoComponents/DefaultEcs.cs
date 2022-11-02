@@ -16,7 +16,7 @@ namespace Ecs.CSharp.Benchmark
         public int EntityCount { get; set; }
 
         [IterationSetup]
-        public void Setup() 
+        public void Setup()
         {
             _arch = new();
             _defaultEcs = new();

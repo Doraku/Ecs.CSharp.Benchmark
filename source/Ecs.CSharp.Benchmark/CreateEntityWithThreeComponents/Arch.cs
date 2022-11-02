@@ -6,17 +6,20 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithThreeComponents
     {
+        private static readonly Type[] _archetype = { typeof(ArchBaseContext.Component1), typeof(ArchBaseContext.Component2), typeof(ArchBaseContext.Component3) };
+
         private ArchBaseContext _arch;
-        private Type[] archetype = { typeof(ArchBaseContext.Component1), typeof(ArchBaseContext.Component2), typeof(ArchBaseContext.Component3) };
 
         [BenchmarkCategory(Categories.Entitas)]
         [Benchmark]
-        public void Arch() 
+        public void Arch()
         {
-            var world = _arch.World;
-            world.Reserve(archetype, EntityCount);
-            for (int i = 0; i < EntityCount; ++i) {
-                world.Create(archetype);
+            Arch.Core.World world = _arch.World;
+            world.Reserve(_archetype, EntityCount);
+
+            for (int i = 0; i < EntityCount; ++i)
+            {
+                world.Create(_archetype);
             }
         }
     }
