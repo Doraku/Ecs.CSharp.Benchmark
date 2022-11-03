@@ -8,6 +8,7 @@ Tested frameworks:
 - [Leopotam.EcsLite](https://github.com/Leopotam/ecslite) using what I believe is a nuget package not made by the actual author and compiled in debug...
 - [MonoGame.Extended](https://github.com/craftworkgames/MonoGame.Extended)
 - [Svelto.ECS](https://github.com/sebas77/Svelto.ECS)
+- [Arch](https://github.com/genaray/Arch)
 
 ## [CreateEntityWithOneComponent](results/Ecs.CSharp.Benchmark.CreateEntityWithOneComponent-report-github.md)
 Create entities with one component.
