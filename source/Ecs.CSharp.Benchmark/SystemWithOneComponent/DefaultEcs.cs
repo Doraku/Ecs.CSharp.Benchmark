@@ -98,6 +98,7 @@ namespace Ecs.CSharp.Benchmark
             _leopotamEcs = new(EntityCount, EntityPadding);
             _leopotamEcsLite = new(EntityCount, EntityPadding);
             _monoGameExtended = new(EntityCount, EntityPadding);
+            _relEcs = new(EntityCount, EntityPadding);
             _sveltoECS = new(EntityCount, EntityPadding);
         }
 

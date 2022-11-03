@@ -24,6 +24,7 @@ namespace Ecs.CSharp.Benchmark
             _leopotamEcs = new();
             _leopotamEcsLite = new();
             _monoGameExtended = new();
+            _relEcs = new();
             _sveltoECS = new();
         }
 
