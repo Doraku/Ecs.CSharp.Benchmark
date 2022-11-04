@@ -13,19 +13,17 @@ namespace Ecs.CSharp.Benchmark
                 public World World { get; set; }
                 public void Run()
                 {
-                    var query = World.Query<Component1>().Build();
-                    foreach(var c in query)
+                    foreach(Component1 c in World.Query<Component1>().Build())
                     {
                         c.Value++;
                     }
                 }
             }
 
-            public ISystem MonoThreadSystem { get; }
+            public ISystem MonoThreadSystem { get; } = new MonoThreadRunSystem();
 
             public RelEcsContext(int entityCount, int entityPadding)
             {
-                MonoThreadSystem = new MonoThreadRunSystem();
                 MonoThreadSystem.World = World;
 
                 for (int i = 0; i < entityCount; ++i)
