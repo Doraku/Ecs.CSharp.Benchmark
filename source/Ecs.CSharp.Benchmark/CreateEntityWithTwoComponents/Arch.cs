@@ -2,12 +2,13 @@
 using Arch.Core;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Context;
+using Ecs.CSharp.Benchmark.Context.Arch_Components;
 
 namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithTwoComponents
     {
-        private static readonly Type[] _archetype = { typeof(ArchBaseContext.Component1), typeof(ArchBaseContext.Component2) };
+        private static readonly Type[] _archetype = { typeof(Component1), typeof(Component2) };
 
         private ArchBaseContext _arch;
 

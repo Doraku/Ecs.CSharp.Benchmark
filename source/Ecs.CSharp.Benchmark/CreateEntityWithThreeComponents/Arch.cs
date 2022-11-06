@@ -1,12 +1,13 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Context;
+using Ecs.CSharp.Benchmark.Context.Arch_Components;
 
 namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithThreeComponents
     {
-        private static readonly Type[] _archetype = { typeof(ArchBaseContext.Component1), typeof(ArchBaseContext.Component2), typeof(ArchBaseContext.Component3) };
+        private static readonly Type[] _archetype = { typeof(Component1), typeof(Component2), typeof(Component3) };
 
         private ArchBaseContext _arch;
 
