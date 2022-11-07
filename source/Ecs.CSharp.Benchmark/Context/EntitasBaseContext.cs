@@ -24,7 +24,7 @@ namespace Ecs.CSharp.Benchmark.Context
 
         public EntitasBaseContext()
         {
-            Context = new Context<Entity>(3, () => new Entity());
+            Context = new Context<Entity>(6, () => new Entity());
         }
 
         public virtual void Dispose()
