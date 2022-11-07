@@ -24,17 +24,6 @@ jobs:
         source-url: https://nuget.pkg.github.com/Doraku/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      
+
     - name: Run benchmark
       run: dotnet run --project source\Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj -c Release --filter * --job Dry
-
-    #- name: Copy results
-    #  run: Copy-Item -Path "BenchmarkDotNet.Artifacts\results\*.md" -Destination "results" -Force
-      
-    #- name: Commit results
-    #  run: |
-    #    git config --local user.email "$(git log --format='%ae' HEAD^!)"
-    #    git config --local user.name "$(git log --format='%an' HEAD^!)"
-    #    git add .
-    #    git commit -m "Updated results"
-    #    git push

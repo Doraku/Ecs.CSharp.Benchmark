@@ -9,7 +9,8 @@ namespace Ecs.CSharp.Benchmark
     {
         private static readonly Type[] _archetype = { typeof(Component1), typeof(Component2), typeof(Component3) };
 
-        private ArchBaseContext _arch;
+        [Context]
+        private readonly ArchBaseContext _arch;
 
         [BenchmarkCategory(Categories.Entitas)]
         [Benchmark]

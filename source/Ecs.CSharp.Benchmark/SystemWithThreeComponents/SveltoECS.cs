@@ -77,7 +77,8 @@ namespace Ecs.CSharp.Benchmark
             }
         }
 
-        private SveltoECSContext _sveltoECS;
+        [Context]
+        private readonly SveltoECSContext _sveltoECS;
 
         [Benchmark]
         public void SveltoECS() => _sveltoECS.Engine.Update();

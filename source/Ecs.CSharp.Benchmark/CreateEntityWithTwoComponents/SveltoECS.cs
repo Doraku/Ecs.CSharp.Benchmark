@@ -9,7 +9,8 @@ namespace Ecs.CSharp.Benchmark
         private sealed class SveltoEntity : GenericEntityDescriptor<SveltoECSBaseContext.Component1, SveltoECSBaseContext.Component2>
         { }
 
-        private SveltoECSBaseContext _sveltoECS;
+        [Context]
+        private readonly SveltoECSBaseContext _sveltoECS;
 
         [BenchmarkCategory(Categories.SveltoECS)]
         [Benchmark]

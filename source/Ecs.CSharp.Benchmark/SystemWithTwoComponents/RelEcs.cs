@@ -14,7 +14,7 @@ namespace Ecs.CSharp.Benchmark
                 public void Run()
                 {
                     Query<Component1, Component2> query = World.Query<Component1, Component2>().Build();
-                    foreach((Component1 c1, Component2 c2) in query)
+                    foreach ((Component1 c1, Component2 c2) in query)
                     {
                         c1.Value += c2.Value;
                     }
@@ -51,7 +51,8 @@ namespace Ecs.CSharp.Benchmark
             }
         }
 
-        private RelEcsContext _relEcs;
+        [Context]
+        private readonly RelEcsContext _relEcs;
 
         [BenchmarkCategory(Categories.RelEcs)]
         [Benchmark]

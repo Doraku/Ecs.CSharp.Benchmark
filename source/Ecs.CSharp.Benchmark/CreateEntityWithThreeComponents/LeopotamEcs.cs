@@ -6,7 +6,8 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithThreeComponents
     {
-        private LeopotamEcsBaseContext _leopotamEcs;
+        [Context]
+        private readonly LeopotamEcsBaseContext _leopotamEcs;
 
         [BenchmarkCategory(Categories.LeopotamEcs)]
         [Benchmark]

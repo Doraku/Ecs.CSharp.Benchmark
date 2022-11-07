@@ -6,7 +6,8 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithThreeComponents
     {
-        private EntitasBaseContext _entitas;
+        [Context]
+        private readonly EntitasBaseContext _entitas;
 
         [BenchmarkCategory(Categories.Entitas)]
         [Benchmark]

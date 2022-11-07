@@ -61,7 +61,8 @@ namespace Ecs.CSharp.Benchmark
             }
         }
 
-        private EntitasContext _entitas;
+        [Context]
+        private readonly EntitasContext _entitas;
 
         [BenchmarkCategory(Categories.Entitas)]
         [Benchmark]

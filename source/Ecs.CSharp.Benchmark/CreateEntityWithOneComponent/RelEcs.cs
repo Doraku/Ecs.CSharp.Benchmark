@@ -5,7 +5,8 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithOneComponent
     {
-        private RelEcsBaseContext _relEcs;
+        [Context]
+        private readonly RelEcsBaseContext _relEcs;
 
         [BenchmarkCategory(Categories.RelEcs)]
         [Benchmark]

@@ -1,26 +1,26 @@
 ﻿using System;
 using Arch.Core;
 
-namespace Ecs.CSharp.Benchmark.Context.Arch_Components {
-    
-    public struct Component1
-    {
-        public int Value;
-    }
-
-    public struct Component2
-    {
-        public int Value;
-    }
-
-    public struct Component3
-    {
-        public int Value;
-    }
-}
-
 namespace Ecs.CSharp.Benchmark.Context
 {
+    namespace Arch_Components
+    {
+        internal struct Component1
+        {
+            public int Value;
+        }
+
+        internal struct Component2
+        {
+            public int Value;
+        }
+
+        internal struct Component3
+        {
+            public int Value;
+        }
+    }
+
     internal class ArchBaseContext : IDisposable
     {
         public World World { get; }

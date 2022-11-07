@@ -5,7 +5,8 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithOneComponent
     {
-        private MonoGameExtendedBaseContext _monoGameExtended;
+        [Context]
+        private readonly MonoGameExtendedBaseContext _monoGameExtended;
 
         [BenchmarkCategory(Categories.MonoGameExtended)]
         [Benchmark]

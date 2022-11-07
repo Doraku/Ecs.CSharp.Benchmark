@@ -13,12 +13,12 @@ CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 BenchmarkSwitcher benchmark = BenchmarkSwitcher.FromTypes(new[]
 {
     typeof(CreateEntityWithOneComponent),
-    typeof(CreateEntityWithTwoComponents),
-    typeof(CreateEntityWithThreeComponents),
+    //typeof(CreateEntityWithTwoComponents),
+    //typeof(CreateEntityWithThreeComponents),
 
-    typeof(SystemWithOneComponent),
-    typeof(SystemWithTwoComponents),
-    typeof(SystemWithThreeComponents),
+    //typeof(SystemWithOneComponent),
+    //typeof(SystemWithTwoComponents),
+    //typeof(SystemWithThreeComponents),
 });
 
 IConfig configuration = DefaultConfig.Instance.WithOptions(ConfigOptions.DisableOptimizationsValidator);

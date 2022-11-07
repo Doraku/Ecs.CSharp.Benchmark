@@ -1,6 +1,5 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Diagnosers;
 using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
@@ -8,11 +7,6 @@ using Ecs.CSharp.Benchmark.Context;
 
 namespace Ecs.CSharp.Benchmark
 {
-    [BenchmarkCategory(Categories.System)]
-    [MemoryDiagnoser]
-#if CHECK_CACHE_MISSES
-    [HardwareCounters(HardwareCounter.CacheMisses)]
-#endif
     public partial class SystemWithThreeComponents
     {
         private partial class DefaultEcsContext : DefaultEcsBaseContext
@@ -74,38 +68,8 @@ namespace Ecs.CSharp.Benchmark
             }
         }
 
-        [Params(100000)]
-        public int EntityCount { get; set; }
-
-        [Params(0, 10)]
-        public int EntityPadding { get; set; }
-
-        [GlobalSetup]
-        public void Setup()
-        {
-            _arch = new(_filter, EntityCount);
-            _defaultEcs = new(EntityCount, EntityPadding);
-            _entitas = new(EntityCount, EntityPadding);
-            _leopotamEcs = new(EntityCount, EntityPadding);
-            _leopotamEcsLite = new(EntityCount, EntityPadding);
-            _monoGameExtended = new(EntityCount, EntityPadding);
-            _relEcs = new(EntityCount, EntityPadding);
-            _sveltoECS = new(EntityCount, EntityPadding);
-        }
-
-        [GlobalCleanup]
-        public void Cleanup()
-        {
-            _arch.Dispose();
-            _defaultEcs.Dispose();
-            _entitas.Dispose();
-            _leopotamEcs.Dispose();
-            _leopotamEcsLite.Dispose();
-            _monoGameExtended.Dispose();
-            _sveltoECS.Dispose();
-        }
-
-        private DefaultEcsContext _defaultEcs;
+        [Context]
+        private readonly DefaultEcsContext _defaultEcs;
 
         [BenchmarkCategory(Categories.DefaultEcs)]
         [Benchmark(Baseline = true)]

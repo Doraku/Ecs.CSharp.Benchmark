@@ -13,7 +13,7 @@ namespace Ecs.CSharp.Benchmark
                 public World World { get; set; }
                 public void Run()
                 {
-                    foreach(Component1 c in World.Query<Component1>().Build())
+                    foreach (Component1 c in World.Query<Component1>().Build())
                     {
                         c.Value++;
                     }
@@ -33,13 +33,15 @@ namespace Ecs.CSharp.Benchmark
                         World.Spawn();
                     }
 
-                    World.Spawn()
+                    World
+                        .Spawn()
                         .Add(new Component1());
                 }
             }
         }
 
-        private RelEcsContext _relEcs;
+        [Context]
+        private readonly RelEcsContext _relEcs;
 
         [BenchmarkCategory(Categories.RelEcs)]
         [Benchmark]

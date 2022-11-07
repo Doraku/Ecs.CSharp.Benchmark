@@ -10,7 +10,8 @@ namespace Ecs.CSharp.Benchmark
     {
         private static readonly Type[] _archetype = { typeof(Component1) };
 
-        private ArchBaseContext _arch;
+        [Context]
+        private readonly ArchBaseContext _arch;
 
         [BenchmarkCategory(Categories.Arch)]
         [Benchmark]
