@@ -5,6 +5,7 @@
         public const string DefaultEcs = "DefaultEcs";
         public const string Arch = "Arch";
         public const string Entitas = "Entitas";
+        public const string HypEcs = "HypEcs";
         public const string LeopotamEcs = "Leopotam.Ecs";
         public const string LeopotamEcsLite = "Leopotam.EcsLite";
         public const string MonoGameExtended = "MonoGame.Extended";
