@@ -8,9 +8,9 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithThreeComponents
     {
-        private class MonoGameExtendedContext : MonoGameExtendedBaseContext
+        private sealed class MonoGameExtendedContext : MonoGameExtendedBaseContext
         {
-            public class UpdateSystem : EntityUpdateSystem
+            public sealed class UpdateSystem : EntityUpdateSystem
             {
                 private ComponentMapper<Component1> _c1;
                 private ComponentMapper<Component2> _c2;

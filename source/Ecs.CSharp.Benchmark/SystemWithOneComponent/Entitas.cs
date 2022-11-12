@@ -7,9 +7,9 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithOneComponent
     {
-        private class EntitasContext : EntitasBaseContext
+        private sealed class EntitasContext : EntitasBaseContext
         {
-            private class EntitasSystem : JobSystem<Entity>
+            private sealed class EntitasSystem : JobSystem<Entity>
             {
                 public EntitasSystem(Context<Entity> context, int threadCount)
                     : base(context.GetGroup(Matcher<Entity>.AllOf(0)), threadCount)

@@ -5,17 +5,17 @@ namespace Ecs.CSharp.Benchmark.Context
 {
     internal class EntitasBaseContext : IDisposable
     {
-        public class Component1 : IComponent
+        public sealed class Component1 : IComponent
         {
             public int Value;
         }
 
-        public class Component2 : IComponent
+        public sealed class Component2 : IComponent
         {
             public int Value;
         }
 
-        public class Component3 : IComponent
+        public sealed class Component3 : IComponent
         {
             public int Value;
         }

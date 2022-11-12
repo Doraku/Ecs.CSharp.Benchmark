@@ -8,7 +8,7 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithThreeComponents
     {
-        private class SveltoECSContext : SveltoECSBaseContext
+        private sealed class SveltoECSContext : SveltoECSBaseContext
         {
             public sealed class SveltoEngine : IQueryingEntitiesEngine
             {

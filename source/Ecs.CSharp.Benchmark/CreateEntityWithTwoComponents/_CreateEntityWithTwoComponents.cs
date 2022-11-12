@@ -5,7 +5,7 @@ namespace Ecs.CSharp.Benchmark
     [BenchmarkCategory(Categories.CreateEntity)]
     [MemoryDiagnoser]
 #if CHECK_CACHE_MISSES
-    [HardwareCounters(HardwareCounter.CacheMisses)]
+    [HardwareCounters(BenchmarkDotNet.Diagnosers.HardwareCounter.CacheMisses)]
 #endif
     public partial class CreateEntityWithTwoComponents
     {

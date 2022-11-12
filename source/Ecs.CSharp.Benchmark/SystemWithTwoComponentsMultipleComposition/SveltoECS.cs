@@ -8,7 +8,7 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithTwoComponentsMultipleComposition
     {
-        private class SveltoECSContext : SveltoECSBaseContext
+        private sealed class SveltoECSContext : SveltoECSBaseContext
         {
             private record struct Padding1() : IEntityComponent;
 

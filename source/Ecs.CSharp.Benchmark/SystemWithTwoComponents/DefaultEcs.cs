@@ -9,7 +9,7 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithTwoComponents
     {
-        private partial class DefaultEcsContext : DefaultEcsBaseContext
+        private sealed partial class DefaultEcsContext : DefaultEcsBaseContext
         {
             private sealed partial class EntitySetSystem : AEntitySetSystem<int>
             {

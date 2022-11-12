@@ -9,12 +9,12 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithOneComponent
     {
-        private partial class DefaultEcsContext : DefaultEcsBaseContext
+        private sealed partial class DefaultEcsContext : DefaultEcsBaseContext
         {
             private sealed class ComponentSystem : AComponentSystem<int, Component1>
             {
                 public ComponentSystem(World world, IParallelRunner runner)
-                    : base(world, runner, 50000)
+                    : base(world, runner, 25000)
                 { }
 
                 public ComponentSystem(World world)

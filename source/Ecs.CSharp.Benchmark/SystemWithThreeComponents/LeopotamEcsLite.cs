@@ -6,7 +6,7 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithThreeComponents
     {
-        private class LeopotamEcsLiteContext : LeopotamEcsLiteBaseContext
+        private sealed class LeopotamEcsLiteContext : LeopotamEcsLiteBaseContext
         {
             private sealed class MonoThreadRunSystem : IEcsInitSystem, IEcsRunSystem
             {

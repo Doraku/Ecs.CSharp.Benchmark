@@ -7,17 +7,17 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithTwoComponentsMultipleComposition
     {
-        private class EntitasContext : EntitasBaseContext
+        private sealed class EntitasContext : EntitasBaseContext
         {
-            private record Padding1() : IComponent;
+            private sealed record Padding1() : IComponent;
 
-            private record Padding2() : IComponent;
+            private sealed record Padding2() : IComponent;
 
-            private record Padding3() : IComponent;
+            private sealed record Padding3() : IComponent;
 
-            private record Padding4() : IComponent;
+            private sealed record Padding4() : IComponent;
 
-            private class EntitasSystem : JobSystem<Entity>
+            private sealed class EntitasSystem : JobSystem<Entity>
             {
                 public EntitasSystem(Context<Entity> context, int threadCount)
                     : base(context.GetGroup(Matcher<Entity>.AllOf(0, 1)), threadCount)

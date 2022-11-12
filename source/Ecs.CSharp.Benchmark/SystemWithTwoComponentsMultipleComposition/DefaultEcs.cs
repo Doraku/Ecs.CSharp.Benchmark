@@ -9,7 +9,7 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithTwoComponentsMultipleComposition
     {
-        private partial class DefaultEcsContext : DefaultEcsBaseContext
+        private sealed partial class DefaultEcsContext : DefaultEcsBaseContext
         {
             private record struct Padding1();
 

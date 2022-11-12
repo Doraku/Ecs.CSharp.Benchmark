@@ -6,7 +6,7 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithOneComponent
     {
-        private class RelEcsContext : RelEcsBaseContext
+        private sealed class RelEcsContext : RelEcsBaseContext
         {
             private sealed class MonoThreadRunSystem : ISystem
             {

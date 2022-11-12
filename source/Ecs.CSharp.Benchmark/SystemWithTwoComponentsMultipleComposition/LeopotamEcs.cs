@@ -6,7 +6,7 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithTwoComponentsMultipleComposition
     {
-        private class LeopotamEcsContext : LeopotamEcsBaseContext
+        private sealed class LeopotamEcsContext : LeopotamEcsBaseContext
         {
             private record struct Padding1();
 

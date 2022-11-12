@@ -20,7 +20,7 @@ jobs:
     - name: Set up dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '7.0.x'
         source-url: https://nuget.pkg.github.com/Doraku/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

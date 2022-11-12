@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿#pragma warning disable CA1852 // Seal internal types
+
+using System.Globalization;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Running;
 using Ecs.CSharp.Benchmark;

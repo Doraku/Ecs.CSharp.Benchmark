@@ -6,15 +6,15 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithTwoComponentsMultipleComposition
     {
-        private class RelEcsContext : RelEcsBaseContext
+        private sealed class RelEcsContext : RelEcsBaseContext
         {
-            private record Padding1();
+            private sealed record Padding1();
 
-            private record Padding2();
+            private sealed record Padding2();
 
-            private record Padding3();
+            private sealed record Padding3();
 
-            private record Padding4();
+            private sealed record Padding4();
 
             private sealed class MonoThreadRunSystem : ISystem
             {
