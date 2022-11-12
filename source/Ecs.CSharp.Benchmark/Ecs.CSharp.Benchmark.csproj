@@ -43,6 +43,6 @@
     <PackageReference Include="Svelto.ECS" Version="3.3.2" />
     <PackageReference Include="Svelto.Common" Version="3.3.2" />
     
-    <PackageReference Include="RelEcs" Version="1.4.1" />
+    <PackageReference Include="RelEcs" Version="1.5.1" />
   </ItemGroup>
 </Project>
