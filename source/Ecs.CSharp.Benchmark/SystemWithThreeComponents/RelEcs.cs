@@ -10,10 +10,9 @@ namespace Ecs.CSharp.Benchmark
         {
             private sealed class MonoThreadRunSystem : ISystem
             {
-                public World World { get; set; }
-                public void Run()
+                public void Run(World world)
                 {
-                    Query<Component1, Component2, Component3> query = World.Query<Component1, Component2, Component3>().Build();
+                    Query<Component1, Component2, Component3> query = world.Query<Component1, Component2, Component3>().Build();
                     foreach ((Component1 c1, Component2 c2, Component3 c3) in query)
                     {
                         c1.Value += c2.Value + c3.Value;
@@ -25,8 +24,6 @@ namespace Ecs.CSharp.Benchmark
 
             public RelEcsContext(int entityCount, int entityPadding)
             {
-                MonoThreadSystem.World = World;
-
                 for (int i = 0; i < entityCount; ++i)
                 {
                     for (int j = 0; j < entityPadding; ++j)
@@ -61,6 +58,6 @@ namespace Ecs.CSharp.Benchmark
 
         [BenchmarkCategory(Categories.RelEcs)]
         [Benchmark]
-        public void RelEcs() => _relEcs.MonoThreadSystem.Run();
+        public void RelEcs() => _relEcs.MonoThreadSystem.Run(_relEcs.World);
     }
 }
