@@ -5,8 +5,7 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithThreeComponents
     {
-        [Context]
-        private readonly HypEcsBaseContext _hypEcs;
+        [Context] private readonly HypEcsBaseContext _hypEcs;
 
         [BenchmarkCategory(Categories.HypEcs)]
         [Benchmark]

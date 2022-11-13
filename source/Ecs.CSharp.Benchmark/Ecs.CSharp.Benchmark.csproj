@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="HypEcs" Version="1.1.0" />
+    <PackageReference Include="HypEcs" Version="1.2.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.0-preview1.22518.1" PrivateAssets="all" />
     <PackageReference Include="Roslynator.Analyzers" Version="4.1.2" PrivateAssets="all" />
     <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.1.2" PrivateAssets="all" />
