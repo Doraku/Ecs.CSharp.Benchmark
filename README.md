@@ -21,10 +21,13 @@ Create entities with two components.
 Create entities with three components.
 
 ## [SystemWithOneComponent](results/Ecs.CSharp.Benchmark.SystemWithOneComponent-report-github.md)
-Modify entities with one component.
+Modify entities with one component. The padding aims to simulate real situation when processed entities and their components are not sequential.
 
 ## [SystemWithTwoComponents](results/Ecs.CSharp.Benchmark.SystemWithTwoComponents-report-github.md)
-Modify entities with two components.
+Modify entities with two components. The padding aims to simulate real situation when processed entities and their components are not sequential.
 
 ## [SystemWithThreeComponents](results/Ecs.CSharp.Benchmark.SystemWithThreeComponents-report-github.md)
-Modify entities with three components.
+Modify entities with three components. The padding aims to simulate real situation when processed entities and their components are not sequential.
+
+## [SystemWithTwoComponentsMultipleComposition](results/Ecs.CSharp.Benchmark.SystemWithTwoComponentsMultipleComposition-report-github.md)
+Modify entities with two components while different entity compositions match the the components query.
