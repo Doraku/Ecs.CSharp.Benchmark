@@ -5,8 +5,7 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithOneComponent
     {
-        [Context]
-        private readonly HypEcsBaseContext _hypEcs;
+        [Context] private readonly HypEcsBaseContext _hypEcs;
 
         [BenchmarkCategory(Categories.RelEcs)]
         [Benchmark]

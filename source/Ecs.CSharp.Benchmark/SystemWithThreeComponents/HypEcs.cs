@@ -6,21 +6,42 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithThreeComponents
     {
-        private class HypEcsContext : HypEcsBaseContext
+        private sealed class HypEcsContext : HypEcsBaseContext
         {
             private sealed class MonoThreadRunSystem : ISystem
             {
                 public void Run(World world)
                 {
-                    Query<Component1, Component2, Component3> query = world.Query<Component1, Component2, Component3>().Build();
-                    foreach ((Ref<Component1> c1, Ref<Component2> c2, Ref<Component3> c3) in query)
+                    Query<Component1, Component2, Component3> query = world.Query<Component1, Component2, Component3>()
+                        .Build();
+                    query.Run((count, s1, s2, s3) =>
                     {
-                        c1.Value.Value += c2.Value.Value + c3.Value.Value;
-                    }
+                        for (int i = 0; i < count; i++)
+                        {
+                            s1[i].Value += s2[i].Value + s3[i].Value;
+                        }
+                    });
+                }
+            }
+
+            private sealed class MultiThreadRunSystem : ISystem
+            {
+                public void Run(World world)
+                {
+                    Query<Component1, Component2, Component3> query = world.Query<Component1, Component2, Component3>()
+                        .Build();
+                    query.RunParallel((count, s1, s2, s3) =>
+                    {
+                        for (int i = 0; i < count; i++)
+                        {
+                            s1[i].Value += s2[i].Value + s3[i].Value;
+                        }
+                    });
                 }
             }
 
             public ISystem MonoThreadSystem { get; } = new MonoThreadRunSystem();
+            public ISystem MultiThreadSystem { get; } = new MultiThreadRunSystem();
 
             public HypEcsContext(int entityCount, int entityPadding)
             {
@@ -53,11 +74,14 @@ namespace Ecs.CSharp.Benchmark
             }
         }
 
-        [Context]
-        private readonly HypEcsContext _hypEcs;
+        [Context] private readonly HypEcsContext _hypEcs;
 
         [BenchmarkCategory(Categories.HypEcs)]
         [Benchmark]
-        public void HypEcs() => _hypEcs.MonoThreadSystem.Run(_hypEcs.World);
+        public void HypEcs_MonoThread() => _hypEcs.MonoThreadSystem.Run(_hypEcs.World);
+
+        [BenchmarkCategory(Categories.HypEcs)]
+        [Benchmark]
+        public void HypEcs_MultiThread() => _hypEcs.MultiThreadSystem.Run(_hypEcs.World);
     }
 }
