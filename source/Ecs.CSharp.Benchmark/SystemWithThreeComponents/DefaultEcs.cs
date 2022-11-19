@@ -72,7 +72,7 @@ namespace Ecs.CSharp.Benchmark
         private readonly DefaultEcsContext _defaultEcs;
 
         [BenchmarkCategory(Categories.DefaultEcs)]
-        [Benchmark(Baseline = true)]
+        [Benchmark]
         public void DefaultEcs_MonoThread() => _defaultEcs.MonoThreadEntitySetSystem.Update(0);
 
         [BenchmarkCategory(Categories.DefaultEcs)]

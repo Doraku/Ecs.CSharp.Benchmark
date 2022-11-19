@@ -14,7 +14,7 @@ namespace Ecs.CSharp.Benchmark
             private sealed class ComponentSystem : AComponentSystem<int, Component1>
             {
                 public ComponentSystem(World world, IParallelRunner runner)
-                    : base(world, runner, 25000)
+                    : base(world, runner)
                 { }
 
                 public ComponentSystem(World world)
@@ -81,7 +81,7 @@ namespace Ecs.CSharp.Benchmark
         private readonly DefaultEcsContext _defaultEcs;
 
         [BenchmarkCategory(Categories.DefaultEcs)]
-        [Benchmark(Baseline = true)]
+        [Benchmark]
         public void DefaultEcs_ComponentSystem_MonoThread() => _defaultEcs.MonoThreadComponentSystem.Update(0);
 
         [BenchmarkCategory(Categories.DefaultEcs)]

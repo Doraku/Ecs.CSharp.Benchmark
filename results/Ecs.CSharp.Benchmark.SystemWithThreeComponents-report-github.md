@@ -1,36 +1,40 @@
 ``` ini
 
-BenchmarkDotNet=v0.13.2, OS=Windows 10 (10.0.18363.2274/1909/November2019Update/19H2)
-Intel Xeon W-2135 CPU 3.70GHz, 1 CPU, 12 logical and 6 physical cores
+BenchmarkDotNet=v0.13.2, OS=Windows 10 (10.0.19044.2251/21H2/November2021Update)
+Intel Core i5-3570K CPU 3.40GHz (Ivy Bridge), 1 CPU, 4 logical and 4 physical cores
 .NET SDK=7.0.100
-  [Host]     : .NET 7.0.0 (7.0.22.51805), X64 RyuJIT AVX2
-  DefaultJob : .NET 7.0.0 (7.0.22.51805), X64 RyuJIT AVX2
+  [Host]     : .NET 7.0.0 (7.0.22.51805), X64 RyuJIT AVX
+  DefaultJob : .NET 7.0.0 (7.0.22.51805), X64 RyuJIT AVX
 
 
 ```
-|                 Method | EntityCount | EntityPadding |         Mean |      Error |       StdDev | Ratio | RatioSD | CacheMisses/Op | Allocated | Alloc Ratio |
-|----------------------- |------------ |-------------- |-------------:|-----------:|-------------:|------:|--------:|---------------:|----------:|------------:|
-|                   Arch |      100000 |             0 |     78.14 μs |   0.548 μs |     0.458 μs |  0.33 |    0.00 |             33 |         - |          NA |
-|  DefaultEcs_MonoThread |      100000 |             0 |    233.59 μs |   0.798 μs |     0.666 μs |  1.00 |    0.00 |             41 |         - |          NA |
-| DefaultEcs_MultiThread |      100000 |             0 |     59.88 μs |   0.511 μs |     0.399 μs |  0.26 |    0.00 |             86 |         - |          NA |
-|     Entitas_MonoThread |      100000 |             0 |  4,776.95 μs |  56.392 μs |    52.749 μs | 20.44 |    0.22 |        801,780 |     109 B |          NA |
-|    Entitas_MultiThread |      100000 |             0 |  1,800.59 μs |   3.902 μs |     3.046 μs |  7.71 |    0.03 |        798,973 |    1155 B |          NA |
-|        LeopotamEcsLite |      100000 |             0 |  3,552.39 μs |   6.349 μs |     5.939 μs | 15.21 |    0.04 |          2,191 |       5 B |          NA |
-|            LeopotamEcs |      100000 |             0 |    288.91 μs |   0.578 μs |     0.513 μs |  1.24 |    0.00 |             49 |       1 B |          NA |
-|       MonoGameExtended |      100000 |             0 |  1,028.00 μs |   4.134 μs |     3.866 μs |  4.40 |    0.02 |         99,811 |     163 B |          NA |
-|                 RelEcs |      100000 |             0 |    712.04 μs |   6.003 μs |     5.616 μs |  3.05 |    0.03 |         67,633 |     217 B |          NA |
-|              SveltoECS |      100000 |             0 |    319.39 μs |   1.050 μs |     0.982 μs |  1.37 |    0.01 |             33 |       1 B |          NA |
-|                        |             |               |              |            |              |       |         |                |           |             |
-|                   Arch |      100000 |            10 |     78.50 μs |   0.819 μs |     0.726 μs |  0.07 |    0.00 |             28 |         - |        0.00 |
-|  DefaultEcs_MonoThread |      100000 |            10 |  1,118.10 μs |  18.650 μs |    15.574 μs |  1.00 |    0.00 |        193,674 |       3 B |        1.00 |
-| DefaultEcs_MultiThread |      100000 |            10 |    401.71 μs |   4.266 μs |     3.562 μs |  0.36 |    0.01 |        174,438 |       1 B |        0.33 |
-|     Entitas_MonoThread |      100000 |            10 | 36,904.37 μs | 736.621 μs | 1,677.660 μs | 33.59 |    0.97 |        683,925 |     201 B |       67.00 |
-|    Entitas_MultiThread |      100000 |            10 |  5,156.75 μs | 102.659 μs |   118.222 μs |  4.62 |    0.16 |        720,776 |    1165 B |      388.33 |
-|        LeopotamEcsLite |      100000 |            10 | 10,092.54 μs |  65.730 μs |    58.268 μs |  9.03 |    0.14 |        532,576 |      22 B |        7.33 |
-|            LeopotamEcs |      100000 |            10 |    285.90 μs |   5.655 μs |     7.353 μs |  0.26 |    0.01 |          2,966 |       1 B |        0.33 |
-|       MonoGameExtended |      100000 |            10 |  4,462.76 μs |  31.159 μs |    27.621 μs |  3.99 |    0.06 |        799,893 |     171 B |       57.00 |
-|                 RelEcs |      100000 |            10 |  2,364.44 μs |  11.175 μs |     9.906 μs |  2.11 |    0.03 |        392,563 |     221 B |       73.67 |
-|              SveltoECS |      100000 |            10 |           NA |         NA |           NA |     ? |       ? |              - |         - |           ? |
+|                 Method | EntityCount | EntityPadding |         Mean |      Error |     StdDev | CacheMisses/Op |   Gen0 | Allocated |
+|----------------------- |------------ |-------------- |-------------:|-----------:|-----------:|---------------:|-------:|----------:|
+|                   Arch |      100000 |             0 |    114.32 μs |   0.016 μs |   0.014 μs |              5 |      - |         - |
+|  DefaultEcs_MonoThread |      100000 |             0 |    388.85 μs |   0.182 μs |   0.142 μs |             36 |      - |       1 B |
+| DefaultEcs_MultiThread |      100000 |             0 |    104.02 μs |   0.399 μs |   0.333 μs |             40 |      - |         - |
+|     Entitas_MonoThread |      100000 |             0 |  4,341.06 μs |   7.976 μs |   7.460 μs |        344,337 |      - |     109 B |
+|    Entitas_MultiThread |      100000 |             0 |  3,107.05 μs |  10.689 μs |   8.926 μs |        401,718 |      - |     391 B |
+|      HypEcs_MonoThread |      100000 |             0 |     85.27 μs |   0.012 μs |   0.011 μs |              3 |      - |      32 B |
+|     HypEcs_MultiThread |      100000 |             0 |     88.09 μs |   0.049 μs |   0.043 μs |             14 | 0.4883 |    1768 B |
+|            LeopotamEcs |      100000 |             0 |    788.61 μs |   0.211 μs |   0.165 μs |             38 |      - |       1 B |
+|        LeopotamEcsLite |      100000 |             0 |  5,533.31 μs |   4.068 μs |   3.805 μs |          1,515 |      - |      11 B |
+|       MonoGameExtended |      100000 |             0 |  1,373.25 μs |  27.121 μs |  27.851 μs |         24,487 |      - |     163 B |
+|                 RelEcs |      100000 |             0 |    939.20 μs |   1.915 μs |   1.791 μs |         38,063 |      - |     217 B |
+|              SveltoECS |      100000 |             0 |    450.23 μs |   0.060 μs |   0.056 μs |             13 |      - |       1 B |
+|                        |             |               |              |            |            |                |        |           |
+|                   Arch |      100000 |            10 |    114.45 μs |   0.082 μs |   0.073 μs |              8 |      - |         - |
+|  DefaultEcs_MonoThread |      100000 |            10 |  1,248.00 μs |   1.669 μs |   1.480 μs |         72,302 |      - |       3 B |
+| DefaultEcs_MultiThread |      100000 |            10 |    970.12 μs |   3.348 μs |   2.968 μs |        119,385 |      - |       1 B |
+|     Entitas_MonoThread |      100000 |            10 | 19,309.45 μs | 121.756 μs | 113.891 μs |        624,546 |      - |     148 B |
+|    Entitas_MultiThread |      100000 |            10 |  9,456.08 μs | 138.433 μs | 122.718 μs |        620,781 |      - |     410 B |
+|      HypEcs_MonoThread |      100000 |            10 |     84.80 μs |   0.009 μs |   0.008 μs |              2 |      - |      32 B |
+|     HypEcs_MultiThread |      100000 |            10 |     87.68 μs |   0.066 μs |   0.058 μs |             17 | 0.4883 |    1768 B |
+|            LeopotamEcs |      100000 |            10 |    364.92 μs |   0.946 μs |   0.838 μs |          1,857 |      - |       1 B |
+|        LeopotamEcsLite |      100000 |            10 | 11,141.80 μs |  44.407 μs |  41.538 μs |        113,341 |      - |      17 B |
+|       MonoGameExtended |      100000 |            10 |  4,032.95 μs |   9.810 μs |   8.697 μs |        219,729 |      - |     171 B |
+|                 RelEcs |      100000 |            10 |  2,270.26 μs |   4.858 μs |   4.306 μs |        175,250 |      - |     221 B |
+|              SveltoECS |      100000 |            10 |           NA |         NA |         NA |              - |      - |         - |
 
 Benchmarks with issues:
   SystemWithThreeComponents.SveltoECS: DefaultJob [EntityCount=100000, EntityPadding=10]

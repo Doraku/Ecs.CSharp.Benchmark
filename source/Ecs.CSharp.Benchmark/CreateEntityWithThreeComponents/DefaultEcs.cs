@@ -10,7 +10,7 @@ namespace Ecs.CSharp.Benchmark
         private readonly DefaultEcsBaseContext _defaultEcs;
 
         [BenchmarkCategory(Categories.DefaultEcs)]
-        [Benchmark(Baseline = true)]
+        [Benchmark]
         public void DefaultEcs()
         {
             for (int i = 0; i < EntityCount; ++i)
