@@ -1,6 +1,10 @@
 ﻿# ECS c# Benchmark
 This repo contains benchmarks of some c# ECS frameworks. Feel free to add your own or correct usage of existing ones! Please make you framework available as a nuget package to ease referencing and updating versions.
 
+The benchmarks are not representative of usage in real conditions but results can still be interesting to look at.
+
+All results are obtained from the same toaster, with the same load, so comparison is fairer.
+
 Tested frameworks:
 - [Arch](https://github.com/genaray/Arch)
 - [DefaultEcs](https://github.com/Doraku/DefaultEcs)
