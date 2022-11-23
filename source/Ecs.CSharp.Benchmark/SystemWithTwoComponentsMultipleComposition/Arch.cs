@@ -31,6 +31,8 @@ namespace Ecs.CSharp.Benchmark
 
             public ArchContext(int entityCount)
             {
+             
+                JobScheduler = new global::JobScheduler.JobScheduler("Arch");
                 Type[] paddingTypes = new[]
                 {
                     typeof(Padding1),
