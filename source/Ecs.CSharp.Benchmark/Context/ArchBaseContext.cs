@@ -1,5 +1,6 @@
 ﻿using System;
 using Arch.Core;
+using JobScheduler = JobScheduler.JobScheduler;
 
 namespace Ecs.CSharp.Benchmark.Context
 {
@@ -24,6 +25,7 @@ namespace Ecs.CSharp.Benchmark.Context
     internal class ArchBaseContext : IDisposable
     {
         public World World { get; }
+        public global::JobScheduler.JobScheduler JobScheduler { get; set; }
 
         public ArchBaseContext()
         {
@@ -32,6 +34,7 @@ namespace Ecs.CSharp.Benchmark.Context
 
         public ArchBaseContext(Type[] archetype, int amount)
         {
+            JobScheduler = new global::JobScheduler.JobScheduler("Arch");
             World = World.Create();
             World.Reserve(archetype, amount);
 
@@ -44,6 +47,7 @@ namespace Ecs.CSharp.Benchmark.Context
         public virtual void Dispose()
         {
             World.Destroy(World);
+            JobScheduler.Dispose();
         }
     }
 }
