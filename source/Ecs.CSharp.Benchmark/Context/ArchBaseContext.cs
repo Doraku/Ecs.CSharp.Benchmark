@@ -47,7 +47,7 @@ namespace Ecs.CSharp.Benchmark.Context
         public virtual void Dispose()
         {
             World.Destroy(World);
-            JobScheduler.Dispose();
+            JobScheduler?.Dispose();
         }
     }
 }
