@@ -35,10 +35,18 @@ namespace Ecs.CSharp.Benchmark
 
         [BenchmarkCategory(Categories.Arch)]
         [Benchmark]
-        public void Arch()
+        public void Arch_MonoThread()
         {
             World world = _arch.World;
             world.HPQuery<ForEach3, Component1, Component2, Component3>(_queryDescription, ref _forEach3);
+        }
+        
+        [BenchmarkCategory(Categories.Arch)]
+        [Benchmark]
+        public void Arch_MultiThread()
+        {
+            World world = _arch.World;
+            world.HPParallelQuery<ForEach3, Component1, Component2, Component3>(_queryDescription, ref _forEach3);
         }
     }
 }
