@@ -30,7 +30,7 @@
     <PackageReference Include="DefaultEcs" Version="0.17.2" />
     <PackageReference Include="DefaultEcs.Analyzer" Version="0.17.0" PrivateAssets="all" />
 
-    <PackageReference Include="Arch" Version="1.0.14" />
+    <PackageReference Include="Arch" Version="1.0.16" />
     
     <PackageReference Include="Entitas" Version="1.14.2" />
 

@@ -40,7 +40,6 @@ namespace Ecs.CSharp.Benchmark
             World world = _arch.World;
             world.HPQuery<ForEach3, Component1, Component2, Component3>(_queryDescription, ref _forEach3);
         }
-        
         [BenchmarkCategory(Categories.Arch)]
         [Benchmark]
         public void Arch_MultiThread()
