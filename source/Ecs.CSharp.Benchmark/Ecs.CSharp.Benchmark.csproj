@@ -15,25 +15,26 @@
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="HypEcs" Version="1.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.0-preview1.22518.1" PrivateAssets="all" />
-    <PackageReference Include="Roslynator.Analyzers" Version="4.1.2" PrivateAssets="all" />
-    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.1.2" PrivateAssets="all" />
-    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.1.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.0" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.Analyzers" Version="4.2.0" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.2.0" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.2.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Benchmark">
-    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.2" />
+    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.5" />
   </ItemGroup>
 
   <ItemGroup Label="Ecs">
+    <PackageReference Include="Arch" Version="1.0.16" />
+    
     <PackageReference Include="DefaultEcs" Version="0.17.2" />
     <PackageReference Include="DefaultEcs.Analyzer" Version="0.17.0" PrivateAssets="all" />
 
-    <PackageReference Include="Arch" Version="1.0.16" />
-    
     <PackageReference Include="Entitas" Version="1.14.2" />
 
+    <PackageReference Include="HypEcs" Version="1.2.0" />
+    
     <PackageReference Include="MonoGame.Extended.Entities" Version="3.8.0" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
 
@@ -41,9 +42,9 @@
 
     <PackageReference Include="Leopotam.EcsLite" Version="1.0.0" />
 
+    <PackageReference Include="RelEcs" Version="1.5.1" />
+
     <PackageReference Include="Svelto.ECS" Version="3.3.2" />
     <PackageReference Include="Svelto.Common" Version="3.3.2" />
-    
-    <PackageReference Include="RelEcs" Version="1.5.1" />
   </ItemGroup>
 </Project>
