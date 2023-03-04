@@ -12,7 +12,7 @@ namespace Ecs.CSharp.Benchmark
         [Context]
         private readonly ArchBaseContext _arch;
 
-        [BenchmarkCategory(Categories.Entitas)]
+        [BenchmarkCategory(Categories.Arch)]
         [Benchmark]
         public void Arch()
         {

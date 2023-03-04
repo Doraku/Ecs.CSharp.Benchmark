@@ -21,7 +21,7 @@ Create entities with one component.
 
 |           Method |      Mean | CacheMisses/Op |   Allocated |
 |----------------- |----------:|---------------:|------------:|
-|             Arch | 12.336 ms |         58,672 |  9738.77 KB |
+|             Arch |  13.65 ms |         58,716 |     9.54 MB |
 |       DefaultEcs |  8.788 ms |        107,383 | 11324.52 KB |
 |          Entitas | 92.512 ms |      1,318,366 | 56677.68 KB |
 |           HypEcs | 23.080 ms |        266,240 | 25825.78 KB |
@@ -36,7 +36,7 @@ Create entities with two components.
 
 |           Method |       Mean | CacheMisses/Op |   Allocated |
 |----------------- |-----------:|---------------:|------------:|
-|             Arch |   8.554 ms |         56,185 |  9910.11 KB |
+|             Arch |   12.08 ms |         62,393 |      9.7 MB |
 |       DefaultEcs |  14.638 ms |        174,816 | 15417.45 KB |
 |          Entitas |  99.232 ms |      1,287,851 | 59021.43 KB |
 |           HypEcs |  44.893 ms |        360,448 | 45333.15 KB |
@@ -51,7 +51,7 @@ Create entities with three components.
 
 |           Method |       Mean | CacheMisses/Op |   Allocated |
 |----------------- |-----------:|---------------:|------------:|
-|             Arch |   8.593 ms |         59,173 | 10405.95 KB |
+|             Arch |   14.03 ms |         63,986 |    10.16 MB |
 |       DefaultEcs |  19.569 ms |        232,325 | 19516.31 KB |
 |          Entitas | 103.717 ms |      1,386,701 | 61365.18 KB |
 |           HypEcs |  73.461 ms |        431,923 | 68751.98 KB |
@@ -66,7 +66,8 @@ Modify entities with one component. The padding aims to simulate real situation 
 
 |                                 Method |         Mean | CacheMisses/Op | Allocated |
 |--------------------------------------- |-------------:|---------------:|----------:|
-|                                   Arch |     62.59 μs |              2 |         - |
+|                        Arch_MonoThread |     61.74 μs |              3 |         - |
+|                       Arch_MultiThread |     30.25 μs |              3 |         - |
 |  DefaultEcs_ComponentSystem_MonoThread |     56.71 μs |              1 |         - |
 | DefaultEcs_ComponentSystem_MultiThread |     15.42 μs |              1 |         - |
 |  DefaultEcs_EntitySetSystem_MonoThread |    163.55 μs |              5 |         - |
@@ -86,7 +87,8 @@ Modify entities with two components. The padding aims to simulate real situation
 
 |                 Method |         Mean | CacheMisses/Op | Allocated |
 |----------------------- |-------------:|---------------:|----------:|
-|                   Arch |     92.67 μs |              3 |         - |
+|        Arch_MonoThread |     91.48 μs |              3 |         - |
+|       Arch_MultiThread |     36.82 μs |              5 |         - |
 |  DefaultEcs_MonoThread |    254.98 μs |             17 |       1 B |
 | DefaultEcs_MultiThread |     67.94 μs |              9 |         - |
 |     Entitas_MonoThread |  4,494.22 μs |        318,174 |     109 B |
@@ -104,7 +106,8 @@ Modify entities with three components. The padding aims to simulate real situati
 
 |                 Method |         Mean | CacheMisses/Op | Allocated |
 |----------------------- |-------------:|---------------:|----------:|
-|                   Arch |    114.32 μs |              5 |         - |
+|        Arch_MonoThread |    111.44 μs |              8 |         - |
+|       Arch_MultiThread |     41.68 μs |              7 |         - |
 |  DefaultEcs_MonoThread |    388.85 μs |             36 |       1 B |
 | DefaultEcs_MultiThread |    104.02 μs |             40 |         - |
 |     Entitas_MonoThread |  4,341.06 μs |        344,337 |     109 B |
@@ -122,7 +125,8 @@ Modify entities with two components while different entity compositions match th
 
 |                 Method |        Mean | CacheMisses/Op | Allocated |
 |----------------------- |------------:|---------------:|----------:|
-|                   Arch |    92.85 μs |              2 |         - |
+|                   Arch |    91.47 μs |              6 |         - |
+|       Arch_MultiThread |    59.92 μs |              9 |         - |
 |  DefaultEcs_MonoThread |   259.89 μs |              9 |       1 B |
 | DefaultEcs_MultiThread |    69.55 μs |              6 |         - |
 |     Entitas_MonoThread | 4,839.97 μs |        340,754 |     112 B |
