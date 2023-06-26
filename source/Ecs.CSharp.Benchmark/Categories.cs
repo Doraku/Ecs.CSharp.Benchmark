@@ -11,6 +11,7 @@
         public const string MonoGameExtended = "MonoGame.Extended";
         public const string RelEcs = "RelEcs";
         public const string SveltoECS = "Svelto.ECS";
+        public const string Morpeh = "Morpeh";
 
         public const string CreateEntity = "CreateEntity";
         public const string System = "System";
