@@ -33,8 +33,6 @@
     <PackageReference Include="DefaultEcs" Version="0.17.2" />
     <PackageReference Include="DefaultEcs.Analyzer" Version="0.17.0" PrivateAssets="all" />
 
-    <PackageReference Include="Entitas" Version="1.14.2" />
-
     <PackageReference Include="HypEcs" Version="1.2.1" />
     
     <PackageReference Include="MonoGame.Extended.Entities" Version="3.8.0" />
