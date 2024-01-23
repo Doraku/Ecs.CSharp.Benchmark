@@ -22,7 +22,7 @@ namespace Ecs.CSharp.Benchmark.Contexts
 
         public World World { get; }
 
-        protected MorpehBaseContext()
+        public MorpehBaseContext()
         {
             World = World.Create();
         }
