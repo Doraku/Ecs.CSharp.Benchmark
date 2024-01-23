@@ -32,6 +32,8 @@
     
     <PackageReference Include="DefaultEcs" Version="0.17.2" />
     <PackageReference Include="DefaultEcs.Analyzer" Version="0.17.0" PrivateAssets="all" />
+    
+    <PackageReference Include="Friflo.Engine.ECS" Version="1.9.8" />
 
     <PackageReference Include="HypEcs" Version="1.2.1" />
     

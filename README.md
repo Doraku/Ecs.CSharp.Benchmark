@@ -9,6 +9,7 @@ Tested frameworks:
 - [Arch](https://github.com/genaray/Arch)
 - [DefaultEcs](https://github.com/Doraku/DefaultEcs)
 - [Entitas](https://github.com/sschmid/Entitas-CSharp)
+- [Friflo.Engine.ECS](https://github.com/friflo/Friflo.Json.Fliox/blob/main/Engine/README.md)
 - [HypEcs](https://github.com/Byteron/HypEcs)
 - [Leopotam.Ecs](https://github.com/Leopotam/ecs) using what I believe is a nuget package not made by the actual author and compiled in debug...
 - [Leopotam.EcsLite](https://github.com/Leopotam/ecslite) using what I believe is a nuget package not made by the actual author and compiled in debug...
