@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup Label="Benchmark">
-    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.5" />
+    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.12" />
   </ItemGroup>
 
   <ItemGroup Label="Ecs">
