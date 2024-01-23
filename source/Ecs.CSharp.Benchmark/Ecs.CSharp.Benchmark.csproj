@@ -2,7 +2,7 @@
   
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
@@ -38,7 +38,7 @@
     <PackageReference Include="HypEcs" Version="1.2.1" />
     
     <PackageReference Include="MonoGame.Extended.Entities" Version="3.8.0" />
-    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
 
     <PackageReference Include="Leopotam.Ecs" Version="1.0.0" />
 
