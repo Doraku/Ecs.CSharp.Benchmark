@@ -35,7 +35,7 @@
 
     <PackageReference Include="Entitas" Version="1.14.2" />
 
-    <PackageReference Include="HypEcs" Version="1.2.0" />
+    <PackageReference Include="HypEcs" Version="1.2.1" />
     
     <PackageReference Include="MonoGame.Extended.Entities" Version="3.8.0" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
