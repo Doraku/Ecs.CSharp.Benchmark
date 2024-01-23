@@ -1,7 +1,7 @@
 ﻿using System;
 using Entitas;
 
-namespace Ecs.CSharp.Benchmark.Context
+namespace Ecs.CSharp.Benchmark.Contexts
 {
     internal class EntitasBaseContext : IDisposable
     {

@@ -3,7 +3,7 @@ using BenchmarkDotNet.Attributes;
 using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
-using Ecs.CSharp.Benchmark.Context;
+using Ecs.CSharp.Benchmark.Contexts;
 
 namespace Ecs.CSharp.Benchmark
 {

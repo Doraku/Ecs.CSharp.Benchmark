@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  
   <PropertyGroup>
-    <LangVersion>11</LangVersion>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>Exe</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
@@ -10,15 +11,16 @@
     <AnalysisLevel>latest</AnalysisLevel>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+    <NoWarn>$(NoWarn);NETSDK1206</NoWarn>
       
     <!--<DefineConstants>CHECK_CACHE_MISSES</DefineConstants>-->
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.0" PrivateAssets="all" />
-    <PackageReference Include="Roslynator.Analyzers" Version="4.2.0" PrivateAssets="all" />
-    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.2.0" PrivateAssets="all" />
-    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.2.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.Analyzers" Version="4.9.0" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.9.0" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.9.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Benchmark">
@@ -49,4 +51,5 @@
     <PackageReference Include="Svelto.ECS" Version="3.3.2" />
     <PackageReference Include="Svelto.Common" Version="3.3.2" />
   </ItemGroup>
+  
 </Project>

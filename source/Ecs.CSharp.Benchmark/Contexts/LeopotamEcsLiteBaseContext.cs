@@ -1,9 +1,9 @@
 ﻿using System;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
-namespace Ecs.CSharp.Benchmark.Context
+namespace Ecs.CSharp.Benchmark.Contexts
 {
-    internal class LeopotamEcsBaseContext : IDisposable
+    internal class LeopotamEcsLiteBaseContext : IDisposable
     {
         public struct Component1
         {
@@ -22,7 +22,7 @@ namespace Ecs.CSharp.Benchmark.Context
 
         public EcsWorld World { get; }
 
-        public LeopotamEcsBaseContext()
+        public LeopotamEcsLiteBaseContext()
         {
             World = new EcsWorld();
         }

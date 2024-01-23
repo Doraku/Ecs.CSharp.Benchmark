@@ -1,6 +1,6 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
-using Ecs.CSharp.Benchmark.Context;
+using Ecs.CSharp.Benchmark.Contexts;
 using Svelto.DataStructures;
 using Svelto.ECS;
 

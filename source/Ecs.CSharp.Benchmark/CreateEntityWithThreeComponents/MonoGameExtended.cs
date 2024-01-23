@@ -1,5 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
-using Ecs.CSharp.Benchmark.Context;
+using Ecs.CSharp.Benchmark.Contexts;
 using MonoGame.Extended.Entities;
 
 namespace Ecs.CSharp.Benchmark

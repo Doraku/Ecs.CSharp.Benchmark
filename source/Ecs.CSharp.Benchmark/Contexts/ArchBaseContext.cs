@@ -1,7 +1,7 @@
 ﻿using System;
 using Arch.Core;
 
-namespace Ecs.CSharp.Benchmark.Context
+namespace Ecs.CSharp.Benchmark.Contexts
 {
     namespace Arch_Components
     {

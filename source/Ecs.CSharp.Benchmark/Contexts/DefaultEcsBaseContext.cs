@@ -1,9 +1,9 @@
 ﻿using System;
-using HypEcs;
+using DefaultEcs;
 
-namespace Ecs.CSharp.Benchmark.Context
+namespace Ecs.CSharp.Benchmark.Contexts
 {
-    internal class HypEcsBaseContext : IDisposable
+    internal class DefaultEcsBaseContext : IDisposable
     {
         public struct Component1
         {
@@ -22,14 +22,14 @@ namespace Ecs.CSharp.Benchmark.Context
 
         public World World { get; }
 
-        public HypEcsBaseContext()
+        public DefaultEcsBaseContext()
         {
             World = new World();
         }
 
         public virtual void Dispose()
         {
-            // World.Destroy();
+            World.Dispose();
         }
     }
 }

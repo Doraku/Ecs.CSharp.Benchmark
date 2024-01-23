@@ -15,7 +15,7 @@ jobs:
     - name: Set up dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '7.0.x'
+        dotnet-version: '8.0.x'
       
     - name: Build
       run: dotnet build source\Ecs.CSharp.Benchmark\Ecs.CSharp.Benchmark.csproj -c Release /warnaserror

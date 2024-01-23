@@ -1,28 +1,28 @@
 ﻿using System;
-using RelEcs;
+using HypEcs;
 
-namespace Ecs.CSharp.Benchmark.Context
+namespace Ecs.CSharp.Benchmark.Contexts
 {
-    internal class RelEcsBaseContext : IDisposable
+    internal class HypEcsBaseContext : IDisposable
     {
-        public sealed class Component1
+        public struct Component1
         {
             public int Value;
         }
 
-        public sealed class Component2
+        public struct Component2
         {
             public int Value;
         }
 
-        public sealed class Component3
+        public struct Component3
         {
             public int Value;
         }
 
         public World World { get; }
 
-        public RelEcsBaseContext()
+        public HypEcsBaseContext()
         {
             World = new World();
         }

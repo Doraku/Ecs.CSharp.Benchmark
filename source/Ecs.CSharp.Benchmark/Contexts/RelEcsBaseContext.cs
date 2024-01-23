@@ -1,9 +1,9 @@
 ﻿using System;
-using MonoGame.Extended.Entities;
+using RelEcs;
 
-namespace Ecs.CSharp.Benchmark.Context
+namespace Ecs.CSharp.Benchmark.Contexts
 {
-    internal class MonoGameExtendedBaseContext : IDisposable
+    internal class RelEcsBaseContext : IDisposable
     {
         public sealed class Component1
         {
@@ -22,14 +22,14 @@ namespace Ecs.CSharp.Benchmark.Context
 
         public World World { get; }
 
-        public MonoGameExtendedBaseContext()
+        public RelEcsBaseContext()
         {
-            World = new WorldBuilder().Build();
+            World = new World();
         }
 
         public virtual void Dispose()
         {
-            World.Dispose();
+            // World.Destroy();
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
-using DefaultEcs;
+using Leopotam.Ecs;
 
-namespace Ecs.CSharp.Benchmark.Context
+namespace Ecs.CSharp.Benchmark.Contexts
 {
-    internal class DefaultEcsBaseContext : IDisposable
+    internal class LeopotamEcsBaseContext : IDisposable
     {
         public struct Component1
         {
@@ -20,16 +20,16 @@ namespace Ecs.CSharp.Benchmark.Context
             public int Value;
         }
 
-        public World World { get; }
+        public EcsWorld World { get; }
 
-        public DefaultEcsBaseContext()
+        public LeopotamEcsBaseContext()
         {
-            World = new World();
+            World = new EcsWorld();
         }
 
         public virtual void Dispose()
         {
-            World.Dispose();
+            World.Destroy();
         }
     }
 }
