@@ -8,7 +8,6 @@ All results are obtained from the same toaster, with the same load, so compariso
 Tested frameworks:
 - [Arch](https://github.com/genaray/Arch)
 - [DefaultEcs](https://github.com/Doraku/DefaultEcs)
-- [Entitas](https://github.com/sschmid/Entitas-CSharp)
 - [Friflo.Engine.ECS](https://github.com/friflo/Friflo.Json.Fliox/blob/main/Engine/README.md)
 - [HypEcs](https://github.com/Byteron/HypEcs)
 - [Leopotam.Ecs](https://github.com/Leopotam/ecs) using what I believe is a nuget package not made by the actual author and compiled in debug...
@@ -18,125 +17,193 @@ Tested frameworks:
 - [RelEcs](https://github.com/Byteron/RelEcs)
 - [Svelto.ECS](https://github.com/sebas77/Svelto.ECS)
 
+Tested versions may not be latest available, that's because I'm lazy and new versions may introduce breaking changes, so feel free to create pull requests to update libs you are knowledgeable about.
+
 ## [CreateEntityWithOneComponent](results/Ecs.CSharp.Benchmark.CreateEntityWithOneComponent-report-github.md)
 Create entities with one component.
 
-|           Method |      Mean | CacheMisses/Op |   Allocated |
+| Method           | Mean      | CacheMisses/Op | Allocated   |
 |----------------- |----------:|---------------:|------------:|
-|             Arch |  13.65 ms |         58,716 |     9.54 MB |
-|       DefaultEcs |  8.788 ms |        107,383 | 11324.52 KB |
-|          Entitas | 92.512 ms |      1,318,366 | 56677.68 KB |
-|           HypEcs | 23.080 ms |        266,240 | 25825.78 KB |
-|      LeopotamEcs | 19.749 ms |        250,549 | 13684.05 KB |
-|  LeopotamEcsLite | 11.290 ms |        106,496 |  8170.29 KB |
-| MonoGameExtended | 15.685 ms |        220,979 | 16408.29 KB |
-|           RelEcs | 58.611 ms |        735,294 | 29705.38 KB |
-|        SveltoECS | 41.710 ms |        707,863 |     1.23 KB |
+| Arch             | 18.022 ms |         78,889 |  9725.83 KB |
+| DefaultEcs       |  8.520 ms |        105,229 | 11324.68 KB |
+| FrifloEngineEcs  |  3.467 ms |         45,714 |  5724.16 KB |
+| HypEcs           | 15.946 ms |        238,660 | 25825.74 KB |
+| LeopotamEcs      | 20.304 ms |        257,024 | 13684.03 KB |
+| LeopotamEcsLite  | 11.568 ms |        100,489 |  8170.31 KB |
+| MonoGameExtended | 28.082 ms |        254,089 | 16412.13 KB |
+| Morpeh_Direct    | 13.625 ms |        133,698 | 12481.63 KB |
+| Morpeh_Stash     | 13.183 ms |        132,164 | 12481.63 KB |
+| RelEcs           | 43.917 ms |        744,480 | 29705.35 KB |
+| SveltoECS        | 36.594 ms |        751,995 |     1.25 KB |
 
 ## [CreateEntityWithTwoComponents](results/Ecs.CSharp.Benchmark.CreateEntityWithTwoComponents-report-github.md)
 Create entities with two components.
 
-|           Method |       Mean | CacheMisses/Op |   Allocated |
-|----------------- |-----------:|---------------:|------------:|
-|             Arch |   12.08 ms |         62,393 |      9.7 MB |
-|       DefaultEcs |  14.638 ms |        174,816 | 15417.45 KB |
-|          Entitas |  99.232 ms |      1,287,851 | 59021.43 KB |
-|           HypEcs |  44.893 ms |        360,448 | 45333.15 KB |
-|      LeopotamEcs |  31.291 ms |        254,225 | 14709.32 KB |
-|  LeopotamEcsLite |  18.763 ms |        118,511 | 10219.15 KB |
-| MonoGameExtended |  46.995 ms |        577,946 | 23372.73 KB |
-|           RelEcs | 115.301 ms |      1,304,166 | 50750.64 KB |
-|        SveltoECS |  67.121 ms |      1,149,821 |     2.16 KB |
+| Method           | Mean      | CacheMisses/Op | Allocated   |
+|----------------- |----------:|---------------:|------------:|
+| Arch             |  11.17 ms |         64,717 |  9891.36 KB |
+| DefaultEcs       |  13.93 ms |        167,855 | 15417.46 KB |
+| FrifloEngineEcs  |   3.40 ms |         43,128 |  6236.16 KB |
+| HypEcs           |  31.64 ms |        348,540 | 45333.08 KB |
+| LeopotamEcs      |  18.57 ms |        261,029 | 14709.41 KB |
+| LeopotamEcsLite  |  18.97 ms |        114,688 | 10219.18 KB |
+| MonoGameExtended |  46.98 ms |        578,387 | 23372.71 KB |
+| Morpeh_Direct    |  68.96 ms |        688,518 | 42308.41 KB |
+| Morpeh_Stash     |  24.12 ms |        202,301 | 19310.76 KB |
+| RelEcs           | 102.98 ms |      1,332,887 | 50755.08 KB |
+| SveltoECS        |  58.31 ms |      1,274,636 |     2.17 KB |
 
 ## [CreateEntityWithThreeComponents](results/Ecs.CSharp.Benchmark.CreateEntityWithThreeComponents-report-github.md)
 Create entities with three components.
 
-|           Method |       Mean | CacheMisses/Op |   Allocated |
-|----------------- |-----------:|---------------:|------------:|
-|             Arch |   14.03 ms |         63,986 |    10.16 MB |
-|       DefaultEcs |  19.569 ms |        232,325 | 19516.31 KB |
-|          Entitas | 103.717 ms |      1,386,701 | 61365.18 KB |
-|           HypEcs |  73.461 ms |        431,923 | 68751.98 KB |
-|      LeopotamEcs |  27.863 ms |        266,159 | 15734.73 KB |
-|  LeopotamEcsLite |  26.626 ms |        155,375 |  12268.1 KB |
-| MonoGameExtended |  57.772 ms |      1,134,281 |  30152.6 KB |
-|           RelEcs | 156.722 ms |      1,946,556 | 75704.95 KB |
-|        SveltoECS |  91.159 ms |      1,530,812 |     2.66 KB |
+| Method           | Mean      | CacheMisses/Op | Allocated   |
+|----------------- |----------:|---------------:|------------:|
+| Arch             |  12.87 ms |         65,081 | 10381.21 KB |
+| DefaultEcs       |  17.90 ms |        226,834 | 19515.29 KB |
+| FrifloEngineEcs  |  3.421 ms |         42,792 |  6758.40 KB |
+| HypEcs           |  50.00 ms |        513,928 | 68747.41 KB |
+| LeopotamEcs      |  28.95 ms |        249,774 | 15734.71 KB |
+| LeopotamEcsLite  |  26.25 ms |        150,733 | 12268.14 KB |
+| MonoGameExtended |  57.80 ms |      1,216,620 | 30152.63 KB |
+| Morpeh_Direct    |  34.79 ms |        304,068 | 26114.95 KB |
+| Morpeh_Stash     |  16.57 ms |        151,006 | 15896.18 KB |
+| RelEcs           | 129.63 ms |      1,929,645 | 75704.51 KB |
+| SveltoECS        |  78.32 ms |      1,592,638 |     2.67 KB |
 
 ## [SystemWithOneComponent](results/Ecs.CSharp.Benchmark.SystemWithOneComponent-report-github.md)
 Modify entities with one component. The padding aims to simulate real situation when processed entities and their components are not sequential.
 
-|                                 Method |         Mean | CacheMisses/Op | Allocated |
-|--------------------------------------- |-------------:|---------------:|----------:|
-|                        Arch_MonoThread |     61.74 μs |              3 |         - |
-|                       Arch_MultiThread |     30.25 μs |              3 |         - |
-|  DefaultEcs_ComponentSystem_MonoThread |     56.71 μs |              1 |         - |
-| DefaultEcs_ComponentSystem_MultiThread |     15.42 μs |              1 |         - |
-|  DefaultEcs_EntitySetSystem_MonoThread |    163.55 μs |              5 |         - |
-| DefaultEcs_EntitySetSystem_MultiThread |     43.85 μs |              4 |         - |
-|                     Entitas_MonoThread |  5,100.00 μs |        291,147 |     109 B |
-|                    Entitas_MultiThread |  3,006.45 μs |        292,430 |     391 B |
-|                      HypEcs_MonoThread |     56.55 μs |              1 |      32 B |
-|                     HypEcs_MultiThread |     60.98 μs |             13 |    1768 B |
-|                            LeopotamEcs |    144.98 μs |              3 |         - |
-|                        LeopotamEcsLite |  1,841.54 μs |            110 |       2 B |
-|                       MonoGameExtended |    991.82 μs |          3,864 |     163 B |
-|                                 RelEcs |    610.55 μs |         20,225 |     121 B |
-|                              SveltoECS |    197.15 μs |              3 |         - |
+| Method                                 | EntityPadding | Mean        | CacheMisses/Op | Allocated |
+|--------------------------------------- |-------------- |------------:|---------------:|----------:|
+| Arch_MonoThread                        | 0             |    61.77 μs |              2 |         - |
+| Arch_MultiThread                       | 0             |    29.30 μs |              1 |         - |
+| DefaultEcs_ComponentSystem_MonoThread  | 0             |    56.25 μs |              1 |         - |
+| DefaultEcs_ComponentSystem_MultiThread | 0             |    15.21 μs |              1 |         - |
+| DefaultEcs_EntitySetSystem_MonoThread  | 0             |   118.02 μs |              3 |         - |
+| DefaultEcs_EntitySetSystem_MultiThread | 0             |    31.55 μs |              3 |         - |
+| FrifloEngineEcs_MonoThread             | 0             |    56.43 μs |              3 |     208 B |
+| FrifloEngineEcs_SIMD_MonoThread        | 0             |    28.78 μs |              2 |     208 B |
+| HypEcs_MonoThread                      | 0             |    56.46 μs |              1 |      72 B |
+| HypEcs_MultiThread                     | 0             |    58.95 μs |             15 |    1832 B |
+| LeopotamEcs                            | 0             |   135.90 μs |              5 |         - |
+| LeopotamEcsLite                        | 0             | 1,850.38 μs |            124 |       3 B |
+| MonoGameExtended                       | 0             |   536.11 μs |         10,860 |     161 B |
+| Morpeh_Direct                          | 0             | 2,872.35 μs |          4,500 |       6 B |
+| Morpeh_Stash                           | 0             | 1,034.99 μs |          4,665 |       3 B |
+| RelEcs                                 | 0             |   567.56 μs |         16,088 |     121 B |
+| SveltoECS                              | 0             |   197.01 μs |              4 |         - |
+|                                        |               |             |                |           |
+| Arch_MonoThread                        | 10            |    61.75 μs |              2 |         - |
+| Arch_MultiThread                       | 10            |    29.50 μs |              1 |         - |
+| DefaultEcs_ComponentSystem_MonoThread  | 10            |    56.25 μs |              1 |         - |
+| DefaultEcs_ComponentSystem_MultiThread | 10            |    15.31 μs |              1 |         - |
+| DefaultEcs_EntitySetSystem_MonoThread  | 10            |   244.32 μs |          6,200 |       1 B |
+| DefaultEcs_EntitySetSystem_MultiThread | 10            |    83.35 μs |          6,806 |         - |
+| FrifloEngineEcs_MonoThread             | 10            |    56.78 μs |              2 |     208 B |
+| FrifloEngineEcs_SIMD_MonoThread        | 10            |    27.18 μs |              2 |     208 B |
+| HypEcs_MonoThread                      | 10            |    56.78 μs |              1 |      72 B |
+| HypEcs_MultiThread                     | 10            |    60.34 μs |             12 |    1832 B |
+| LeopotamEcs                            | 10            |   136.22 μs |              3 |         - |
+| LeopotamEcsLite                        | 10            | 4,020.44 μs |         93,943 |      11 B |
+| MonoGameExtended                       | 10            | 1,996.01 μs |        105,699 |     166 B |
+| Morpeh_Direct                          | 10            | 6,109.28 μs |        167,142 |      11 B |
+| Morpeh_Stash                           | 10            | 3,980.00 μs |        179,288 |      11 B |
+| RelEcs                                 | 10            | 1,235.45 μs |         53,159 |     123 B |
+| SveltoECS                              | 10            |   197.04 μs |              3 |         - |
+
 
 ## [SystemWithTwoComponents](results/Ecs.CSharp.Benchmark.SystemWithTwoComponents-report-github.md)
 Modify entities with two components. The padding aims to simulate real situation when processed entities and their components are not sequential.
 
-|                 Method |         Mean | CacheMisses/Op | Allocated |
-|----------------------- |-------------:|---------------:|----------:|
-|        Arch_MonoThread |     91.48 μs |              3 |         - |
-|       Arch_MultiThread |     36.82 μs |              5 |         - |
-|  DefaultEcs_MonoThread |    254.98 μs |             17 |       1 B |
-| DefaultEcs_MultiThread |     67.94 μs |              9 |         - |
-|     Entitas_MonoThread |  4,494.22 μs |        318,174 |     109 B |
-|    Entitas_MultiThread |  2,955.39 μs |        342,963 |     391 B |
-|      HypEcs_MonoThread |     57.91 μs |              1 |      32 B |
-|     HypEcs_MultiThread |     60.54 μs |             11 |    1768 B |
-|            LeopotamEcs |    237.02 μs |              6 |         - |
-|        LeopotamEcsLite |  3,636.00 μs |            553 |       5 B |
-|       MonoGameExtended |  1,123.42 μs |         10,375 |     163 B |
-|                 RelEcs |    722.21 μs |         21,993 |     169 B |
-|              SveltoECS |    337.62 μs |              6 |       1 B |
+| Method                          | EntityPadding | Mean        | CacheMisses/Op | Allocated |
+|-------------------------------- |-------------- |------------:|---------------:|----------:|
+| Arch_MonoThread                 | 0             |   174.10 μs |              6 |         - |
+| Arch_MultiThread                | 0             |    36.09 μs |              3 |         - |
+| DefaultEcs_MonoThread           | 0             |   200.28 μs |              8 |         - |
+| DefaultEcs_MultiThread          | 0             |    53.54 μs |             32 |         - |
+| FrifloEngineEcs_MonoThread      | 0             |    84.63 μs |              3 |     216 B |
+| FrifloEngineEcs_SIMD_MonoThread | 0             |    32.38 μs |              3 |     216 B |
+| HypEcs_MonoThread               | 0             |    57.90 μs |              2 |     112 B |
+| HypEcs_MultiThread              | 0             |    60.35 μs |             13 |    1872 B |
+| LeopotamEcs                     | 0             |   231.52 μs |              6 |         - |
+| LeopotamEcsLite                 | 0             | 3,865.86 μs |            607 |       6 B |
+| MonoGameExtended                | 0             |   827.06 μs |         23,761 |     161 B |
+| Morpeh_Direct                   | 0             | 4,653.57 μs |          6,937 |      11 B |
+| Morpeh_Stash                    | 0             | 2,415.97 μs |          7,613 |       6 B |
+| RelEcs                          | 0             |   628.46 μs |         18,389 |     169 B |
+| SveltoECS                       | 0             |   309.20 μs |             12 |       1 B |
+|                                 |               |             |                |           |
+| Arch_MonoThread                 | 10            |   174.20 μs |              4 |         - |
+| Arch_MultiThread                | 10            |    35.99 μs |              2 |         - |
+| DefaultEcs_MonoThread           | 10            |   887.92 μs |         59,358 |       1 B |
+| DefaultEcs_MultiThread          | 10            |   684.24 μs |         79,813 |       1 B |
+| FrifloEngineEcs_MonoThread      | 10            |    85.35 μs |              3 |     216 B |
+| FrifloEngineEcs_SIMD_MonoThread | 10            |    39.45 μs |              3 |     216 B |
+| HypEcs_MonoThread               | 10            |    58.99 μs |              2 |     112 B |
+| HypEcs_MultiThread              | 10            |    61.48 μs |             13 |    1872 B |
+| LeopotamEcs                     | 10            |   241.93 μs |            152 |         - |
+| LeopotamEcsLite                 | 10            | 8,285.54 μs |        110,260 |      22 B |
+| MonoGameExtended                | 10            | 2,869.26 μs |        177,309 |     166 B |
+| Morpeh_Direct                   | 10            | 7,882.32 μs |        180,485 |      22 B |
+| Morpeh_Stash                    | 10            | 7,363.95 μs |        193,726 |      11 B |
+| RelEcs                          | 10            | 1,782.27 μs |        106,469 |     171 B |
+| SveltoECS                       | 10            | 1,868.02 μs |            600 |       3 B |
+
 
 ## [SystemWithThreeComponents](results/Ecs.CSharp.Benchmark.SystemWithThreeComponents-report-github.md)
 Modify entities with three components. The padding aims to simulate real situation when processed entities and their components are not sequential.
 
-|                 Method |         Mean | CacheMisses/Op | Allocated |
-|----------------------- |-------------:|---------------:|----------:|
-|        Arch_MonoThread |    111.44 μs |              8 |         - |
-|       Arch_MultiThread |     41.68 μs |              7 |         - |
-|  DefaultEcs_MonoThread |    388.85 μs |             36 |       1 B |
-| DefaultEcs_MultiThread |    104.02 μs |             40 |         - |
-|     Entitas_MonoThread |  4,341.06 μs |        344,337 |     109 B |
-|    Entitas_MultiThread |  3,107.05 μs |        401,718 |     391 B |
-|      HypEcs_MonoThread |     85.27 μs |              3 |      32 B |
-|     HypEcs_MultiThread |     88.09 μs |             14 |    1768 B |
-|            LeopotamEcs |    788.61 μs |             38 |       1 B |
-|        LeopotamEcsLite |  5,533.31 μs |          1,515 |      11 B |
-|       MonoGameExtended |  1,373.25 μs |         24,487 |     163 B |
-|                 RelEcs |    939.20 μs |         38,063 |     217 B |
-|              SveltoECS |    450.23 μs |             13 |       1 B |
+| Method                          | EntityPadding | Mean         | CacheMisses/Op | Allocated |
+|-------------------------------- |-------------- |-------------:|---------------:|----------:|
+| Arch_MonoThread                 | 0             |    110.90 μs |              6 |         - |
+| Arch_MultiThread                | 0             |     40.42 μs |              4 |         - |
+| DefaultEcs_MonoThread           | 0             |    315.25 μs |             30 |       1 B |
+| DefaultEcs_MultiThread          | 0             |     87.33 μs |             84 |         - |
+| FrifloEngineEcs_MonoThread      | 0             |     70.08 ns |              0 |     168 B |
+| FrifloEngineEcs_SIMD_MonoThread | 0             |     68.65 ns |              0 |     168 B |
+| HypEcs_MonoThread               | 0             |     85.20 μs |              4 |     152 B |
+| HypEcs_MultiThread              | 0             |     87.86 μs |             16 |    1912 B |
+| LeopotamEcs                     | 0             |    337.48 μs |             15 |       1 B |
+| LeopotamEcsLite                 | 0             |  5,846.36 μs |          1,855 |      11 B |
+| MonoGameExtended                | 0             |  1,078.86 μs |         36,031 |     163 B |
+| Morpeh_Direct                   | 0             |  6,529.41 μs |          8,788 |      22 B |
+| Morpeh_Stash                    | 0             |  3,111.72 μs |          9,658 |       6 B |
+| RelEcs                          | 0             |    903.30 μs |         35,170 |     217 B |
+| SveltoECS                       | 0             |    478.11 μs |             13 |       1 B |
+|                                 |               |              |                |           |
+| Arch_MonoThread                 | 10            |    111.05 μs |              6 |         - |
+| Arch_MultiThread                | 10            |     40.22 μs |              3 |         - |
+| DefaultEcs_MonoThread           | 10            |  1,087.29 μs |         52,219 |       3 B |
+| DefaultEcs_MultiThread          | 10            |    966.01 μs |        123,190 |       1 B |
+| FrifloEngineEcs_MonoThread      | 10            |     69.85 ns |              0 |     168 B |
+| FrifloEngineEcs_SIMD_MonoThread | 10            |     71.10 ns |              0 |     168 B |
+| HypEcs_MonoThread               | 10            |     84.86 μs |              4 |     152 B |
+| HypEcs_MultiThread              | 10            |     87.58 μs |             15 |    1912 B |
+| LeopotamEcs                     | 10            |    503.75 μs |          1,841 |       1 B |
+| LeopotamEcsLite                 | 10            | 11,357.17 μs |        111,617 |      22 B |
+| MonoGameExtended                | 10            |  3,491.99 μs |        242,196 |     166 B |
+| Morpeh_Direct                   | 10            |  9,850.22 μs |        204,342 |      22 B |
+| Morpeh_Stash                    | 10            |  8,283.08 μs |        186,510 |      22 B |
+| RelEcs                          | 10            |  2,236.64 μs |        164,969 |     222 B |
+| SveltoECS                       | 10            |           NA |             NA |        NA |
 
 ## [SystemWithTwoComponentsMultipleComposition](results/Ecs.CSharp.Benchmark.SystemWithTwoComponentsMultipleComposition-report-github.md)
 Modify entities with two components while different entity compositions match the the components query.
 
-|                 Method |        Mean | CacheMisses/Op | Allocated |
-|----------------------- |------------:|---------------:|----------:|
-|                   Arch |    91.47 μs |              6 |         - |
-|       Arch_MultiThread |    59.92 μs |              9 |         - |
-|  DefaultEcs_MonoThread |   259.89 μs |              9 |       1 B |
-| DefaultEcs_MultiThread |    69.55 μs |              6 |         - |
-|     Entitas_MonoThread | 4,839.97 μs |        340,754 |     112 B |
-|    Entitas_MultiThread | 3,101.55 μs |        371,259 |     392 B |
-|      HypEcs_MonoThread |    57.99 μs |              1 |      32 B |
-|     HypEcs_MultiThread |    21.70 μs |             10 |    2294 B |
-|            LeopotamEcs |   241.88 μs |              4 |         - |
-|        LeopotamEcsLite | 3,630.12 μs |            566 |       7 B |
-|       MonoGameExtended | 1,230.32 μs |         24,422 |     163 B |
-|                 RelEcs | 1,581.50 μs |         83,004 |     491 B |
-|              SveltoECS |   337.63 μs |              6 |       1 B |
+| Method                          | Mean        | CacheMisses/Op | Allocated |
+|-------------------------------- |------------:|---------------:|----------:|
+| Arch                            |    90.87 μs |              2 |         - |
+| Arch_MultiThread                |    55.64 μs |              3 |         - |
+| DefaultEcs_MonoThread           |   197.71 μs |              5 |         - |
+| DefaultEcs_MultiThread          |    52.81 μs |              4 |         - |
+| FrifloEngineEcs_MonoThread      |    84.88 μs |              3 |     304 B |
+| FrifloEngineEcs_SIMD_MonoThread |    38.22 μs |              3 |     304 B |
+| HypEcs_MonoThread               |    58.38 μs |              3 |     352 B |
+| HypEcs_MultiThread              |    21.73 μs |             11 |    2655 B |
+| LeopotamEcs                     |   235.56 μs |              5 |         - |
+| LeopotamEcsLite                 | 3,703.18 μs |            594 |       7 B |
+| MonoGameExtended                | 1,015.73 μs |         40,470 |     163 B |
+| Morpeh_Direct                   | 5,087.22 μs |        114,642 |      14 B |
+| Morpeh_Stash                    | 3,863.37 μs |        116,809 |       7 B |
+| RelEcs                          | 1,564.69 μs |         83,810 |     491 B |
+| SveltoECS                       |   309.39 μs |              7 |       1 B |

@@ -13,7 +13,7 @@
     <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
     <NoWarn>$(NoWarn);NETSDK1206</NoWarn>
       
-    <!--<DefineConstants>CHECK_CACHE_MISSES</DefineConstants>-->
+    <DefineConstants>CHECK_CACHE_MISSES</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
