@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 		.editorconfig = .editorconfig
 		..\.gitignore = ..\.gitignore
 		NuGet.config = NuGet.config
+		..\Benchmark.bat = ..\Benchmark.bat
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
