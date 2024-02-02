@@ -40,9 +40,9 @@
     <PackageReference Include="MonoGame.Extended.Entities" Version="3.8.0" />
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
 
-    <PackageReference Include="Leopotam.Ecs" Version="1.0.0" />
+    <PackageReference Include="Leopotam.Ecs" Version="1.0.1" />
 
-    <PackageReference Include="Leopotam.EcsLite" Version="1.0.0" />
+    <PackageReference Include="Leopotam.EcsLite" Version="1.0.1" />
 
     <PackageReference Include="RelEcs" Version="1.5.1" />
 
