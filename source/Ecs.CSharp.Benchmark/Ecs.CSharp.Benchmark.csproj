@@ -46,7 +46,7 @@
 
     <PackageReference Include="RelEcs" Version="1.5.1" />
 
-    <PackageReference Include="Scellecs.Morpeh" Version="2022.2.2" />
+    <PackageReference Include="Scellecs.Morpeh" Version="2023.1.0" />
 
     <PackageReference Include="Svelto.ECS" Version="3.3.2" />
     <PackageReference Include="Svelto.Common" Version="3.3.2" />
