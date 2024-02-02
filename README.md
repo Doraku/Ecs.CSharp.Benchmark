@@ -17,6 +17,9 @@ Tested frameworks:
 - [RelEcs](https://github.com/Byteron/RelEcs)
 - [Svelto.ECS](https://github.com/sebas77/Svelto.ECS)
 
+Old frameworks:
+- [Entitas](https://github.com/sschmid/Entitas) removed because it was taking forever to initialize in the later tests when moved to net8, you can check older benchmark results [here](https://github.com/Doraku/Ecs.CSharp.Benchmark/tree/3574b2dfb948e941a208f77eaf9e94b73d58e6bf)
+
 Tested versions may not be latest available, that's because I'm lazy and new versions may introduce breaking changes, so feel free to create pull requests to update libs you are knowledgeable about.
 
 ## [CreateEntityWithOneComponent](results/Ecs.CSharp.Benchmark.CreateEntityWithOneComponent-report-github.md)
