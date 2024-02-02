@@ -24,7 +24,7 @@ namespace Ecs.CSharp.Benchmark
 
                 public void OnAwake()
                 {
-                    _filter = World.Filter.With<Component1>().With<Component2>();
+                    _filter = World.Filter.With<Component1>().With<Component2>().Build();
                 }
 
                 public void OnUpdate(float deltaTime)
@@ -49,7 +49,7 @@ namespace Ecs.CSharp.Benchmark
                 {
                     _stash1 = World.GetStash<Component1>();
                     _stash2 = World.GetStash<Component2>();
-                    _filter = World.Filter.With<Component1>().With<Component2>();
+                    _filter = World.Filter.With<Component1>().With<Component2>().Build();
                 }
 
                 public void OnUpdate(float deltaTime)
