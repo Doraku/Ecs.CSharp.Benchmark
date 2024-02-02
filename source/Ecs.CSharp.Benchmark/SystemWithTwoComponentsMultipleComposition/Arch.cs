@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Arch.Core;
+using Arch.Core.Utils;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Contexts;
 using Ecs.CSharp.Benchmark.Contexts.Arch_Components;
@@ -32,17 +33,16 @@ namespace Ecs.CSharp.Benchmark
             public ArchContext(int entityCount)
             {
                 JobScheduler = new JobScheduler.JobScheduler("Arch");
-                Type[] paddingTypes = new[]
-                {
+                ComponentType[] paddingTypes = [
                     typeof(Padding1),
                     typeof(Padding2),
                     typeof(Padding3),
                     typeof(Padding4)
-                };
+                ];
 
-                Type[][] archetypes = paddingTypes.Select(t => _filter.Concat(Enumerable.Repeat(t, 1)).ToArray()).ToArray();
+                ComponentType[][] archetypes = paddingTypes.Select(t => _filter.Concat(Enumerable.Repeat(t, 1)).ToArray()).ToArray();
 
-                foreach (Type[] archetype in archetypes)
+                foreach (ComponentType[] archetype in archetypes)
                 {
                     World.Reserve(archetype, entityCount / 4);
                 }
@@ -54,7 +54,7 @@ namespace Ecs.CSharp.Benchmark
             }
         }
 
-        private static readonly Type[] _filter = { typeof(Component1), typeof(Component2) };
+        private static readonly ComponentType[] _filter = [typeof(Component1), typeof(Component2)];
         private static readonly QueryDescription _queryDescription = new() { All = _filter };
 
         [Context]
@@ -67,14 +67,14 @@ namespace Ecs.CSharp.Benchmark
         public void Arch()
         {
             World world = _arch.World;
-            world.HPQuery<ForEach2, Component1, Component2>(in _queryDescription, ref _forEach2);
+            world.InlineQuery<ForEach2, Component1, Component2>(in _queryDescription, ref _forEach2);
         }
         [BenchmarkCategory(Categories.Arch)]
         [Benchmark]
         public void Arch_MultiThread()
         {
             World world = _arch.World;
-            world.HPParallelQuery<ForEach2, Component1, Component2>(in _queryDescription, ref _forEach2);
+            world.InlineParallelQuery<ForEach2, Component1, Component2>(in _queryDescription, ref _forEach2);
         }
     }
 }

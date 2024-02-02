@@ -1,4 +1,5 @@
 ﻿using System;
+using Arch.Core.Utils;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Contexts;
 using Ecs.CSharp.Benchmark.Contexts.Arch_Components;
@@ -7,7 +8,7 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithThreeComponents
     {
-        private static readonly Type[] _archetype = { typeof(Component1), typeof(Component2), typeof(Component3) };
+        private static readonly ComponentType[] _archetype = [typeof(Component1), typeof(Component2), typeof(Component3)];
 
         [Context]
         private readonly ArchBaseContext _arch;
