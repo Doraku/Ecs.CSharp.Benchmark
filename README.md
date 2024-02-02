@@ -17,7 +17,7 @@ Tested frameworks:
 - [RelEcs](https://github.com/Byteron/RelEcs)
 - [Svelto.ECS](https://github.com/sebas77/Svelto.ECS)
 
-Old frameworks:
+Removed frameworks:
 - [Entitas](https://github.com/sschmid/Entitas) removed because it was taking forever to initialize in the later tests when moved to net8, you can check older benchmark results [here](https://github.com/Doraku/Ecs.CSharp.Benchmark/tree/3574b2dfb948e941a208f77eaf9e94b73d58e6bf)
 
 Tested versions may not be latest available, that's because I'm lazy and new versions may introduce breaking changes, so feel free to create pull requests to update libs you are knowledgeable about.
@@ -210,3 +210,8 @@ Modify entities with two components while different entity compositions match th
 | Morpeh_Stash                    | 3,863.37 μs |        116,809 |       7 B |
 | RelEcs                          | 1,564.69 μs |         83,810 |     491 B |
 | SveltoECS                       |   309.39 μs |              7 |       1 B |
+
+# Other benchmarks
+
+While we are only looking at c# libs here, you may want to check other benchmarks for different langage. This list is not exaustive obviously, feel free to open a MR to add more if you are interested.
+- https://github.com/abeimler/ecs_benchmark
