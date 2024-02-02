@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Arch.Core;
+using Arch.Core.Utils;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Contexts;
 using Ecs.CSharp.Benchmark.Contexts.Arch_Components;
@@ -25,7 +26,7 @@ namespace Ecs.CSharp.Benchmark
             { }
         }
 
-        private static readonly Type[] _filter = { typeof(Component1) };
+        private static readonly ComponentType[] _filter = [typeof(Component1)];
         private static readonly QueryDescription _queryDescription = new() { All = _filter };
 
         [Context]
@@ -38,14 +39,14 @@ namespace Ecs.CSharp.Benchmark
         public void Arch_MonoThread()
         {
             World world = _arch.World;
-            world.HPQuery<ForEach1, Component1>(_queryDescription, ref _forEach);
+            world.InlineQuery<ForEach1, Component1>(_queryDescription, ref _forEach);
         }
         [BenchmarkCategory(Categories.Arch)]
         [Benchmark]
         public void Arch_MultiThread()
         {
             World world = _arch.World;
-            world.HPParallelQuery<ForEach1, Component1>(_queryDescription, ref _forEach);
+            world.InlineParallelQuery<ForEach1, Component1>(_queryDescription, ref _forEach);
         }
     }
 }

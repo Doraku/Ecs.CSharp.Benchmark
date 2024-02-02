@@ -1,5 +1,6 @@
 ﻿using System;
 using Arch.Core;
+using Arch.Core.Utils;
 
 namespace Ecs.CSharp.Benchmark.Contexts
 {
@@ -31,7 +32,7 @@ namespace Ecs.CSharp.Benchmark.Contexts
             World = World.Create();
         }
 
-        public ArchBaseContext(Type[] archetype, int amount)
+        public ArchBaseContext(ComponentType[] archetype, int amount)
         {
             JobScheduler = new JobScheduler.JobScheduler("Arch");
             World = World.Create();
