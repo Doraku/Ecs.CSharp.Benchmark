@@ -10,7 +10,7 @@ namespace Ecs.CSharp.Benchmark
         [Context]
         private readonly FlecsNetBaseContext _flecs;
 
-        [BenchmarkCategory(Categories.Arch)]
+        [BenchmarkCategory(Categories.FlecsNet)]
         [Benchmark]
         public void FlecsNet()
         {

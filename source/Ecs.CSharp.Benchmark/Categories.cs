@@ -12,6 +12,7 @@
         public const string RelEcs = "RelEcs";
         public const string SveltoECS = "Svelto.ECS";
         public const string Morpeh = "Morpeh";
+        public const string FlecsNet = "FlecsNet";
 
         public const string CreateEntity = "CreateEntity";
         public const string System = "System";
