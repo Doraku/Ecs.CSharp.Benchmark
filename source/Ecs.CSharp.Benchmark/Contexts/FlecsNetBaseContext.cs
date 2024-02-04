@@ -30,7 +30,7 @@ namespace Ecs.CSharp.Benchmark.Contexts
             World = World.Create();
         }
 
-        public virtual void Dispose()
+        public void Dispose()
         {
             World.Dispose();
         }
