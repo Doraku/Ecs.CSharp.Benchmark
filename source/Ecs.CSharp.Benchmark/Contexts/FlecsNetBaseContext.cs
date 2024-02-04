@@ -21,7 +21,7 @@ namespace Ecs.CSharp.Benchmark.Contexts
         }
     }
 
-    internal class FlecsNetBaseContext : IDisposable
+    internal sealed class FlecsNetBaseContext : IDisposable
     {
         public World World { get; }
 
