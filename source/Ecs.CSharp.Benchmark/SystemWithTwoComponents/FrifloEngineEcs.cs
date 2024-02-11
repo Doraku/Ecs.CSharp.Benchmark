@@ -9,11 +9,21 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithTwoComponents
     {
-        private sealed class FrifloEngineEcsContext : FrifloEngineEcsBaseContext
+        internal sealed class FrifloEngineEcsContext : FrifloEngineEcsBaseContext
         {
             public FrifloEngineEcsContext(int entityCount, int padding)
                 : base(entityCount, padding, ComponentTypes.Get<Component1, Component2>())
             { }
+            
+            internal static void ForEach(Chunk<Component1> component1, Chunk<Component2> component2, ChunkEntities entities)
+            {
+                Span<Component1> component1Span = component1.Span;
+                Span<Component2> component2Span = component2.Span;
+                for (int n = 0; n < component1Span.Length; n++)
+                {
+                    Update(ref component1Span[n], ref component2Span[n]);
+                }
+            }
         }
 
         [Context]
@@ -23,10 +33,7 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark]
         public void FrifloEngineEcs_MonoThread()
         {
-            EntityStore world = _frifloEngineEcs.EntityStore;
-            ArchetypeQuery<Component1, Component2> query = world.Query<Component1, Component2>();
-
-            foreach ((Chunk<Component1> component1, Chunk<Component2> component2, ChunkEntities _) in query.Chunks)
+            foreach ((Chunk<Component1> component1, Chunk<Component2> component2, ChunkEntities _) in _frifloEngineEcs.queryTwo.Chunks)
             {
                 Span<Component1> component1Span = component1.Span;
                 Span<Component2> component2Span = component2.Span;
@@ -35,6 +42,13 @@ namespace Ecs.CSharp.Benchmark
                     Update(ref component1Span[n], ref component2Span[n]);
                 }
             }
+        }
+        
+        [BenchmarkCategory(Categories.FrifloEngineEcs)]
+        [Benchmark]
+        public void FrifloEngineEcs_MultiThread()
+        {
+            _frifloEngineEcs.jobTwo.RunParallel();
         }
 
         private static void Update(ref Component1 c1, ref Component2 c2)
@@ -46,10 +60,8 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark]
         public void FrifloEngineEcs_SIMD_MonoThread()
         {
-            EntityStore world = _frifloEngineEcs.EntityStore;
-            ArchetypeQuery<Component1, Component2> query = world.Query<Component1, Component2>();
-
-            foreach ((Chunk<Component1> component1, Chunk<Component2> component2, ChunkEntities _) in query.Chunks)
+            foreach ((Chunk<Component1> component1, Chunk<Component2> component2, ChunkEntities _)
+                     in _frifloEngineEcs.queryTwo.Chunks)
             {
                 Span<int> component1Span = component1.AsSpan256<int>();     // Length - multiple of 8
                 Span<int> component2Span = component2.AsSpan256<int>();     // Length - multiple of 8

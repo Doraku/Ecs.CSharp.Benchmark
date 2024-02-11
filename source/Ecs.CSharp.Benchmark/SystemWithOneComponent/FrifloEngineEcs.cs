@@ -9,11 +9,19 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithOneComponent
     {
-        private sealed class FrifloEngineEcsContext : FrifloEngineEcsBaseContext
+        internal sealed class FrifloEngineEcsContext : FrifloEngineEcsBaseContext
         {
             public FrifloEngineEcsContext(int entityCount, int padding)
                 : base(entityCount, padding, ComponentTypes.Get<Component1>())
             { }
+            
+            internal static void ForEach(Chunk<Component1> component1, ChunkEntities entities)
+            {
+                foreach (ref Component1 component in component1.Span)
+                {
+                    ++component.Value;
+                }  
+            }
         }
 
         [Context]
@@ -23,10 +31,7 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark]
         public void FrifloEngineEcs_MonoThread()
         {
-            EntityStore world = _frifloEngineEcs.EntityStore;
-            ArchetypeQuery<Component1> query = world.Query<Component1>();
-
-            foreach ((Chunk<Component1> component1, ChunkEntities _) in query.Chunks)
+            foreach ((Chunk<Component1> component1, ChunkEntities _) in _frifloEngineEcs.queryOne.Chunks)
             {
                 foreach (ref Component1 component in component1.Span)
                 {
@@ -34,16 +39,21 @@ namespace Ecs.CSharp.Benchmark
                 }
             }
         }
-
+        
+        [BenchmarkCategory(Categories.FrifloEngineEcs)]
+        [Benchmark]
+        public void FrifloEngineEcs_MultiThread()
+        {
+            _frifloEngineEcs.jobOne.RunParallel();
+        }
+        
         [BenchmarkCategory(Categories.FrifloEngineEcs)]
         [Benchmark]
         public void FrifloEngineEcs_SIMD_MonoThread()
         {
-            EntityStore world = _frifloEngineEcs.EntityStore;
-            ArchetypeQuery<Component1> query = world.Query<Component1>();
             Vector256<int> add = Vector256.Create<int>(1);              // create int[8] vector - all values = 1
 
-            foreach ((Chunk<Component1> component1, ChunkEntities _) in query.Chunks)
+            foreach ((Chunk<Component1> component1, ChunkEntities _) in _frifloEngineEcs.queryOne.Chunks)
             {
                 Span<int> component1Span = component1.AsSpan256<int>(); // Length - multiple of 8
                 int step = component1.StepSpan256;                      // step = 8
