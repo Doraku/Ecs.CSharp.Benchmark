@@ -28,13 +28,15 @@
   </ItemGroup>
 
   <ItemGroup Label="Ecs">
-		<PackageReference Include="Arch" Version="1.2.7" />
+    <PackageReference Include="Arch" Version="1.2.7" />
     
     <PackageReference Include="DefaultEcs" Version="0.17.2" />
     <PackageReference Include="DefaultEcs.Analyzer" Version="0.17.0" PrivateAssets="all" />
 
     <PackageReference Include="fennecs" Version="0.1.1-beta" />
-    
+
+    <PackageReference Include="Flecs.NET.Release" Version="3.2.10" />
+
     <PackageReference Include="Friflo.Engine.ECS" Version="1.14.0" />
 
     <PackageReference Include="HypEcs" Version="1.2.1" />
@@ -50,9 +52,10 @@
 
     <PackageReference Include="Scellecs.Morpeh" Version="2023.1.0" />
 
+    <PackageReference Include="Sia" Version="1.8.9" />
+
     <PackageReference Include="Svelto.ECS" Version="3.3.2" />
     <PackageReference Include="Svelto.Common" Version="3.3.2" />
-		<PackageReference Include="Flecs.NET.Release" Version="3.2.10" />
   </ItemGroup>
   
 </Project>
