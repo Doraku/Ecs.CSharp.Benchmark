@@ -14,6 +14,7 @@ Tested frameworks:
 - [Leopotam.EcsLite](https://github.com/Leopotam/ecslite) using what I believe is a nuget package not made by the actual author and compiled in debug...
 - [MonoGame.Extended](https://github.com/craftworkgames/MonoGame.Extended)
 - [Morpeh](https://github.com/scellecs/morpeh)
+- [Myriad.ECS](https://github.com/martindevans/Myriad.ECS)
 - [RelEcs](https://github.com/Byteron/RelEcs)
 - [Svelto.ECS](https://github.com/sebas77/Svelto.ECS)
 
