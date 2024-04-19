@@ -1,6 +1,7 @@
 ﻿using System;
 using Arch.Core;
 using Arch.Core.Utils;
+using Schedulers;
 
 namespace Ecs.CSharp.Benchmark.Contexts
 {
@@ -25,7 +26,7 @@ namespace Ecs.CSharp.Benchmark.Contexts
     internal class ArchBaseContext : IDisposable
     {
         public World World { get; }
-        public JobScheduler.JobScheduler JobScheduler { get; set; }
+        public JobScheduler JobScheduler { get; set; }
 
         public ArchBaseContext()
         {
@@ -34,7 +35,14 @@ namespace Ecs.CSharp.Benchmark.Contexts
 
         public ArchBaseContext(ComponentType[] archetype, int amount)
         {
-            JobScheduler = new JobScheduler.JobScheduler("Arch");
+            JobScheduler = new JobScheduler(new JobScheduler.Config
+            {
+                ThreadPrefixName = "Arch.Samples",
+                ThreadCount = 0,
+                MaxExpectedConcurrentJobs = 64,
+                StrictAllocationMode = false,
+            });
+            
             World = World.Create();
             World.Reserve(archetype, amount);
 

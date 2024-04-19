@@ -3,9 +3,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Arch.Core;
 using Arch.Core.Utils;
+using Arch.System;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Contexts;
 using Ecs.CSharp.Benchmark.Contexts.Arch_Components;
+using Schedulers;
 
 namespace Ecs.CSharp.Benchmark
 {
@@ -18,6 +20,12 @@ namespace Ecs.CSharp.Benchmark
             {
                 t0.Value += t1.Value;
             }
+        }
+        
+        [Query]
+        private static void ForEach(ref Component1 t0, Component2 t1)
+        {
+            t0.Value += t1.Value;
         }
 
         private sealed class ArchContext : ArchBaseContext
@@ -32,7 +40,14 @@ namespace Ecs.CSharp.Benchmark
 
             public ArchContext(int entityCount)
             {
-                JobScheduler = new JobScheduler.JobScheduler("Arch");
+                JobScheduler = new JobScheduler( new JobScheduler.Config
+                {
+                    ThreadPrefixName = "Arch.Benchmark",
+                    ThreadCount = 0,
+                    MaxExpectedConcurrentJobs = 64,
+                    StrictAllocationMode = false,
+                });
+                
                 ComponentType[] paddingTypes = [
                     typeof(Padding1),
                     typeof(Padding2),
@@ -59,7 +74,6 @@ namespace Ecs.CSharp.Benchmark
 
         [Context]
         private readonly ArchContext _arch;
-
         private ForEach2 _forEach2;
 
         [BenchmarkCategory(Categories.Arch)]
@@ -69,6 +83,14 @@ namespace Ecs.CSharp.Benchmark
             World world = _arch.World;
             world.InlineQuery<ForEach2, Component1, Component2>(in _queryDescription, ref _forEach2);
         }
+        
+        [BenchmarkCategory(Categories.Arch)]
+        [Benchmark]
+        public void Arch_MonoThread_SourceGenerated()
+        {
+            ForEachQuery(_arch.World);
+        }
+        
         [BenchmarkCategory(Categories.Arch)]
         [Benchmark]
         public void Arch_MultiThread()
