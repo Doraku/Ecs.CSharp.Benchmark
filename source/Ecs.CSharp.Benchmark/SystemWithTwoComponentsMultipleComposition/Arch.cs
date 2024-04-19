@@ -47,6 +47,7 @@ namespace Ecs.CSharp.Benchmark
                     MaxExpectedConcurrentJobs = 64,
                     StrictAllocationMode = false,
                 });
+                World.SharedJobScheduler = JobScheduler;
                 
                 ComponentType[] paddingTypes = [
                     typeof(Padding1),
