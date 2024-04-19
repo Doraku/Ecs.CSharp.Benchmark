@@ -44,6 +44,7 @@ namespace Ecs.CSharp.Benchmark.Contexts
             });
             
             World = World.Create();
+            World.SharedJobScheduler = JobScheduler;
             World.Reserve(archetype, amount);
 
             for (int index = 0; index < amount; index++)
