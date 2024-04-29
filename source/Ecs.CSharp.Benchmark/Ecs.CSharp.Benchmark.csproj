@@ -18,7 +18,7 @@
 
   <ItemGroup Label="Analyzers">
     <PackageReference Include="Arch.System" Version="1.0.5" />
-    <PackageReference Include="Arch.System.SourceGenerator" Version="1.1.4" />
+    <PackageReference Include="Arch.System.SourceGenerator" Version="1.2.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />
     <PackageReference Include="Myriad.ECS" Version="9.1.0" />
     <PackageReference Include="Roslynator.Analyzers" Version="4.10.0" PrivateAssets="all" />
