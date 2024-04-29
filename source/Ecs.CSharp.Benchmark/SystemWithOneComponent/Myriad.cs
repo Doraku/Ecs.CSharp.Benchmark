@@ -31,27 +31,23 @@ namespace Ecs.CSharp.Benchmark
 
         private sealed class MyriadContext : MyriadBaseContext
         {
-            public MyriadContext(int entityCount, int padding)
+            // Myriad stores components as arrays of structs, so all structs of the same type are 
+            // always sequential in memory no matter what else is attached to the entity. So no need to respect
+            // the padding input
+            public MyriadContext(int entityCount, int _)
                 : base()
             {
                 CommandBuffer cmd = new CommandBuffer(World);
                 for (int i = 0; i < entityCount; i++)
                 {
                     CommandBuffer.BufferedEntity e = cmd.Create().Set(new Component1());
-
-                    if (padding != 0)
-                    {
-                        // Myriad stores components as arrays of structs, so all structs of the same type are 
-                        // always sequential in memory no matter what else is attached to the entity.
-                        throw new NotSupportedException($"Padding makes no difference to Myriad.ECS");
-                    }
                 }
+
                 cmd.Playback().Dispose();
             }
         }
 
-        [Context]
-        private readonly MyriadContext _myriad;
+        [Context] private readonly MyriadContext _myriad;
 
         [BenchmarkCategory(Categories.Myriad)]
         [Benchmark]
