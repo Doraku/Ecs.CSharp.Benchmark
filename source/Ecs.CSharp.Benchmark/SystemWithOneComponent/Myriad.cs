@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Contexts;
 using Ecs.CSharp.Benchmark.Contexts.Myriad_Components;
@@ -25,6 +26,20 @@ namespace Ecs.CSharp.Benchmark
                 for (int i = 0; i < t0.Length; i++)
                 {
                     t0[i].Value++;
+                }
+            }
+        }
+
+        private struct MyriadVectorForEach1
+            : IVectorChunkQuery1<int>
+        {
+            private static readonly Vector<int> _one = Vector<int>.One;
+
+            public void Execute(Span<Vector<int>> t0, int padding)
+            {
+                for (int i = 0; i < t0.Length; i++)
+                {
+                    t0[i] += _one;
                 }
             }
         }
@@ -107,6 +122,15 @@ namespace Ecs.CSharp.Benchmark
             {
                 c.Value++;
             });
+        }
+
+        [BenchmarkCategory(Categories.Myriad)]
+        [Benchmark]
+        public void Myriad_SingleThreadChunk_SIMD()
+        {
+            World world = _myriad.World;
+
+            world.ExecuteVectorChunk<MyriadVectorForEach1, Component1, int>(new MyriadVectorForEach1());
         }
     }
 }
