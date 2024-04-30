@@ -12,13 +12,18 @@ namespace Ecs.CSharp.Benchmark.Contexts
         public record struct Component3(int Value);
     }
 
-    public class TinyEcsBaseContext
+    internal class TinyEcsBaseContext : IDisposable
     {
         public World World { get; }
 
         public TinyEcsBaseContext()
         {
             World = new World();
+        }
+
+        public virtual void Dispose()
+        {
+            World?.Dispose();
         }
     }
 }
