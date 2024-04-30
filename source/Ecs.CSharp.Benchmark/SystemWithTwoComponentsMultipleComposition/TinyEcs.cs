@@ -16,6 +16,8 @@ namespace Ecs.CSharp.Benchmark
             private record struct Padding2();
             private record struct Padding3();
             private record struct Padding4();
+            public Query Query { get; }
+
             
             public TinyEcsContext(int entityCount) : base()
             {
@@ -44,6 +46,8 @@ namespace Ecs.CSharp.Benchmark
                             break;
                     }
                 }
+
+                Query = World.QueryBuilder().With<Component1>().With<Component2>().Build();
             }
         }
 
@@ -51,14 +55,14 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark]
         public void TinyEcs_Each()
         {
-            _tinyEcs.World.Each((EntityView _, ref Component1 c1, ref Component2 c2) => c1.Value += c2.Value);
+            _tinyEcs.Query.Each((ref Component1 c1, ref Component2 c2) => c1.Value += c2.Value);
         }
 
         [BenchmarkCategory(Categories.TinyEcs)]
         [Benchmark]
         public void TinyEcs_EachJob()
         {
-            _tinyEcs.World.EachJob((EntityView _, ref Component1 c1, ref Component2 c2) => c1.Value += c2.Value);
+            _tinyEcs.Query.EachJob((ref Component1 c1, ref Component2 c2) => c1.Value += c2.Value);
         }
     }
 }
