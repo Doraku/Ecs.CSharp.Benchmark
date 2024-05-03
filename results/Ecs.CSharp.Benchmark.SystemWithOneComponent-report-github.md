@@ -1,47 +1,78 @@
 ```
 
-BenchmarkDotNet v0.13.12, Windows 10 (10.0.19045.3930/22H2/2022Update)
-Intel Core i5-3570K CPU 3.40GHz (Ivy Bridge), 1 CPU, 4 logical and 4 physical cores
-.NET SDK 8.0.101
-  [Host]     : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX
-  DefaultJob : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX
+BenchmarkDotNet v0.13.12, Windows 11 (10.0.22631.3447/23H2/2023Update/SunValley3)
+AMD Ryzen 9 5900X, 1 CPU, 24 logical and 12 physical cores
+.NET SDK 8.0.204
+  [Host]     : .NET 8.0.4 (8.0.424.16909), X64 RyuJIT AVX2
+  DefaultJob : .NET 8.0.4 (8.0.424.16909), X64 RyuJIT AVX2
 
 
 ```
-| Method                                 | EntityCount | EntityPadding | Mean        | Error     | StdDev    | Gen0   | CacheMisses/Op | Allocated |
-|--------------------------------------- |------------ |-------------- |------------:|----------:|----------:|-------:|---------------:|----------:|
-| Arch_MonoThread                        | 100000      | 0             |    61.77 μs |  0.013 μs |  0.011 μs |      - |              2 |         - |
-| Arch_MultiThread                       | 100000      | 0             |    29.30 μs |  0.012 μs |  0.011 μs |      - |              1 |         - |
-| DefaultEcs_ComponentSystem_MonoThread  | 100000      | 0             |    56.25 μs |  0.008 μs |  0.008 μs |      - |              1 |         - |
-| DefaultEcs_ComponentSystem_MultiThread | 100000      | 0             |    15.21 μs |  0.067 μs |  0.060 μs |      - |              1 |         - |
-| DefaultEcs_EntitySetSystem_MonoThread  | 100000      | 0             |   118.02 μs |  0.021 μs |  0.020 μs |      - |              3 |         - |
-| DefaultEcs_EntitySetSystem_MultiThread | 100000      | 0             |    31.55 μs |  0.137 μs |  0.107 μs |      - |              3 |         - |
-| FrifloEngineEcs_MonoThread             | 100000      | 0             |    56.43 μs |  0.021 μs |  0.018 μs | 0.0610 |              3 |     208 B |
-| FrifloEngineEcs_SIMD_MonoThread        | 100000      | 0             |    28.78 μs |  0.020 μs |  0.015 μs | 0.0610 |              2 |     208 B |
-| HypEcs_MonoThread                      | 100000      | 0             |    56.46 μs |  0.006 μs |  0.005 μs |      - |              1 |      72 B |
-| HypEcs_MultiThread                     | 100000      | 0             |    58.95 μs |  0.052 μs |  0.046 μs | 0.4883 |             15 |    1832 B |
-| LeopotamEcs                            | 100000      | 0             |   135.90 μs |  0.025 μs |  0.022 μs |      - |              5 |         - |
-| LeopotamEcsLite                        | 100000      | 0             | 1,850.38 μs |  0.312 μs |  0.276 μs |      - |            124 |       3 B |
-| MonoGameExtended                       | 100000      | 0             |   536.11 μs |  1.050 μs |  0.931 μs |      - |         10,860 |     161 B |
-| Morpeh_Direct                          | 100000      | 0             | 2,872.35 μs |  1.397 μs |  1.239 μs |      - |          4,500 |       6 B |
-| Morpeh_Stash                           | 100000      | 0             | 1,034.99 μs |  0.379 μs |  0.336 μs |      - |          4,665 |       3 B |
-| RelEcs                                 | 100000      | 0             |   567.56 μs |  2.466 μs |  2.307 μs |      - |         16,088 |     121 B |
-| SveltoECS                              | 100000      | 0             |   197.01 μs |  0.022 μs |  0.018 μs |      - |              4 |         - |
-|                                        |             |               |             |           |           |        |                |           |
-| Arch_MonoThread                        | 100000      | 10            |    61.75 μs |  0.033 μs |  0.029 μs |      - |              2 |         - |
-| Arch_MultiThread                       | 100000      | 10            |    29.50 μs |  0.018 μs |  0.014 μs |      - |              1 |         - |
-| DefaultEcs_ComponentSystem_MonoThread  | 100000      | 10            |    56.25 μs |  0.008 μs |  0.007 μs |      - |              1 |         - |
-| DefaultEcs_ComponentSystem_MultiThread | 100000      | 10            |    15.31 μs |  0.044 μs |  0.039 μs |      - |              1 |         - |
-| DefaultEcs_EntitySetSystem_MonoThread  | 100000      | 10            |   244.32 μs |  0.188 μs |  0.176 μs |      - |          6,200 |       1 B |
-| DefaultEcs_EntitySetSystem_MultiThread | 100000      | 10            |    83.35 μs |  0.318 μs |  0.298 μs |      - |          6,806 |         - |
-| FrifloEngineEcs_MonoThread             | 100000      | 10            |    56.78 μs |  0.107 μs |  0.100 μs | 0.0610 |              2 |     208 B |
-| FrifloEngineEcs_SIMD_MonoThread        | 100000      | 10            |    27.18 μs |  0.002 μs |  0.002 μs | 0.0610 |              2 |     208 B |
-| HypEcs_MonoThread                      | 100000      | 10            |    56.78 μs |  0.170 μs |  0.159 μs |      - |              1 |      72 B |
-| HypEcs_MultiThread                     | 100000      | 10            |    60.34 μs |  0.101 μs |  0.094 μs | 0.4883 |             12 |    1832 B |
-| LeopotamEcs                            | 100000      | 10            |   136.22 μs |  0.022 μs |  0.020 μs |      - |              3 |         - |
-| LeopotamEcsLite                        | 100000      | 10            | 4,020.44 μs |  2.468 μs |  2.061 μs |      - |         93,943 |      11 B |
-| MonoGameExtended                       | 100000      | 10            | 1,996.01 μs | 28.602 μs | 23.884 μs |      - |        105,699 |     166 B |
-| Morpeh_Direct                          | 100000      | 10            | 6,109.28 μs | 25.304 μs | 23.669 μs |      - |        167,142 |      11 B |
-| Morpeh_Stash                           | 100000      | 10            | 3,980.00 μs | 20.224 μs | 18.917 μs |      - |        179,288 |      11 B |
-| RelEcs                                 | 100000      | 10            | 1,235.45 μs |  5.167 μs |  4.580 μs |      - |         53,159 |     123 B |
-| SveltoECS                              | 100000      | 10            |   197.04 μs |  0.026 μs |  0.023 μs |      - |              3 |         - |
+| Method                                 | EntityCount | EntityPadding | Mean         | Error      | StdDev     | Gen0    | Allocated |
+|--------------------------------------- |------------ |-------------- |-------------:|-----------:|-----------:|--------:|----------:|
+| **Arch_MonoThread**                        | **100000**      | **0**             |    **23.420 μs** |  **0.0978 μs** |  **0.0915 μs** |       **-** |         **-** |
+| Arch_MonoThread_SourceGenerated        | 100000      | 0             |    23.251 μs |  0.0612 μs |  0.0572 μs |       - |         - |
+| Arch_MultiThread                       | 100000      | 0             |    49.880 μs |  0.1483 μs |  0.1314 μs |       - |         - |
+| **Arch_MonoThread**                        | **100000**      | **10**            |    **23.125 μs** |  **0.0681 μs** |  **0.0637 μs** |       **-** |         **-** |
+| Arch_MonoThread_SourceGenerated        | 100000      | 10            |    23.144 μs |  0.1409 μs |  0.1318 μs |       - |         - |
+| Arch_MultiThread                       | 100000      | 10            |    49.402 μs |  0.1822 μs |  0.1615 μs |       - |         - |
+| **DefaultEcs_ComponentSystem_MonoThread**  | **100000**      | **0**             |    **21.602 μs** |  **0.0306 μs** |  **0.0286 μs** |       **-** |         **-** |
+| DefaultEcs_ComponentSystem_MultiThread | 100000      | 0             |     5.319 μs |  0.1057 μs |  0.2135 μs |       - |         - |
+| DefaultEcs_EntitySetSystem_MonoThread  | 100000      | 0             |    95.132 μs |  0.5265 μs |  0.4925 μs |       - |         - |
+| DefaultEcs_EntitySetSystem_MultiThread | 100000      | 0             |    11.450 μs |  0.2251 μs |  0.3505 μs |       - |         - |
+| **DefaultEcs_ComponentSystem_MonoThread**  | **100000**      | **10**            |    **21.527 μs** |  **0.1031 μs** |  **0.0964 μs** |       **-** |         **-** |
+| DefaultEcs_ComponentSystem_MultiThread | 100000      | 10            |     4.566 μs |  0.0797 μs |  0.0886 μs |       - |         - |
+| DefaultEcs_EntitySetSystem_MonoThread  | 100000      | 10            |    95.655 μs |  0.0484 μs |  0.0378 μs |       - |         - |
+| DefaultEcs_EntitySetSystem_MultiThread | 100000      | 10            |    14.483 μs |  0.2879 μs |  0.5477 μs |       - |         - |
+| **Fennecs_ForEach**                        | **100000**      | **0**             |    **21.648 μs** |  **0.0124 μs** |  **0.0110 μs** |       **-** |         **-** |
+| Fennecs_Job                            | 100000      | 0             |    53.325 μs |  0.1821 μs |  0.1703 μs |       - |         - |
+| Fennecs_Raw                            | 100000      | 0             |    43.673 μs |  0.4630 μs |  0.4105 μs |       - |         - |
+| **Fennecs_ForEach**                        | **100000**      | **10**            |    **21.875 μs** |  **0.0299 μs** |  **0.0280 μs** |       **-** |         **-** |
+| Fennecs_Job                            | 100000      | 10            |    53.428 μs |  0.1151 μs |  0.1077 μs |       - |         - |
+| Fennecs_Raw                            | 100000      | 10            |    43.439 μs |  0.1055 μs |  0.0986 μs |       - |         - |
+| **FlecsNet_Each**                          | **100000**      | **0**             |    **71.867 μs** |  **0.9416 μs** |  **0.8808 μs** |       **-** |         **-** |
+| FlecsNet_Iter                          | 100000      | 0             |    50.694 μs |  0.0619 μs |  0.0579 μs |       - |         - |
+| **FlecsNet_Each**                          | **100000**      | **10**            |    **71.011 μs** |  **0.5452 μs** |  **0.4833 μs** |       **-** |         **-** |
+| FlecsNet_Iter                          | 100000      | 10            |    43.764 μs |  0.1977 μs |  0.1849 μs |       - |         - |
+| **FrifloEngineEcs_MonoThread**             | **100000**      | **0**             |    **21.537 μs** |  **0.0981 μs** |  **0.0918 μs** |       **-** |         **-** |
+| FrifloEngineEcs_MultiThread            | 100000      | 0             |     5.991 μs |  0.1188 μs |  0.2777 μs |       - |         - |
+| FrifloEngineEcs_SIMD_MonoThread        | 100000      | 0             |     6.411 μs |  0.0203 μs |  0.0190 μs |       - |         - |
+| **FrifloEngineEcs_MonoThread**             | **100000**      | **10**            |    **21.633 μs** |  **0.1718 μs** |  **0.1607 μs** |       **-** |         **-** |
+| FrifloEngineEcs_MultiThread            | 100000      | 10            |     5.954 μs |  0.1165 μs |  0.1915 μs |       - |         - |
+| FrifloEngineEcs_SIMD_MonoThread        | 100000      | 10            |     6.542 μs |  0.0364 μs |  0.0340 μs |       - |         - |
+| **HypEcs_MonoThread**                      | **100000**      | **0**             |    **38.163 μs** |  **0.1384 μs** |  **0.1295 μs** |       **-** |      **72 B** |
+| HypEcs_MultiThread                     | 100000      | 0             |    39.918 μs |  0.1703 μs |  0.1593 μs |  0.0610 |    1832 B |
+| **HypEcs_MonoThread**                      | **100000**      | **10**            |    **37.704 μs** |  **0.1888 μs** |  **0.1766 μs** |       **-** |      **72 B** |
+| HypEcs_MultiThread                     | 100000      | 10            |    39.707 μs |  0.0574 μs |  0.0537 μs |  0.0610 |    1832 B |
+| **LeopotamEcsLite**                        | **100000**      | **0**             |   **111.991 μs** |  **0.0742 μs** |  **0.0694 μs** |       **-** |         **-** |
+| **LeopotamEcsLite**                        | **100000**      | **10**            |   **115.782 μs** |  **0.4815 μs** |  **0.4269 μs** |       **-** |         **-** |
+| **LeopotamEcs**                            | **100000**      | **0**             |    **83.299 μs** |  **0.2362 μs** |  **0.2094 μs** |       **-** |         **-** |
+| **LeopotamEcs**                            | **100000**      | **10**            |   **108.404 μs** |  **0.6523 μs** |  **0.6102 μs** |       **-** |         **-** |
+| **MonoGameExtended**                       | **100000**      | **0**             |   **253.155 μs** |  **1.2699 μs** |  **1.1879 μs** |       **-** |     **160 B** |
+| **MonoGameExtended**                       | **100000**      | **10**            |   **373.545 μs** |  **2.6900 μs** |  **2.5163 μs** |       **-** |     **160 B** |
+| **Morpeh_Direct**                          | **100000**      | **0**             | **1,043.726 μs** |  **1.7921 μs** |  **1.3991 μs** |       **-** |       **2 B** |
+| Morpeh_Stash                           | 100000      | 0             |   568.116 μs |  2.7533 μs |  2.5755 μs |       - |       1 B |
+| **Morpeh_Direct**                          | **100000**      | **10**            | **2,598.587 μs** | **21.9535 μs** | **18.3321 μs** |       **-** |       **3 B** |
+| Morpeh_Stash                           | 100000      | 10            | 2,363.997 μs | 46.5325 μs | 97.1307 μs |       - |       3 B |
+| **Myriad_SingleThread**                    | **100000**      | **0**             |    **51.304 μs** |  **0.3245 μs** |  **0.3035 μs** |       **-** |         **-** |
+| Myriad_MultiThread                     | 100000      | 0             |   837.895 μs |  9.1105 μs |  8.5220 μs | 26.3672 |  442063 B |
+| Myriad_SingleThreadChunk               | 100000      | 0             |    23.897 μs |  0.1693 μs |  0.1584 μs |       - |         - |
+| Myriad_MultiThreadChunk                | 100000      | 0             |    21.416 μs |  0.0781 μs |  0.0731 μs |  0.3052 |    5411 B |
+| Myriad_Enumerable                      | 100000      | 0             |   112.296 μs |  0.0674 μs |  0.0526 μs |       - |         - |
+| Myriad_Delegate                        | 100000      | 0             |    67.135 μs |  0.1685 μs |  0.1576 μs |       - |         - |
+| Myriad_SingleThreadChunk_SIMD          | 100000      | 0             |     9.227 μs |  0.0440 μs |  0.0390 μs |       - |         - |
+| **Myriad_SingleThread**                    | **100000**      | **10**            |    **51.063 μs** |  **0.1514 μs** |  **0.1264 μs** |       **-** |         **-** |
+| Myriad_MultiThread                     | 100000      | 10            |   885.890 μs |  6.8570 μs |  6.4140 μs | 26.3672 |  448585 B |
+| Myriad_SingleThreadChunk               | 100000      | 10            |    23.871 μs |  0.1273 μs |  0.1191 μs |       - |         - |
+| Myriad_MultiThreadChunk                | 100000      | 10            |    21.547 μs |  0.1076 μs |  0.1006 μs |  0.3052 |    5442 B |
+| Myriad_Enumerable                      | 100000      | 10            |   111.324 μs |  0.8480 μs |  0.7932 μs |       - |         - |
+| Myriad_Delegate                        | 100000      | 10            |    65.977 μs |  0.5311 μs |  0.4968 μs |       - |         - |
+| Myriad_SingleThreadChunk_SIMD          | 100000      | 10            |     8.868 μs |  0.0565 μs |  0.0529 μs |       - |         - |
+| **RelEcs**                                 | **100000**      | **0**             |   **183.712 μs** |  **0.2463 μs** |  **0.2183 μs** |       **-** |     **120 B** |
+| **RelEcs**                                 | **100000**      | **10**            |   **236.031 μs** |  **1.6676 μs** |  **1.5599 μs** |       **-** |     **120 B** |
+| **SveltoECS**                              | **100000**      | **0**             |   **108.539 μs** |  **0.4489 μs** |  **0.4199 μs** |       **-** |         **-** |
+| **SveltoECS**                              | **100000**      | **10**            |   **127.687 μs** |  **0.5123 μs** |  **0.4541 μs** |       **-** |         **-** |
+| **TinyEcs_Each**                           | **100000**      | **0**             |    **29.126 μs** |  **0.1021 μs** |  **0.0905 μs** |       **-** |         **-** |
+| TinyEcs_EachJob                        | 100000      | 0             |    18.492 μs |  0.0376 μs |  0.0333 μs |  0.0916 |    1552 B |
+| **TinyEcs_Each**                           | **100000**      | **10**            |    **29.782 μs** |  **0.1466 μs** |  **0.1371 μs** |       **-** |         **-** |
+| TinyEcs_EachJob                        | 100000      | 10            |    18.009 μs |  0.0492 μs |  0.0460 μs |  0.0916 |    1552 B |
