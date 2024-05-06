@@ -132,6 +132,18 @@ Modify entities with one component. The padding aims to simulate real situation 
 | SveltoECS                              | 0             |   108.539 μs |  0.4199 μs |         - |
 | TinyEcs_Each                           | 0             |    29.126 μs |  0.0905 μs |         - |
 | TinyEcs_EachJob                        | 0             |    18.492 μs |  0.0333 μs |    1552 B |
+|                                        |               |              |            |           |
+| DefaultEcs_ComponentSystem_MonoThread  | 10            |    21.527 μs |  0.0964 μs |         - |
+| DefaultEcs_ComponentSystem_MultiThread | 10            |     4.566 μs |  0.0886 μs |         - |
+| DefaultEcs_EntitySetSystem_MonoThread  | 10            |    95.655 μs |  0.0378 μs |         - |
+| DefaultEcs_EntitySetSystem_MultiThread | 10            |    14.483 μs |  0.5477 μs |         - |
+| LeopotamEcsLite                        | 10            |   115.782 μs |  0.4269 μs |         - |
+| LeopotamEcs                            | 10            |   108.404 μs |  0.6102 μs |         - |
+| MonoGameExtended                       | 10            |   373.545 μs |  2.5163 μs |     160 B |
+| Morpeh_Direct                          | 10            | 2,598.587 μs | 18.3321 μs |       3 B |
+| Morpeh_Stash                           | 10            | 2,363.997 μs | 97.1307 μs |       3 B |
+| RelEcs                                 | 10            |   236.031 μs |  1.5599 μs |     120 B |
+| SveltoECS                              | 10            |   127.687 μs |  0.4541 μs |         - |
 
 
 ## [SystemWithTwoComponents](results/Ecs.CSharp.Benchmark.SystemWithTwoComponents-report-github.md)
@@ -170,6 +182,16 @@ Modify entities with two components. The padding aims to simulate real situation
 | SveltoECS                       | 0             |   217.040 μs |   0.6463 μs |         - |
 | TinyEcs_Each                    | 0             |    26.479 μs |   0.0787 μs |         - |
 | TinyEcs_EachJob                 | 0             |    18.590 μs |   0.0992 μs |    1552 B |
+|                                 |               |              |             |           |
+| DefaultEcs_MonoThread           | 10            |   135.716 μs |   0.6646 μs |         - |
+| DefaultEcs_MultiThread          | 10            |    35.017 μs |   7.2481 μs |         - |
+| LeopotamEcsLite                 | 10            |   182.237 μs |   0.6589 μs |         - |
+| LeopotamEcs                     | 10            |   133.385 μs |   0.3604 μs |         - |
+| MonoGameExtended                | 10            |   852.321 μs |   4.4179 μs |     161 B |
+| Morpeh_Direct                   | 10            | 8,316.462 μs | 159.6963 μs |      12 B |
+| Morpeh_Stash                    | 10            | 5,149.691 μs |  54.2104 μs |       6 B |
+| RelEcs                          | 10            |   294.985 μs |   2.3202 μs |     168 B |
+| SveltoECS                       | 10            | 1,304.605 μs |   5.5623 μs |       2 B |
 
 ## [SystemWithThreeComponents](results/Ecs.CSharp.Benchmark.SystemWithThreeComponents-report-github.md)
 Modify entities with three components. The padding aims to simulate real situation when processed entities and their components are not sequential.
@@ -206,6 +228,16 @@ Modify entities with three components. The padding aims to simulate real situati
 | SveltoECS                       | 0             |    322.910 μs |   2.8128 μs |         - |
 | TinyEcs_Each                    | 0             |     39.623 μs |   0.1817 μs |         - |
 | TinyEcs_EachJob                 | 0             |     20.120 μs |   0.0635 μs |    1560 B |
+|                                 |               |               |             |           |
+| DefaultEcs_MonoThread           | 10            |    200.186 μs |   1.2432 μs |         - |
+| DefaultEcs_MultiThread          | 10            |    124.775 μs |   9.4812 μs |         - |
+| LeopotamEcsLite                 | 10            |    255.790 μs |   1.3398 μs |         - |
+| LeopotamEcs                     | 10            |    188.907 μs |   0.1537 μs |         - |
+| MonoGameExtended                | 10            |  1,683.746 μs |  14.3184 μs |     162 B |
+| Morpeh_Direct                   | 10            | 10,861.445 μs | 222.8097 μs |      12 B |
+| Morpeh_Stash                    | 10            |  5,924.703 μs | 186.3500 μs |       6 B |
+| RelEcs                          | 10            |    365.176 μs |   3.8175 μs |     216 B |
+| SveltoECS                       | 10            |            NA |          NA |        NA |
 
 
 ## [SystemWithTwoComponentsMultipleComposition](results/Ecs.CSharp.Benchmark.SystemWithTwoComponentsMultipleComposition-report-github.md)
