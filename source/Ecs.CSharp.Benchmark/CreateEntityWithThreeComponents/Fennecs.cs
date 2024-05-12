@@ -3,6 +3,7 @@ using Ecs.CSharp.Benchmark.Contexts;
 using Ecs.CSharp.Benchmark.Contexts.Fennecs_Components;
 using fennecs;
 
+// ReSharper disable once CheckNamespace
 namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithThreeComponents

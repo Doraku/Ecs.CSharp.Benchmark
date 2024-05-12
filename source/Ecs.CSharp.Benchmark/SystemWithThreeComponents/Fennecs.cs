@@ -23,8 +23,6 @@ namespace Ecs.CSharp.Benchmark
 
             public FennecsContext(int entityCount, int entityPadding) : base(entityCount)
             {
-                query = World.Query<Component1, Component2, Component3>().Build();
-
                 for (int i = 0; i < entityCount; ++i)
                 {
                     for (int j = 0; j < entityPadding; ++j)
@@ -49,7 +47,7 @@ namespace Ecs.CSharp.Benchmark
                         .Add(new Component3 {Value = 1});
                 }
 
-                query.Warmup();
+                query = World.Query<Component1, Component2, Component3>().Build().Warmup();
             }
             
             public override void Dispose()
@@ -73,6 +71,25 @@ namespace Ecs.CSharp.Benchmark
                 static (ref Component1 c1, ref Component2 c2, ref Component3 c3) =>
                 {
                     c1.Value = c1.Value + c2.Value + c3.Value;
+                });
+        }
+
+
+        /// <summary>
+        /// Experimental Implicit value type to compare performance in a tight loop.
+        /// </summary>
+        /// <remarks>
+        /// It's very convenient, but is about 20% slower than the For runner with values
+        /// (it still gets inlined well!)
+        /// </remarks>
+        //[BenchmarkCategory(Categories.Fennecs)]
+        //[Benchmark(Description = "fennecs (Implicit)")]
+        public void fennecs_For_Implicit()
+        {
+            Query.For(
+                static (ref Component1 c1, ref Component2 c2, ref Component3 c3) =>
+                {
+                    c1 = c1 + c2 + c3;
                 });
         }
 
@@ -184,8 +201,7 @@ namespace Ecs.CSharp.Benchmark
 
             for (int i = 0; i < c1S.Length; i++)
             {
-                ref Component1 output = ref c1S[i]; 
-                output.Value = output.Value + c2S[i].Value + c3S[i].Value;
+                c1S[i].Value = c1S[i].Value + c2S[i].Value + c3S[i].Value;
             }
         }
 

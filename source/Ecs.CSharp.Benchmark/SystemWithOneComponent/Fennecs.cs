@@ -35,52 +35,74 @@ namespace Ecs.CSharp.Benchmark
 
                 query.Warmup();
                 query.Batch(Batch.AddConflict.Replace)
-                    .Add(new Component1 { Value = 0 })
+                    .Add(new Component1
+                    {
+                        Value = 0
+                    })
                     .Submit();
+            }
+
+            public override void Dispose()
+            {
+                query.Dispose();
+                base.Dispose();
             }
         }
 
         [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark]
-        public void Fennecs_ForEach()
+        [Benchmark (Description = "fennecs (For)")]
+        public void Fennecs_For()
         {
-            _fennecs.query.For(delegate(ref Component1 v) { v.Value++; });
+            _fennecs.query.For(static (ref Component1 v) => { v.Value++; });
         }
 
-        [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark]
+        // Disabled for now.
+        // This API is available in fennecs 0.3.x, but is not optimized yet.
+        //[BenchmarkCategory(Categories.Fennecs)]
+        //[Benchmark (Description = "fennecs (Batch)")]
         public void Fennecs_Batch()
         {
             int newValue = _fennecs.query[0].Ref<Component1>().Value + 1;
             
             _fennecs.query
                 .Batch(Batch.AddConflict.Replace)
-                .Add(new Component1 { Value = newValue })
+                .Add(new Component1
+                {
+                    Value = newValue
+                })
                 .Submit();
         }
 
         [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark]
+        [Benchmark (Description = "fennecs (Job)")]
         public void Fennecs_Job()
         {
-            _fennecs.query.Job(delegate(ref Component1 v) { v.Value++; });
+            _fennecs.query.Job(static (ref Component1 v) => { v.Value++; });
         }
-        
+
         [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark]
-        public void Fennecs_Raw()
+        [Benchmark(Description = "fennecs (Blit)")]
+        public void Fennecs_Raw_Blit()
         {
-            _fennecs.query.Raw(delegate(Memory<Component1> vectors)
+            _fennecs.query.Raw(delegate(Memory<Component1> mem1)
             {
-                foreach (ref var v in vectors.Span)
+                // This does exactly what the system does, but it is wholly dependent
+                // on the precondition of the benchmark. (so... it's taking a shortcut)
+                // fennecs 0.4.0 or 0.5.0 will provide a literal Blit method that
+                // works like this for fast updating of large swathes of component
+                // data.
+                Component1 newValue = new Component1
                 {
-                    v.Value++;
-                }
+                    // We can safely do this because we will never get called here with
+                    // an empty archetype / zero size memory slab
+                    Value = mem1.Span[0].Value + 1
+                };
+                mem1.Span.Fill(newValue);
             });
         }
-        
+
         #region Raw Runners
-        
+
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Avx2)]
         [Benchmark(Description = "fennecs (Raw AVX2)")]
         public void Fennecs_Raw_AVX2()
@@ -88,7 +110,7 @@ namespace Ecs.CSharp.Benchmark
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)
             {
                 int count = mem1.Length;
-                
+
                 using MemoryHandle handle1 = mem1.Pin();
 
                 unsafe
@@ -110,22 +132,7 @@ namespace Ecs.CSharp.Benchmark
                 }
             });
         }
-        
-        
-        
-        [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark(Description = "fennecs (Raw Blit)")]
-        public void Fennecs_Raw_Blit()
-        {
-            _fennecs.query.Raw(delegate(Memory<Component1> mem1)
-            {
-                Component1 newValue = mem1.Span[0];
-                newValue.Value++;
-                
-                mem1.Span.Fill(newValue);
-            });
-        }
-        
+
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Sse2)]
         [Benchmark(Description = "fennecs (Raw SSE2)")]
         public void Fennecs_Raw_SSE2()
@@ -133,7 +140,7 @@ namespace Ecs.CSharp.Benchmark
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)
             {
                 int count = mem1.Length;
-                
+
                 using MemoryHandle handle1 = mem1.Pin();
 
                 unsafe
@@ -155,7 +162,7 @@ namespace Ecs.CSharp.Benchmark
                 }
             });
         }
-        
+
         [BenchmarkCategory(Categories.Fennecs, Capabilities.AdvSimd)]
         [Benchmark(Description = "fennecs (Raw AdvSIMD)")]
         public void Fennecs_Raw_AdvSimd()
@@ -163,7 +170,7 @@ namespace Ecs.CSharp.Benchmark
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)
             {
                 int count = mem1.Length;
-                
+
                 using MemoryHandle handle1 = mem1.Pin();
 
                 unsafe
@@ -185,7 +192,7 @@ namespace Ecs.CSharp.Benchmark
                 }
             });
         }
-        
+
         #endregion
     }
 }
