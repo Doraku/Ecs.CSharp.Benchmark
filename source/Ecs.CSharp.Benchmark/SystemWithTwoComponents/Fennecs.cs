@@ -135,7 +135,7 @@ namespace Ecs.CSharp.Benchmark
         /// This benchmark is automatically excluded if the current environment does not support AVX2.
         /// </remarks>
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Avx2)]
-        [Benchmark(Description = "fennecs (Raw AVX2)")]
+        [Benchmark(Description = "fennecs (AVX2)")]
         public void fennecs_Raw_AVX2()
         {
             Query.Raw(Raw_Workload_AVX2);
@@ -148,7 +148,7 @@ namespace Ecs.CSharp.Benchmark
         /// This benchmark is automatically excluded if the current environment does not support SSE2.
         /// </remarks>
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Sse2)]
-        [Benchmark(Description = "fennecs (Raw SSE2)")]
+        [Benchmark(Description = "fennecs (SSE2)")]
         public void fennecs_Raw_SSE2()
         {
             Query.Raw(Raw_Workload_SSE2);
@@ -161,7 +161,7 @@ namespace Ecs.CSharp.Benchmark
         /// This benchmark is automatically excluded if the current environment does not support AdvSIMD.
         /// </remarks>
         [BenchmarkCategory(Categories.Fennecs, Capabilities.AdvSimd)]
-        [Benchmark(Description = "fennecs (Raw AdvSIMD)")]
+        [Benchmark(Description = "fennecs (AdvSIMD)")]
         public void fennecs_Raw_AdvSIMD()
         {
             Query.Raw(Raw_Workload_AdvSIMD);

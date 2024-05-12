@@ -104,7 +104,7 @@ namespace Ecs.CSharp.Benchmark
         #region Raw Runners
 
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Avx2)]
-        [Benchmark(Description = "fennecs (Raw AVX2)")]
+        [Benchmark(Description = "fennecs (AVX2)")]
         public void Fennecs_Raw_AVX2()
         {
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)
@@ -134,7 +134,7 @@ namespace Ecs.CSharp.Benchmark
         }
 
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Sse2)]
-        [Benchmark(Description = "fennecs (Raw SSE2)")]
+        [Benchmark(Description = "fennecs (SSE2)")]
         public void Fennecs_Raw_SSE2()
         {
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)
@@ -164,7 +164,7 @@ namespace Ecs.CSharp.Benchmark
         }
 
         [BenchmarkCategory(Categories.Fennecs, Capabilities.AdvSimd)]
-        [Benchmark(Description = "fennecs (Raw AdvSIMD)")]
+        [Benchmark(Description = "fennecs (AdvSIMD)")]
         public void Fennecs_Raw_AdvSimd()
         {
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)
