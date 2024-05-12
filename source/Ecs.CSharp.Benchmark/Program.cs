@@ -27,6 +27,8 @@ BenchmarkSwitcher benchmark = BenchmarkSwitcher.FromTypes(new[]
 
 IConfig configuration = DefaultConfig.Instance.WithOptions(ConfigOptions.DisableOptimizationsValidator);
 
+Capabilities.ApplyExclusions(configuration);
+
 if (args.Length > 0)
 {
     benchmark.Run(args, configuration);
