@@ -8,9 +8,8 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithThreeComponents
     {
-        [Context]
-        private readonly FennecsBaseContext _fennecs;
-
+        [Context] private readonly FennecsBaseContext _fennecs;
+        
         [BenchmarkCategory(Categories.Fennecs)]
         [Benchmark]
         public void Fennecs()

@@ -40,11 +40,13 @@ namespace Ecs.CSharp.Benchmark.Contexts
 
     internal class FennecsBaseContext(int entityCount) : IDisposable
     {
-        public World World { get; } = new(entityCount * 2);
+        public World World { get; } = new World(entityCount * 2);
 
         public virtual void Dispose()
         {
             World.Dispose();
         }
+        public FennecsBaseContext() : this(100000)
+        { }
     }
 }
