@@ -80,8 +80,8 @@ namespace Ecs.CSharp.Benchmark
             _fennecs.query.Job(static (ref Component1 v) => { v.Value++; });
         }
 
-        [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark(Description = "fennecs (Blit)")]
+        //[BenchmarkCategory(Categories.Fennecs)]
+        //[Benchmark(Description = "fennecs (Blit)")]
         public void Fennecs_Raw_Blit()
         {
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)
