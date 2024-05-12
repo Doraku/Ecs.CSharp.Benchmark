@@ -15,7 +15,7 @@ namespace Ecs.CSharp.Benchmark
         {
             public Query<Component1> query;
 
-            public FennecsContext(int entityCount, int entityPadding)
+            public FennecsContext(int entityCount, int entityPadding) : base(entityCount)
             {
                 query = World.Query<Component1>().Build();
                 for (int i = 0; i < entityCount; ++i)
@@ -41,7 +41,7 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark]
         public void Fennecs_Job()
         {
-            _fennecs.query.Job(delegate(ref Component1 v) { v.Value++; }, 1024);
+            _fennecs.query.Job(delegate(ref Component1 v) { v.Value++; });
         }
         
         [BenchmarkCategory(Categories.Fennecs)]

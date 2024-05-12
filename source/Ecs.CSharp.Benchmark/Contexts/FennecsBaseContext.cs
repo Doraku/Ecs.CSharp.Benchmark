@@ -21,14 +21,9 @@ namespace Ecs.CSharp.Benchmark.Contexts
         }
     }
 
-    internal class FennecsBaseContext : IDisposable
+    internal class FennecsBaseContext(int entityCount) : IDisposable
     {
-        public World World { get; }
-
-        public FennecsBaseContext()
-        {
-            World = new World();
-        }
+        public World World { get; } = new(entityCount * 2);
 
         public void Dispose()
         {
