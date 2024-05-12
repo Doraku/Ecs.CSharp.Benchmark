@@ -25,7 +25,7 @@ namespace Ecs.CSharp.Benchmark.Contexts
     {
         public World World { get; } = new(entityCount * 2);
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             World.Dispose();
         }

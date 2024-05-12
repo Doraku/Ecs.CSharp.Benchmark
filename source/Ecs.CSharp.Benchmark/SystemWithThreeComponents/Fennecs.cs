@@ -8,6 +8,7 @@ using Ecs.CSharp.Benchmark.Contexts;
 using Ecs.CSharp.Benchmark.Contexts.Fennecs_Components;
 using fennecs;
 
+// ReSharper disable once CheckNamespace
 namespace Ecs.CSharp.Benchmark
 {
     public partial class SystemWithThreeComponents
@@ -50,9 +51,20 @@ namespace Ecs.CSharp.Benchmark
 
                 query.Warmup();
             }
+            
+            public override void Dispose()
+            {
+                query.Dispose();
+                base.Dispose();
+            }
         }
 
-
+        /// <summary>
+        /// fennecs For runners are the classic swiss army knife of this ECS. 
+        /// </summary>
+        /// <remarks>
+        /// They are the most versatile and offer decent single-threaded baseline performance to boot.
+        /// </remarks>
         [BenchmarkCategory(Categories.Fennecs)]
         [Benchmark(Description = "fennecs (For)")]
         public void fennecs_For()
@@ -65,6 +77,19 @@ namespace Ecs.CSharp.Benchmark
         }
 
 
+        /// <summary>
+        /// fennecs Job runners are the most scalable runners.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// They're still an area for improvement :)
+        /// </para>
+        /// <para>
+        /// Job is designed for heavy individual workloads (e.g. update 20 physics worlds on 20 cores),
+        /// or large numbers of entities in many big archetypes. They only start paying off at around
+        /// 500,000 components when the individual work steps are simple (e.g. vector multiplications).
+        /// </para>
+        /// </remarks>
         [BenchmarkCategory(Categories.Fennecs)]
         [Benchmark(Description = $"fennecs (Job)")]
         public void fennecs_Job()
@@ -77,17 +102,25 @@ namespace Ecs.CSharp.Benchmark
         }
 
 
-        #region Raw
-
-        // fennecs guarantees contiguous memory access in the form of Query<>.Raw(MemoryAction<>)
-        // Raw runners are intended to process data or transfer it via the fastest available means,
+        // fennecs Raw runners guarantee contiguous memory access in the form of Query<>.Raw(MemoryAction<>)
+        // Raw runners are intended to process data or transfer it via the fastest available means.
         // Example use cases:
-        //  - transfer buffers to/from GPUs or Game Engines
+        //  - transfer data to/from GPU
+        //  - transfer data to/from Game Engine
         //  - Disk, Database, or Network I/O
         //  - SIMD calculations
-        //  - snapshotting / copying / rollback / compression / decompression / diffing / permutation
-        // As example / reference & benchmark, we vectorized our calculation here using AVX2, SSE2, and AdvSIMD
+        //  - snapshotting / copying / rollback / compression / hashing / diffing / permutation
+        //  - etc.
+        //
+        // As example / reference / benchmarks, we vectorize our calculation here using AVX2, SSE2, and AdvSIMD
+        // Despite the 'unsafe' tags, this is quite safe ;) The Memory<T>s are pinned till end of scope.
+        // We also keep an Unoptimized Workload around to let RyuJIT show off its magic. (still good!)
 
+        #region Raw Runners
+        
+        /// <summary>
+        /// Unoptimized workload for fennecs (Raw)
+        /// </summary>
         [BenchmarkCategory(Categories.Fennecs)]
         [Benchmark(Description = "fennecs (Raw)")]
         public void fennecs_Raw()
@@ -95,6 +128,12 @@ namespace Ecs.CSharp.Benchmark
             Query.Raw(Raw_Workload_Unoptimized);
         }
 
+        /// <summary>
+        /// Vectorized Benchmark Contender for fennecs. (AVX2)
+        /// </summary>
+        /// <remarks>
+        /// This benchmark is automatically excluded if the current environment does not support AVX2.
+        /// </remarks>
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Avx2)]
         [Benchmark(Description = "fennecs (Raw AVX2)")]
         public void fennecs_Raw_AVX2()
@@ -102,6 +141,12 @@ namespace Ecs.CSharp.Benchmark
             Query.Raw(Raw_Workload_AVX2);
         }
 
+        /// <summary>
+        /// Vectorized Benchmark Contender for fennecs. (SSE2 / AVX1)
+        /// </summary>
+        /// <remarks>
+        /// This benchmark is automatically excluded if the current environment does not support SSE2.
+        /// </remarks>
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Sse2)]
         [Benchmark(Description = "fennecs (Raw SSE2)")]
         public void fennecs_Raw_SSE2()
@@ -109,6 +154,12 @@ namespace Ecs.CSharp.Benchmark
             Query.Raw(Raw_Workload_SSE2);
         }
 
+        /// <summary>
+        /// Vectorized Benchmark Contender for fennecs. (Arm64 AdvSIMD)
+        /// </summary>
+        /// <remarks>
+        /// This benchmark is automatically excluded if the current environment does not support AdvSIMD.
+        /// </remarks>
         [BenchmarkCategory(Categories.Fennecs, Capabilities.AdvSimd)]
         [Benchmark(Description = "fennecs (Raw AdvSIMD)")]
         public void fennecs_Raw_AdvSIMD()
@@ -116,8 +167,15 @@ namespace Ecs.CSharp.Benchmark
             Query.Raw(Raw_Workload_AdvSIMD);
         }
 
-        #region Workloads
-
+        /// <summary>
+        /// Unoptimized workload for fennecs (Raw)
+        /// Treating the Memory Slabs basically as Arrays.
+        /// </summary>
+        /// <remarks>
+        /// However, RyuJIT is able to optimize this workload to a degree,
+        /// especially if we use an explicit assignment instead of a compound assignment
+        /// for our addition. 
+        /// </remarks>
         private static void Raw_Workload_Unoptimized(Memory<Component1> c1V, Memory<Component2> c2V, Memory<Component3> c3V)
         {
             Span<Component1> c1S = c1V.Span;
@@ -126,10 +184,16 @@ namespace Ecs.CSharp.Benchmark
 
             for (int i = 0; i < c1S.Length; i++)
             {
-                c1S[i].Value = c1S[i].Value + c2S[i].Value + c3S[i].Value;
+                ref Component1 output = ref c1S[i]; 
+                output.Value = output.Value + c2S[i].Value + c3S[i].Value;
             }
         }
 
+        /// <summary>
+        /// AVX2 workload for fennecs (Raw)
+        /// We use AVX2 intrinsics to vectorize the workload, executing 8 additions in parallel.
+        /// (256 bits)
+        /// </summary>
         private static void Raw_Workload_AVX2(Memory<Component1> c1V, Memory<Component2> c2V, Memory<Component3> c3V)
         {
             int count = c1V.Length;
@@ -145,8 +209,8 @@ namespace Ecs.CSharp.Benchmark
                 int* p3 = (int*)mem3.Pointer;
 
                 int vectorSize = Vector256<int>.Count;
-                int vectorEnd = count - count % vectorSize;
-                for (int i = 0; i <= vectorEnd; i += vectorSize)
+                int vectorEnd = count - (count % vectorSize);
+                for (int i = 0; i < vectorEnd; i += vectorSize)
                 {
                     Vector256<int> v1 = Avx.LoadVector256(p1 + i);
                     Vector256<int> v2 = Avx.LoadVector256(p2 + i);
@@ -163,9 +227,14 @@ namespace Ecs.CSharp.Benchmark
             }
         }
 
+        /// <summary>
+        /// SSE2 workload for fennecs (Raw)
+        /// We use SSE2 (same as AVX1) intrinsics to vectorize the workload, executing 4 additions in parallel.
+        /// (128 bits) 
+        /// </summary>
         private static void Raw_Workload_SSE2(Memory<Component1> c1V, Memory<Component2> c2V, Memory<Component3> c3V)
         {
-            (int Item1, int Item2) range = (0, c1V.Length);
+            int count = c1V.Length;
 
             using MemoryHandle mem1 = c1V.Pin();
             using MemoryHandle mem2 = c2V.Pin();
@@ -178,9 +247,8 @@ namespace Ecs.CSharp.Benchmark
                 int* p3 = (int*)mem3.Pointer;
 
                 int vectorSize = Vector128<int>.Count;
-                int i = range.Item1;
-                int vectorEnd = range.Item2 - vectorSize;
-                for (; i <= vectorEnd; i += vectorSize)
+                int vectorEnd = count - (count % vectorSize);
+                for (int i = 0; i < vectorEnd; i += vectorSize)
                 {
                     Vector128<int> v1 = Sse2.LoadVector128(p1 + i);
                     Vector128<int> v2 = Sse2.LoadVector128(p2 + i);
@@ -190,16 +258,21 @@ namespace Ecs.CSharp.Benchmark
                     Sse2.Store(p1 + i, sum);
                 }
 
-                for (; i < range.Item2; i++) // remaining elements
+                for (int i = vectorEnd; i < count; i++) // remaining elements
                 {
                     p1[i] = p1[i] + p2[i] + p3[i];
                 }
             }
         }
 
+        /// <summary>
+        /// AdvSIMD workload for fennecs (Raw)
+        /// We use AdvSIMD intrinsics to vectorize the workload, executing 4 additions in parallel.
+        /// (128 bits) 
+        /// </summary>
         private static void Raw_Workload_AdvSIMD(Memory<Component1> c1V, Memory<Component2> c2V, Memory<Component3> c3V)
         {
-            (int Item1, int Item2) range = (0, c1V.Length);
+            int count = c1V.Length;
 
             using MemoryHandle mem1 = c1V.Pin();
             using MemoryHandle mem2 = c2V.Pin();
@@ -212,9 +285,8 @@ namespace Ecs.CSharp.Benchmark
                 int* p3 = (int*)mem3.Pointer;
 
                 int vectorSize = Vector128<int>.Count;
-                int i = range.Item1;
-                int vectorEnd = range.Item2 - vectorSize;
-                for (; i <= vectorEnd; i += vectorSize)
+                int vectorEnd = count - (count % vectorSize);
+                for (int i = 0; i < vectorEnd; i += vectorSize)
                 {
                     Vector128<int> v1 = AdvSimd.LoadVector128(p1 + i);
                     Vector128<int> v2 = AdvSimd.LoadVector128(p2 + i);
@@ -224,15 +296,13 @@ namespace Ecs.CSharp.Benchmark
                     AdvSimd.Store(p1 + i, sum);
                 }
 
-                for (; i < range.Item2; i++) // remaining elements
+                for (int i = vectorEnd; i < count; i++) // remaining elements
                 {
                     p1[i] = p1[i] + p2[i] + p3[i];
                 }
             }
         }
-        #endregion
-        
+
         #endregion
     }
 }
-#pragma warning restore IDE0008

@@ -41,8 +41,11 @@ namespace Ecs.CSharp.Benchmark
     /// </remarks>
     /// <example>
     /// <code>
-    /// [BenchmarkCategory(Categories.Fennecs, Capabilities.Avx2)]
-    /// public void MyBenchMark() 
+    /// [BenchmarkCategory(
+    ///     Categories.Fennecs,
+    ///     Capabilities.Avx2
+    /// )]
+    /// public void Raw_AVX2()
     /// </code>
     /// </example>
     internal static class Capabilities

@@ -1,7 +1,10 @@
 ﻿#pragma warning disable CA1852 // Seal internal types
 
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Running;
 using Ecs.CSharp.Benchmark;
 
@@ -33,6 +36,15 @@ IConfig configuration = DefaultConfig.Instance
 
 if (args.Length > 0)
 {
+    // There's no orderer commandline arg, so let's pretend there is one.
+    if (args.Contains("--ranking"))
+    {
+        List<string> argList = args.ToList();
+        argList.Remove("--ranking");
+        args = argList.ToArray();
+        configuration = configuration.WithOrderer(new DefaultOrderer(SummaryOrderPolicy.FastestToSlowest));
+    }
+
     benchmark.Run(args, configuration);
 }
 else

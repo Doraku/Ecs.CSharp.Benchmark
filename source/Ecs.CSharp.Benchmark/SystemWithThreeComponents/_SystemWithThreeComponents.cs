@@ -2,7 +2,7 @@
 
 namespace Ecs.CSharp.Benchmark
 {
-    [BenchmarkCategory(Categories.System, "3C")]
+    [BenchmarkCategory(Categories.System, nameof(SystemWithThreeComponents))]
     [MemoryDiagnoser]
 #if CHECK_CACHE_MISSES
     [HardwareCounters(BenchmarkDotNet.Diagnosers.HardwareCounter.CacheMisses)]
