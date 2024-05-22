@@ -50,7 +50,7 @@ namespace Ecs.CSharp.Benchmark
         }
 
         [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark (Description = "fennecs (For)")]
+        [Benchmark (Description = "fennecs(For)")]
         public void Fennecs_For()
         {
             _fennecs.query.For(static (ref Component1 v) => { v.Value++; });
@@ -59,7 +59,7 @@ namespace Ecs.CSharp.Benchmark
         // Disabled for now.
         // This API is available in fennecs 0.3.x, but is not optimized yet.
         //[BenchmarkCategory(Categories.Fennecs)]
-        //[Benchmark (Description = "fennecs (Batch)")]
+        //[Benchmark (Description = "fennecs(Batch)")]
         public void Fennecs_Batch()
         {
             int newValue = _fennecs.query[0].Ref<Component1>().Value + 1;
@@ -74,14 +74,14 @@ namespace Ecs.CSharp.Benchmark
         }
 
         [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark (Description = "fennecs (Job)")]
+        [Benchmark (Description = "fennecs(Job)")]
         public void Fennecs_Job()
         {
             _fennecs.query.Job(static (ref Component1 v) => { v.Value++; });
         }
 
         //[BenchmarkCategory(Categories.Fennecs)]
-        //[Benchmark(Description = "fennecs (Blit)")]
+        //[Benchmark(Description = "fennecs(Blit)")]
         public void Fennecs_Raw_Blit()
         {
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)
@@ -104,7 +104,7 @@ namespace Ecs.CSharp.Benchmark
         #region Raw Runners
 
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Avx2)]
-        [Benchmark(Description = "fennecs (AVX2)")]
+        [Benchmark(Description = "fennecs(AVX2)")]
         public void Fennecs_Raw_AVX2()
         {
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)
@@ -134,7 +134,7 @@ namespace Ecs.CSharp.Benchmark
         }
 
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Sse2)]
-        [Benchmark(Description = "fennecs (SSE2)")]
+        [Benchmark(Description = "fennecs(SSE2)")]
         public void Fennecs_Raw_SSE2()
         {
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)
@@ -164,7 +164,7 @@ namespace Ecs.CSharp.Benchmark
         }
 
         [BenchmarkCategory(Categories.Fennecs, Capabilities.AdvSimd)]
-        [Benchmark(Description = "fennecs (AdvSIMD)")]
+        [Benchmark(Description = "fennecs(AdvSIMD)")]
         public void Fennecs_Raw_AdvSimd()
         {
             _fennecs.query.Raw(delegate(Memory<Component1> mem1)

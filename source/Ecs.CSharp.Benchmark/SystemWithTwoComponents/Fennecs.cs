@@ -66,7 +66,7 @@ namespace Ecs.CSharp.Benchmark
         /// They are the most versatile and offer decent single-threaded baseline performance to boot.
         /// </remarks>
         [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark(Description = "fennecs (For)")]
+        [Benchmark(Description = "fennecs(For)")]
         public void fennecs_For()
         {
             Query.For(
@@ -91,7 +91,7 @@ namespace Ecs.CSharp.Benchmark
         /// </para>
         /// </remarks>
         [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark(Description = $"fennecs (Job)")]
+        [Benchmark(Description = $"fennecs(Job)")]
         public void fennecs_Job()
         {
             Query.Job(
@@ -119,10 +119,10 @@ namespace Ecs.CSharp.Benchmark
         #region Raw Runners
         
         /// <summary>
-        /// Unoptimized workload for fennecs (Raw)
+        /// Unoptimized workload for fennecs(Raw)
         /// </summary>
         [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark(Description = "fennecs (Raw)")]
+        [Benchmark(Description = "fennecs(Raw)")]
         public void fennecs_Raw()
         {
             Query.Raw(Raw_Workload_Unoptimized);
@@ -135,7 +135,7 @@ namespace Ecs.CSharp.Benchmark
         /// This benchmark is automatically excluded if the current environment does not support AVX2.
         /// </remarks>
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Avx2)]
-        [Benchmark(Description = "fennecs (AVX2)")]
+        [Benchmark(Description = "fennecs(AVX2)")]
         public void fennecs_Raw_AVX2()
         {
             Query.Raw(Raw_Workload_AVX2);
@@ -148,7 +148,7 @@ namespace Ecs.CSharp.Benchmark
         /// This benchmark is automatically excluded if the current environment does not support SSE2.
         /// </remarks>
         [BenchmarkCategory(Categories.Fennecs, Capabilities.Sse2)]
-        [Benchmark(Description = "fennecs (SSE2)")]
+        [Benchmark(Description = "fennecs(SSE2)")]
         public void fennecs_Raw_SSE2()
         {
             Query.Raw(Raw_Workload_SSE2);
@@ -161,14 +161,14 @@ namespace Ecs.CSharp.Benchmark
         /// This benchmark is automatically excluded if the current environment does not support AdvSIMD.
         /// </remarks>
         [BenchmarkCategory(Categories.Fennecs, Capabilities.AdvSimd)]
-        [Benchmark(Description = "fennecs (AdvSIMD)")]
+        [Benchmark(Description = "fennecs(AdvSIMD)")]
         public void fennecs_Raw_AdvSIMD()
         {
             Query.Raw(Raw_Workload_AdvSIMD);
         }
 
         /// <summary>
-        /// Unoptimized workload for fennecs (Raw)
+        /// Unoptimized workload for fennecs(Raw)
         /// Treating the Memory Slabs basically as Arrays.
         /// </summary>
         /// <remarks>
@@ -189,7 +189,7 @@ namespace Ecs.CSharp.Benchmark
         }
 
         /// <summary>
-        /// AVX2 workload for fennecs (Raw)
+        /// AVX2 workload for fennecs(Raw)
         /// We use AVX2 intrinsics to vectorize the workload, executing 8 additions in parallel.
         /// (256 bits)
         /// </summary>
@@ -225,7 +225,7 @@ namespace Ecs.CSharp.Benchmark
         }
 
         /// <summary>
-        /// SSE2 workload for fennecs (Raw)
+        /// SSE2 workload for fennecs(Raw)
         /// We use SSE2 (same as AVX1) intrinsics to vectorize the workload, executing 4 additions in parallel.
         /// (128 bits) 
         /// </summary>
@@ -261,7 +261,7 @@ namespace Ecs.CSharp.Benchmark
         }
 
         /// <summary>
-        /// AdvSIMD workload for fennecs (Raw)
+        /// AdvSIMD workload for fennecs(Raw)
         /// We use AdvSIMD intrinsics to vectorize the workload, executing 4 additions in parallel.
         /// (128 bits) 
         /// </summary>
