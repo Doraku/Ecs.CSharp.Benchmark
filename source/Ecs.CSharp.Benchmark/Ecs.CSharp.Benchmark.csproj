@@ -37,7 +37,7 @@
     <PackageReference Include="DefaultEcs" Version="0.17.2" />
     <PackageReference Include="DefaultEcs.Analyzer" Version="0.17.0" PrivateAssets="all" />
 
-    <PackageReference Include="fennecs" Version="0.3.5-beta" />
+    <PackageReference Include="fennecs" Version="0.4.0-beta" />
     
     <PackageReference Include="Friflo.Engine.ECS" Version="1.14.0" />
 

@@ -22,7 +22,7 @@ namespace Ecs.CSharp.Benchmark
 
             public FennecsContext(int entityCount, int entityPadding) : base(entityCount)
             {
-                query = World.Query<Component1>().Build();
+                query = World.Query<Component1>().Compile();
                 for (int i = 0; i < entityCount; ++i)
                 {
                     for (int j = 0; j < entityPadding; ++j)

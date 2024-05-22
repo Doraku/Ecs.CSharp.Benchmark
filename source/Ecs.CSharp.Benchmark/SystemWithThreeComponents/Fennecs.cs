@@ -47,7 +47,7 @@ namespace Ecs.CSharp.Benchmark
                         .Add(new Component3 {Value = 1});
                 }
 
-                query = World.Query<Component1, Component2, Component3>().Build().Warmup();
+                query = World.Query<Component1, Component2, Component3>().Compile().Warmup();
             }
             
             public override void Dispose()
