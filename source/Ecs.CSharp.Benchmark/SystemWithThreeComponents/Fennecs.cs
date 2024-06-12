@@ -14,12 +14,12 @@ namespace Ecs.CSharp.Benchmark
     public partial class SystemWithThreeComponents
     {
         [Context] private readonly FennecsContext _fennecs;
-        private Query<Component1, Component2, Component3> Query => _fennecs.query;
+        private Stream<Component1, Component2, Component3> Query => _fennecs.query;
 
         // ReSharper disable once ClassNeverInstantiated.Local
         private sealed class FennecsContext : FennecsBaseContext
         {
-            internal readonly Query<Component1, Component2, Component3> query;
+            internal readonly Stream<Component1, Component2, Component3> query;
 
             public FennecsContext(int entityCount, int entityPadding) : base(entityCount)
             {
@@ -47,12 +47,12 @@ namespace Ecs.CSharp.Benchmark
                         .Add(new Component3 {Value = 1});
                 }
 
-                query = World.Query<Component1, Component2, Component3>().Compile().Warmup();
+                query = World.Query<Component1, Component2, Component3>().Stream();
             }
             
             public override void Dispose()
             {
-                query.Dispose();
+                query.Query.Dispose();
                 base.Dispose();
             }
         }

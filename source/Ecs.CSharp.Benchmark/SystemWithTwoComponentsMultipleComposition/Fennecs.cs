@@ -16,7 +16,7 @@ namespace Ecs.CSharp.Benchmark
     public partial class SystemWithTwoComponentsMultipleComposition
     {
         [Context] private readonly FennecsContext _fennecs;
-        private  Query<Component1, Component2> Query => _fennecs.query;
+        private  Stream<Component1, Component2> Query => _fennecs.query;
 
         // ReSharper disable once ClassNeverInstantiated.Local
         private sealed class FennecsContext : FennecsBaseContext
@@ -29,7 +29,7 @@ namespace Ecs.CSharp.Benchmark
 
             private struct Padding4;
 
-            public readonly Query<Component1, Component2> query;
+            public readonly Stream<Component1, Component2> query;
 
             public FennecsContext(int entityCount) : base(entityCount)
             {
@@ -53,12 +53,12 @@ namespace Ecs.CSharp.Benchmark
                     }
                 }
                 
-                query = World.Query<Component1, Component2>().Compile().Warmup();
+                query = World.Query<Component1, Component2>().Stream();
             }
             
             public override void Dispose()
             {
-                query.Dispose();
+                query.Query.Dispose();
                 base.Dispose();
             }
         }

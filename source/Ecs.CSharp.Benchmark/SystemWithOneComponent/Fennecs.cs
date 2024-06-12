@@ -18,11 +18,11 @@ namespace Ecs.CSharp.Benchmark
         // ReSharper disable once ClassNeverInstantiated.Local
         private sealed class FennecsContext : FennecsBaseContext
         {
-            public readonly Query<Component1> query;
+            public readonly Stream<Component1> query;
 
             public FennecsContext(int entityCount, int entityPadding) : base(entityCount)
             {
-                query = World.Query<Component1>().Compile();
+                query = World.Stream<Component1>();
                 for (int i = 0; i < entityCount; ++i)
                 {
                     for (int j = 0; j < entityPadding; ++j)
@@ -33,8 +33,7 @@ namespace Ecs.CSharp.Benchmark
                     World.Spawn().Add<Component1>();
                 }
 
-                query.Warmup();
-                query.Batch(Batch.AddConflict.Replace)
+                query.Query.Batch(Batch.AddConflict.Replace)
                     .Add(new Component1
                     {
                         Value = 0
@@ -44,7 +43,7 @@ namespace Ecs.CSharp.Benchmark
 
             public override void Dispose()
             {
-                query.Dispose();
+                query.Query.Dispose();
                 base.Dispose();
             }
         }
@@ -57,20 +56,13 @@ namespace Ecs.CSharp.Benchmark
         }
 
         // Disabled for now.
-        // This API is available in fennecs 0.3.x, but is not optimized yet.
+        // This API is available in fennecs 0.3.x and later, but is not optimized yet.
         //[BenchmarkCategory(Categories.Fennecs)]
         //[Benchmark (Description = "fennecs(Batch)")]
         public void Fennecs_Batch()
         {
-            int newValue = _fennecs.query[0].Ref<Component1>().Value + 1;
-            
-            _fennecs.query
-                .Batch(Batch.AddConflict.Replace)
-                .Add(new Component1
-                {
-                    Value = newValue
-                })
-                .Submit();
+            int newValue = _fennecs.query.Query[0].Ref<Component1>().Value + 1;
+            _fennecs.query.Blit(newValue);
         }
 
         [BenchmarkCategory(Categories.Fennecs)]

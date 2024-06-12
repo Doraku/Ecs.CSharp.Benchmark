@@ -6,7 +6,7 @@ namespace Ecs.CSharp.Benchmark.Contexts
 {
     namespace Fennecs_Components
     {
-        internal struct Component1
+        internal record struct Component1
         {
             public static implicit operator Component1(int value) => new() { Value = value }; 
             public static implicit operator Component2(Component1 self) => new() { Value = self.Value }; 
@@ -16,7 +16,7 @@ namespace Ecs.CSharp.Benchmark.Contexts
             public int Value;
         }
 
-        internal struct Component2
+        internal record  struct Component2
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static implicit operator Component1(Component2 self) => new() { Value = self.Value }; 
@@ -27,7 +27,7 @@ namespace Ecs.CSharp.Benchmark.Contexts
             public int Value;
         }
 
-        internal struct Component3
+        internal record struct Component3
         {
             public static implicit operator Component1(Component3 self) => new() { Value = self.Value }; 
             public static implicit operator Component2(Component3 self) => new() { Value = self.Value }; 

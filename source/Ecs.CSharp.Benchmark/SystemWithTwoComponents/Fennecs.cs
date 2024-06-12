@@ -15,16 +15,16 @@ namespace Ecs.CSharp.Benchmark
     public partial class SystemWithTwoComponents
     {
         [Context] private readonly FennecsContext _fennecs;
-        private Query<Component1, Component2> Query => _fennecs.query;
+        private Stream<Component1, Component2> Query => _fennecs.query;
 
         // ReSharper disable once ClassNeverInstantiated.Local
         private sealed class FennecsContext : FennecsBaseContext
         {
-            internal readonly Query<Component1, Component2> query;
+            internal readonly Stream<Component1, Component2> query;
 
             public FennecsContext(int entityCount, int entityPadding) : base(entityCount)
             {
-                query = World.Query<Component1, Component2>().Compile();
+                query = World.Query<Component1, Component2>().Stream();
 
                 for (int i = 0; i < entityCount; ++i)
                 {
@@ -49,12 +49,11 @@ namespace Ecs.CSharp.Benchmark
                         });
                 }
 
-                query.Warmup();
             }
             
             public override void Dispose()
             {
-                query.Dispose();
+                query.Query.Dispose();
                 base.Dispose();
             }
         }
