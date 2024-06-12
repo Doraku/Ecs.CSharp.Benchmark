@@ -14,12 +14,12 @@ namespace Ecs.CSharp.Benchmark
     public partial class SystemWithThreeComponents
     {
         [Context] private readonly FennecsContext _fennecs;
-        private Stream<Component1, Component2, Component3> Query => _fennecs.query;
+        private Stream<Component1, Component2, Component3> Stream => _fennecs.stream;
 
         // ReSharper disable once ClassNeverInstantiated.Local
         private sealed class FennecsContext : FennecsBaseContext
         {
-            internal readonly Stream<Component1, Component2, Component3> query;
+            internal readonly Stream<Component1, Component2, Component3> stream;
 
             public FennecsContext(int entityCount, int entityPadding) : base(entityCount)
             {
@@ -47,12 +47,12 @@ namespace Ecs.CSharp.Benchmark
                         .Add(new Component3 {Value = 1});
                 }
 
-                query = World.Query<Component1, Component2, Component3>().Stream();
+                stream = World.Query<Component1, Component2, Component3>().Stream();
             }
             
             public override void Dispose()
             {
-                query.Query.Dispose();
+                stream.Query.Dispose();
                 base.Dispose();
             }
         }
@@ -67,7 +67,7 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark(Description = "fennecs(For)")]
         public void fennecs_For()
         {
-            Query.For(
+            Stream.For(
                 static (ref Component1 c1, ref Component2 c2, ref Component3 c3) =>
                 {
                     c1.Value = c1.Value + c2.Value + c3.Value;
@@ -86,7 +86,7 @@ namespace Ecs.CSharp.Benchmark
         //[Benchmark(Description = "fennecs(Implicit)")]
         public void fennecs_For_Implicit()
         {
-            Query.For(
+            Stream.For(
                 static (ref Component1 c1, ref Component2 c2, ref Component3 c3) =>
                 {
                     c1 = c1 + c2 + c3;
@@ -111,7 +111,7 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark(Description = $"fennecs(Job)")]
         public void fennecs_Job()
         {
-            Query.Job(
+            Stream.Job(
                 static (ref Component1 c1, ref Component2 c2, ref Component3 c3) =>
                 {
                     c1.Value = c1.Value + c2.Value + c3.Value;
@@ -142,7 +142,7 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark(Description = "fennecs(Raw)")]
         public void fennecs_Raw()
         {
-            Query.Raw(Raw_Workload_Unoptimized);
+            Stream.Raw(Raw_Workload_Unoptimized);
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark(Description = "fennecs(AVX2)")]
         public void fennecs_Raw_AVX2()
         {
-            Query.Raw(Raw_Workload_AVX2);
+            Stream.Raw(Raw_Workload_AVX2);
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark(Description = "fennecs(SSE2)")]
         public void fennecs_Raw_SSE2()
         {
-            Query.Raw(Raw_Workload_SSE2);
+            Stream.Raw(Raw_Workload_SSE2);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark(Description = "fennecs(AdvSIMD)")]
         public void fennecs_Raw_AdvSIMD()
         {
-            Query.Raw(Raw_Workload_AdvSIMD);
+            Stream.Raw(Raw_Workload_AdvSIMD);
         }
 
         /// <summary>
