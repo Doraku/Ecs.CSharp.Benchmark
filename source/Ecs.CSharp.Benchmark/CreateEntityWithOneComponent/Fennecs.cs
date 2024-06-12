@@ -8,17 +8,16 @@ namespace Ecs.CSharp.Benchmark
     public partial class CreateEntityWithOneComponent
     {
         [Context] private readonly FennecsBaseContext _fennecs;
-
+        
         [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark]
+        [Benchmark(Description = "fennecs")]
         public void Fennecs()
         {
             World world = _fennecs.World;
 
-            for (int i = 0; i < EntityCount; ++i)
-            {
-                world.Spawn().Add<Component1>();
-            }
+            world.Entity()
+                .Add(new Component1())
+                .Spawn(EntityCount);
         }
     }
 }

@@ -3,26 +3,24 @@ using Ecs.CSharp.Benchmark.Contexts;
 using Ecs.CSharp.Benchmark.Contexts.Fennecs_Components;
 using fennecs;
 
+// ReSharper disable once CheckNamespace
 namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithThreeComponents
     {
-        [Context]
-        private readonly FennecsBaseContext _fennecs;
-
+        [Context] private readonly FennecsBaseContext _fennecs;
+        
         [BenchmarkCategory(Categories.Fennecs)]
-        [Benchmark]
+        [Benchmark(Description = "fennecs")]
         public void Fennecs()
         {
             World world = _fennecs.World;
 
-            for (int i = 0; i < EntityCount; ++i)
-            {
-                world.Spawn()
-                    .Add<Component1>()
-                    .Add<Component2>()
-                    .Add<Component3>();
-            }
+            world.Entity()
+                .Add(new Component1())
+                .Add(new Component2())
+                .Add(new Component3())
+                .Spawn(EntityCount);
         }
     }
 }
