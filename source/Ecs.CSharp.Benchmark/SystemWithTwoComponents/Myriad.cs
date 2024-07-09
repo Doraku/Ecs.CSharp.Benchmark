@@ -33,7 +33,7 @@ namespace Ecs.CSharp.Benchmark
         private struct MyriadVectorForEach2
             : IVectorChunkQuery2<int, int>
         {
-            public void Execute(Span<Vector<int>> t0, Span<Vector<int>> t1, int padding)
+            public void Execute(Span<Vector<int>> t0, Span<Vector<int>> t1, int offset, int padding)
             {
                 for (int i = 0; i < t0.Length; i++)
                 {

@@ -35,7 +35,7 @@ namespace Ecs.CSharp.Benchmark
         {
             private static readonly Vector<int> _one = Vector<int>.One;
 
-            public void Execute(Span<Vector<int>> t0, int padding)
+            public void Execute(Span<Vector<int>> t0, int offset, int padding)
             {
                 for (int i = 0; i < t0.Length; i++)
                 {
