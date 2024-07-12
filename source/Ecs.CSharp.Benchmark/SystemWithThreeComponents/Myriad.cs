@@ -20,7 +20,7 @@ namespace Ecs.CSharp.Benchmark
                 t0.Value += t1.Value + t2.Value;
             }
 
-            public void Execute(ReadOnlySpan<Entity> e, Span<Component1> t0, Span<Component2> t1, Span<Component3> t2)
+            public void Execute(ChunkHandle chunk, ReadOnlySpan<Entity> e, Span<Component1> t0, Span<Component2> t1, Span<Component3> t2)
             {
                 for (int i = 0; i < t0.Length; i++)
                 {

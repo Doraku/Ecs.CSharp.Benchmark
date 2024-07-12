@@ -21,7 +21,7 @@ namespace Ecs.CSharp.Benchmark
                 ++t0.Value;
             }
 
-            public void Execute(ReadOnlySpan<Entity> e, Span<Component1> t0)
+            public void Execute(ChunkHandle chunk, ReadOnlySpan<Entity> e, Span<Component1> t0)
             {
                 for (int i = 0; i < t0.Length; i++)
                 {
