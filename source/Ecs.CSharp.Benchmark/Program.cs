@@ -2,6 +2,7 @@
 
 using System.Globalization;
 using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Running;
 using Ecs.CSharp.Benchmark;
 
@@ -25,7 +26,9 @@ BenchmarkSwitcher benchmark = BenchmarkSwitcher.FromTypes(new[]
     typeof(SystemWithTwoComponentsMultipleComposition)
 });
 
-IConfig configuration = DefaultConfig.Instance.WithOptions(ConfigOptions.DisableOptimizationsValidator);
+IConfig configuration = DefaultConfig.Instance
+    .WithOptions(ConfigOptions.DisableOptimizationsValidator)
+    .WithOrderer(new DefaultOrderer(SummaryOrderPolicy.FastestToSlowest));
 
 if (args.Length > 0)
 {
