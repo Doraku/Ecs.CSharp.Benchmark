@@ -14,14 +14,14 @@ namespace Ecs.CSharp.Benchmark
     public partial class SystemWithTwoComponents
     {
         private struct MyriadForEach2
-            : IQuery2<Component1, Component2>, IChunkQuery2<Component1, Component2>
+            : IQuery<Component1, Component2>, IChunkQuery<Component1, Component2>
         {
             public void Execute(Entity entity, ref Component1 t0, ref Component2 t1)
             {
                 t0.Value += t1.Value;
             }
 
-            public void Execute(ReadOnlySpan<Entity> e, Span<Component1> t0, Span<Component2> t1)
+            public void Execute(ChunkHandle chunk, ReadOnlySpan<Entity> e, Span<Component1> t0, Span<Component2> t1)
             {
                 for (int i = 0; i < t0.Length; i++)
                 {
@@ -31,9 +31,9 @@ namespace Ecs.CSharp.Benchmark
         }
 
         private struct MyriadVectorForEach2
-            : IVectorChunkQuery2<int, int>
+            : IVectorChunkQuery<int, int>
         {
-            public void Execute(Span<Vector<int>> t0, Span<Vector<int>> t1, int padding)
+            public void Execute(Span<Vector<int>> t0, Span<Vector<int>> t1, int offset, int padding)
             {
                 for (int i = 0; i < t0.Length; i++)
                 {

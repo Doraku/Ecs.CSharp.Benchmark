@@ -14,14 +14,14 @@ namespace Ecs.CSharp.Benchmark
     public partial class SystemWithOneComponent
     {
         private struct MyriadForEach1
-            : IQuery1<Component1>, IChunkQuery1<Component1>
+            : IQuery<Component1>, IChunkQuery<Component1>
         {
             public void Execute(Entity entity, ref Component1 t0)
             {
                 ++t0.Value;
             }
 
-            public void Execute(ReadOnlySpan<Entity> e, Span<Component1> t0)
+            public void Execute(ChunkHandle chunk, ReadOnlySpan<Entity> e, Span<Component1> t0)
             {
                 for (int i = 0; i < t0.Length; i++)
                 {
@@ -31,11 +31,11 @@ namespace Ecs.CSharp.Benchmark
         }
 
         private struct MyriadVectorForEach1
-            : IVectorChunkQuery1<int>
+            : IVectorChunkQuery<int>
         {
             private static readonly Vector<int> _one = Vector<int>.One;
 
-            public void Execute(Span<Vector<int>> t0, int padding)
+            public void Execute(Span<Vector<int>> t0, int offset, int padding)
             {
                 for (int i = 0; i < t0.Length; i++)
                 {
