@@ -13,14 +13,14 @@ namespace Ecs.CSharp.Benchmark
     public partial class SystemWithThreeComponents
     {
         private struct MyriadForEach3
-            : IQuery3<Component1, Component2, Component3>, IChunkQuery3<Component1, Component2, Component3>
+            : IQuery<Component1, Component2, Component3>, IChunkQuery<Component1, Component2, Component3>
         {
             public void Execute(Entity entity, ref Component1 t0, ref Component2 t1, ref Component3 t2)
             {
                 t0.Value += t1.Value + t2.Value;
             }
 
-            public void Execute(ReadOnlySpan<Entity> e, Span<Component1> t0, Span<Component2> t1, Span<Component3> t2)
+            public void Execute(ChunkHandle chunk, ReadOnlySpan<Entity> e, Span<Component1> t0, Span<Component2> t1, Span<Component3> t2)
             {
                 for (int i = 0; i < t0.Length; i++)
                 {
