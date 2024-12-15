@@ -8,7 +8,7 @@ All results are obtained from the same toaster, with the same load, so compariso
 Tested frameworks:
 - [Arch](https://github.com/genaray/Arch)
 - [DefaultEcs](https://github.com/Doraku/DefaultEcs)
-- [Fennecs](https://github.com/thygrrr/fennecs)
+- [**fenn**ecs](https://fennecs.tech)
 - [Flecs.Net](https://github.com/BeanCheeseBurrito/Flecs.NET)
 - [Friflo.Engine.ECS](https://github.com/friflo/Friflo.Json.Fliox/blob/main/Engine/README.md)
 - [Leopotam.Ecs](https://github.com/Leopotam/ecs) using what I believe is a nuget package not made by the actual author and compiled in debug...

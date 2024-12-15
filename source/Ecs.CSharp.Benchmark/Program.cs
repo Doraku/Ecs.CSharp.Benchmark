@@ -14,18 +14,26 @@ CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 BenchmarkSwitcher benchmark = BenchmarkSwitcher.FromTypes(new[]
 {
-    typeof(CreateEntityWithOneComponent),
-    typeof(CreateEntityWithTwoComponents),
-    typeof(CreateEntityWithThreeComponents),
-
     typeof(SystemWithOneComponent),
     typeof(SystemWithTwoComponents),
     typeof(SystemWithThreeComponents),
 
-    typeof(SystemWithTwoComponentsMultipleComposition)
+    typeof(SystemWithTwoComponentsMultipleComposition),
+
+    //Moving lighter tests to the back makes the estimated time display more reliable 
+    typeof(CreateEntityWithOneComponent),
+    typeof(CreateEntityWithTwoComponents),
+    typeof(CreateEntityWithThreeComponents),
 });
 
-IConfig configuration = DefaultConfig.Instance.WithOptions(ConfigOptions.DisableOptimizationsValidator);
+
+IConfig configuration = DefaultConfig.Instance
+    .WithOptions(ConfigOptions.DisableOptimizationsValidator)
+    .WithCapabilityExclusions();
+
+#if RANK_RESULTS
+    configuration = configuration.WithOrderer(new BenchmarkDotNet.Order.DefaultOrderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest));
+#endif
 
 if (args.Length > 0)
 {
