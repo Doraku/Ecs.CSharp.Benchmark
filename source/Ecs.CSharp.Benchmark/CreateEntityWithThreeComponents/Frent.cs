@@ -37,6 +37,7 @@ namespace Ecs.CSharp.Benchmark
             {
                 chunks.Span1[i] = default;
                 chunks.Span2[i] = default;
+                chunks.Span3[i] = default;
             }
         }
     }
