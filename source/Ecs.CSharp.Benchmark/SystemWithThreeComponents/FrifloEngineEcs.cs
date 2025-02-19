@@ -56,7 +56,7 @@ namespace Ecs.CSharp.Benchmark
 
         private static void Update(ref Component1 c1, ref Component2 c2, ref Component3 c3)
         {
-            c1.Value = c2.Value + c3.Value;
+            c1.Value += c2.Value + c3.Value;
         }
 
         [BenchmarkCategory(Categories.FrifloEngineEcs)]
@@ -72,10 +72,12 @@ namespace Ecs.CSharp.Benchmark
                 int step = component1.StepSpan256;                          // step = 8
                 for (int n = 0; n < component1Span.Length; n += step)
                 {
-                    Vector256<int> value1 = Vector256.Create<int>(component1Span.Slice(n, step));
+                    Span<int> component1Slice = component1Span.Slice(n, step);
+                    Vector256<int> value1 = Vector256.Create<int>(component1Span);
                     Vector256<int> value2 = Vector256.Create<int>(component2Span.Slice(n, step));
-                    Vector256<int> result = Vector256.Add(value1, value2);  // execute 8 add instructions at once
-                    result.CopyTo(component3Span.Slice(n, step));
+                    Vector256<int> value3 = Vector256.Create<int>(component3Span.Slice(n, step));
+                    Vector256<int> result = Vector256.Add(value1, Vector256.Add(value2, value3));  // execute 16 add instructions
+                    result.CopyTo(component1Slice);
                 }
             }
         }
