@@ -10,7 +10,8 @@ Tested frameworks:
 - [DefaultEcs](https://github.com/Doraku/DefaultEcs)
 - [Fennecs](https://github.com/thygrrr/fennecs)
 - [Flecs.Net](https://github.com/BeanCheeseBurrito/Flecs.NET)
-- [Friflo.Engine.ECS](https://github.com/friflo/Friflo.Json.Fliox/blob/main/Engine/README.md)
+- [Frent](https://github.com/itsBuggingMe/Frent)
+- [Friflo.Engine.ECS](https://github.com/friflo/Friflo.Engine.ECS)
 - [Leopotam.Ecs](https://github.com/Leopotam/ecs) using what I believe is a nuget package not made by the actual author and compiled in debug...
 - [Leopotam.EcsLite](https://github.com/Leopotam/ecslite) using what I believe is a nuget package not made by the actual author and compiled in debug...
 - [MonoGame.Extended](https://github.com/craftworkgames/MonoGame.Extended)
@@ -30,66 +31,71 @@ Tested versions may not be latest available, that's because I'm lazy and new ver
 Create entities with one component.
 
 
-| Method           | Mean      | StdDev    | Allocated   |
-|----------------- |----------:|----------:|------------:|
-| Arch             |  7.039 ms | 0.0645 ms |  3178.16 KB |
-| DefaultEcs       | 11.389 ms | 0.1834 ms | 11321.11 KB |
-| Fennecs          | 10.429 ms | 0.3498 ms | 13636.45 KB |
-| FlecsNet         |  6.431 ms | 0.1844 ms |     2.73 KB |
-| FrifloEngineEcs  |  2.837 ms | 0.3247 ms |  5722.08 KB |
-| LeopotamEcsLite  |  3.608 ms | 0.2956 ms |  7151.08 KB |
-| LeopotamEcs      |  6.285 ms | 0.5788 ms | 13685.65 KB |
-| MonoGameExtended |  8.255 ms | 1.5408 ms | 16408.89 KB |
-| Morpeh_Direct    | 58.202 ms | 8.1945 ms | 41305.76 KB |
-| Morpeh_Stash     | 45.100 ms | 4.1339 ms | 41305.76 KB |
-| Myriad           | 10.845 ms | 0.2996 ms |  6914.67 KB |
-| HypEcs           |  9.897 ms | 0.4462 ms | 25827.05 KB |
-| RelEcs           | 14.758 ms | 0.6834 ms | 29706.66 KB |
-| SveltoECS        | 21.747 ms | 1.0680 ms |     3.22 KB |
-| TinyEcs          |  7.454 ms | 0.1306 ms |  7834.44 KB |
+| Method           | Mean        | StdDev      | Allocated   |
+|----------------- |------------:|------------:|------------:|
+| Frent_Bulk       |    768.6 μs |    24.45 μs |  3322.91 KB |
+| Frent            |  1,038.5 μs |    15.93 μs |  3322.91 KB |
+| FrifloEngineEcs  |  2,022.5 μs |    29.98 μs |  3381.74 KB |
+| LeopotamEcsLite  |  2,863.2 μs |   284.50 μs |  7151.08 KB |
+| Arch             |  3,694.8 μs |   124.75 μs |  3178.44 KB |
+| DefaultEcs       |  7,103.9 μs |   281.95 μs | 11321.11 KB |
+| FlecsNet         |  7,480.1 μs |   153.12 μs |     2.73 KB |
+| MonoGameExtended |  8,282.6 μs |   592.85 μs | 16408.89 KB |
+| LeopotamEcs      |  9,003.1 μs |   735.44 μs | 13685.65 KB |
+| TinyEcs          | 11,316.8 μs |   242.01 μs |  7834.44 KB |
+| HypEcs           | 11,542.5 μs |   672.16 μs | 25829.38 KB |
+| Fennecs          | 12,146.8 μs |   460.88 μs | 13636.45 KB |
+| Myriad           | 17,310.6 μs |   438.87 μs |  7633.45 KB |
+| RelEcs           | 25,686.8 μs | 1,456.76 μs | 29706.66 KB |
+| SveltoECS        | 26,330.5 μs |   598.68 μs |     3.22 KB |
+| Morpeh_Stash     | 67,075.5 μs | 1,105.68 μs | 41305.76 KB |
+| Morpeh_Direct    | 67,753.8 μs | 1,364.95 μs | 41305.76 KB |
 
 ## [CreateEntityWithTwoComponents](results/Ecs.CSharp.Benchmark.CreateEntityWithTwoComponents-report-github.md)
 Create entities with two components.
 
-| Method           | Mean       | StdDev    | Allocated    |
-|----------------- |-----------:|----------:|-------------:|
-| Arch             |   6.840 ms | 0.0855 ms |   3558.44 KB |
-| DefaultEcs       |   8.515 ms | 0.2086 ms |   15418.9 KB |
-| Fennecs          |  15.376 ms | 0.1575 ms |  15174.45 KB |
-| FlecsNet         |  11.082 ms | 0.0947 ms |      3.11 KB |
-| FrifloEngineEcs  |   2.522 ms | 0.1804 ms |   6236.16 KB |
-| HypEcs           |  18.703 ms | 0.3473 ms |  45334.39 KB |
-| LeopotamEcsLite  |   5.162 ms | 0.3004 ms |   9199.61 KB |
-| LeopotamEcs      |   6.982 ms | 0.4454 ms |  14711.02 KB |
-| MonoGameExtended |  13.274 ms | 0.6977 ms |  23373.84 KB |
-| Morpeh_Direct    | 239.144 ms | 4.4908 ms | 128867.66 KB |
-| Morpeh_Stash     |  39.734 ms | 2.4779 ms |   48133.7 KB |
-| Myriad           |  15.280 ms | 0.1624 ms |   7309.77 KB |
-| RelEcs           |  36.776 ms | 0.6916 ms |  50749.86 KB |
-| SveltoECS        |  34.237 ms | 0.6508 ms |      4.14 KB |
-| TinyEcs          |  14.042 ms | 0.1360 ms |  13785.08 KB |
-
+| Method           | Mean       | StdDev     | Allocated    |
+|----------------- |-----------:|-----------:|-------------:|
+| Frent            |   1.188 ms |  0.0050 ms |   3713.63 KB |
+| Frent_Bulk       |   1.263 ms |  0.0214 ms |   3713.63 KB |
+| FrifloEngineEcs  |   2.933 ms |  0.1588 ms |   3898.13 KB |
+| Arch             |   3.864 ms |  0.1820 ms |   3558.44 KB |
+| LeopotamEcsLite  |   4.599 ms |  0.8319 ms |   9199.61 KB |
+| DefaultEcs       |  10.217 ms |  0.4302 ms |   15418.9 KB |
+| LeopotamEcs      |  10.451 ms |  0.8563 ms |  14711.02 KB |
+| FlecsNet         |  14.295 ms |  0.2492 ms |      3.11 KB |
+| MonoGameExtended |  17.426 ms |  1.1724 ms |  23373.84 KB |
+| TinyEcs          |  19.518 ms |  1.4443 ms |  13785.08 KB |
+| Fennecs          |  19.817 ms |  0.4584 ms |  15174.45 KB |
+| HypEcs           |  21.669 ms |  0.3002 ms |  45336.69 KB |
+| Myriad           |  23.799 ms |  0.4402 ms |   8028.55 KB |
+| SveltoECS        |  39.648 ms |  1.8089 ms |      4.14 KB |
+| RelEcs           |  60.414 ms |  2.5217 ms |  50749.86 KB |
+| Morpeh_Stash     |  75.880 ms |  2.4763 ms |   48133.7 KB |
+| Morpeh_Direct    | 271.755 ms | 16.5622 ms | 128861.64 KB |
 
 ## [CreateEntityWithThreeComponents](results/Ecs.CSharp.Benchmark.CreateEntityWithThreeComponents-report-github.md)
 Create entities with three components.
 
 | Method           | Mean       | StdDev    | Allocated   |
 |----------------- |-----------:|----------:|------------:|
-| Arch             |   3.316 ms | 0.0901 ms |  3947.67 KB |
-| SveltoECS        |  46.643 ms | 2.0437 ms |     4.64 KB |
-| DefaultEcs       |  10.885 ms | 0.4542 ms | 19516.68 KB |
-| Fennecs          |  24.621 ms | 0.2685 ms | 16713.12 KB |
-| FlecsNet         |  16.746 ms | 0.2291 ms |     3.48 KB |
-| FrifloEngineEcs  |   2.525 ms | 0.1481 ms |  6750.23 KB |
-| HypEcs           |  30.509 ms | 0.8438 ms |  68750.7 KB |
-| LeopotamEcsLite  |   5.995 ms | 0.5505 ms | 11248.14 KB |
-| LeopotamEcs      |   8.869 ms | 0.5571 ms |  15736.4 KB |
-| MonoGameExtended |  21.133 ms | 0.9090 ms | 30154.05 KB |
-| Morpeh_Direct    | 147.879 ms | 2.6211 ms | 83802.09 KB |
-| Morpeh_Stash     |  52.206 ms | 1.7453 ms |  44724.3 KB |
-| Myriad           |  22.632 ms | 0.1896 ms |  7704.88 KB |
-| RelEcs           |  65.055 ms | 1.1498 ms | 75699.76 KB |
-| TinyEcs          |  23.599 ms | 0.1396 ms | 21314.25 KB |
+| Frent            |   1.335 ms | 0.0065 ms |  4104.34 KB |
+| Frent_Bulk       |   1.346 ms | 0.0273 ms |  4104.34 KB |
+| FrifloEngineEcs  |   3.067 ms | 0.0878 ms |  4412.23 KB |
+| LeopotamEcsLite  |   4.917 ms | 0.2248 ms | 11248.14 KB |
+| Arch             |   8.351 ms | 0.1357 ms |  3947.67 KB |
+| LeopotamEcs      |  11.649 ms | 0.6685 ms |  15736.4 KB |
+| DefaultEcs       |  11.982 ms | 0.4362 ms | 19516.68 KB |
+| FlecsNet         |  21.084 ms | 0.1698 ms |     3.48 KB |
+| Myriad           |  26.959 ms | 0.3333 ms |  8423.66 KB |
+| Fennecs          |  29.525 ms | 0.3057 ms | 16713.12 KB |
+| TinyEcs          |  33.582 ms | 0.5317 ms | 21316.55 KB |
+| HypEcs           |  35.524 ms | 1.5668 ms | 68748.41 KB |
+| MonoGameExtended |  39.518 ms | 1.6480 ms | 30154.05 KB |
+| SveltoECS        |  52.785 ms | 1.8500 ms |     4.64 KB |
+| Morpeh_Stash     |  70.168 ms | 1.6399 ms | 44719.73 KB |
+| RelEcs           |  83.031 ms | 1.9343 ms | 75699.76 KB |
+| Morpeh_Direct    | 179.589 ms | 3.6865 ms | 83804.58 KB |
 
 
 ## [SystemWithOneComponent](results/Ecs.CSharp.Benchmark.SystemWithOneComponent-report-github.md)
@@ -97,185 +103,197 @@ Modify entities with one component. The padding aims to simulate real situation 
 
 > Note: Padding tests were removed for libraries that use archetypes to save space as padding makes no difference in their results
 
-| Method                                 | EntityPadding | Mean         | StdDev     | Allocated |
-|--------------------------------------- |-------------- |-------------:|-----------:|----------:|
-| Arch_MonoThread                        | 0             |    23.420 μs |  0.0915 μs |         - |
-| Arch_MonoThread_SourceGenerated        | 0             |    23.251 μs |  0.0572 μs |         - |
-| Arch_MultiThread                       | 0             |    49.880 μs |  0.1314 μs |         - |
-| DefaultEcs_ComponentSystem_MonoThread  | 0             |    21.602 μs |  0.0286 μs |         - |
-| DefaultEcs_ComponentSystem_MultiThread | 0             |     5.319 μs |  0.2135 μs |         - |
-| DefaultEcs_EntitySetSystem_MonoThread  | 0             |    95.132 μs |  0.4925 μs |         - |
-| DefaultEcs_EntitySetSystem_MultiThread | 0             |    11.450 μs |  0.3505 μs |         - |
-| Fennecs_ForEach                        | 0             |    21.648 μs |  0.0110 μs |         - |
-| Fennecs_Job                            | 0             |    53.325 μs |  0.1703 μs |         - |
-| Fennecs_Raw                            | 0             |    43.673 μs |  0.4105 μs |         - |
-| FlecsNet_Each                          | 0             |    71.867 μs |  0.8808 μs |         - |
-| FlecsNet_Iter                          | 0             |    50.694 μs |  0.0579 μs |         - |
-| FrifloEngineEcs_MonoThread             | 0             |    21.537 μs |  0.0918 μs |         - |
-| FrifloEngineEcs_MultiThread            | 0             |     5.991 μs |  0.2777 μs |         - |
-| FrifloEngineEcs_SIMD_MonoThread        | 0             |     6.411 μs |  0.0190 μs |         - |
-| HypEcs_MonoThread                      | 0             |    38.163 μs |  0.1295 μs |      72 B |
-| HypEcs_MultiThread                     | 0             |    39.918 μs |  0.1593 μs |    1832 B |
-| LeopotamEcsLite                        | 0             |   111.991 μs |  0.0694 μs |         - |
-| LeopotamEcs                            | 0             |    83.299 μs |  0.2094 μs |         - |
-| MonoGameExtended                       | 0             |   253.155 μs |  1.1879 μs |     160 B |
-| Morpeh_Direct                          | 0             | 1,043.726 μs |  1.3991 μs |       2 B |
-| Morpeh_Stash                           | 0             |   568.116 μs |  2.5755 μs |       1 B |
-| Myriad_SingleThread                    | 0             |    51.304 μs |  0.3035 μs |         - |
-| Myriad_MultiThread                     | 0             |   837.895 μs |  8.5220 μs |  442063 B |
-| Myriad_SingleThreadChunk               | 0             |    23.897 μs |  0.1584 μs |         - |
-| Myriad_MultiThreadChunk                | 0             |    21.416 μs |  0.0731 μs |    5411 B |
-| Myriad_Enumerable                      | 0             |   112.296 μs |  0.0526 μs |         - |
-| Myriad_Delegate                        | 0             |    67.135 μs |  0.1576 μs |         - |
-| Myriad_SingleThreadChunk_SIMD          | 0             |     9.227 μs |  0.0390 μs |         - |
-| RelEcs                                 | 0             |   183.712 μs |  0.2183 μs |     120 B |
-| SveltoECS                              | 0             |   108.539 μs |  0.4199 μs |         - |
-| TinyEcs_Each                           | 0             |    29.126 μs |  0.0905 μs |         - |
-| TinyEcs_EachJob                        | 0             |    18.492 μs |  0.0333 μs |    1552 B |
-|                                        |               |              |            |           |
-| DefaultEcs_ComponentSystem_MonoThread  | 10            |    21.527 μs |  0.0964 μs |         - |
-| DefaultEcs_ComponentSystem_MultiThread | 10            |     4.566 μs |  0.0886 μs |         - |
-| DefaultEcs_EntitySetSystem_MonoThread  | 10            |    95.655 μs |  0.0378 μs |         - |
-| DefaultEcs_EntitySetSystem_MultiThread | 10            |    14.483 μs |  0.5477 μs |         - |
-| LeopotamEcsLite                        | 10            |   115.782 μs |  0.4269 μs |         - |
-| LeopotamEcs                            | 10            |   108.404 μs |  0.6102 μs |         - |
-| MonoGameExtended                       | 10            |   373.545 μs |  2.5163 μs |     160 B |
-| Morpeh_Direct                          | 10            | 2,598.587 μs | 18.3321 μs |       3 B |
-| Morpeh_Stash                           | 10            | 2,363.997 μs | 97.1307 μs |       3 B |
-| RelEcs                                 | 10            |   236.031 μs |  1.5599 μs |     120 B |
-| SveltoECS                              | 10            |   127.687 μs |  0.4541 μs |         - |
+| Method                                 | EntityPadding | Mean         | StdDev      | Allocated |
+|--------------------------------------- |-------------- |-------------:|------------:|----------:|
+| Frent_Simd                             | 0             |     8.001 μs |   0.0707 μs |         - |
+| FrifloEngineEcs_SIMD_MonoThread        | 0             |     8.832 μs |   0.1063 μs |         - |
+| FrifloEngineEcs_MultiThread            | 0             |     9.687 μs |   0.4677 μs |         - |
+| Myriad_SingleThreadChunk_SIMD          | 0             |    11.607 μs |   0.1431 μs |         - |
+| Myriad_MultiThreadChunk                | 0             |    17.138 μs |   0.1526 μs |    9216 B |
+| TinyEcs_EachJob                        | 0             |    19.308 μs |   0.3354 μs |    1552 B |
+| Fennecs_Job                            | 0             |    26.045 μs |   0.8157 μs |         - |
+| TinyEcs_Each                           | 0             |    29.781 μs |   0.1316 μs |         - |
+| Arch_MultiThread                       | 0             |    32.913 μs |   0.2353 μs |         - |
+| Frent_QueryInline                      | 0             |    33.690 μs |   0.1638 μs |         - |
+| HypEcs_MonoThread                      | 0             |    44.341 μs |   0.0620 μs |      72 B |
+| FrifloEngineEcs_MonoThread             | 0             |    44.977 μs |   0.2093 μs |         - |
+| Fennecs_ForEach                        | 0             |    45.015 μs |   0.2813 μs |         - |
+| DefaultEcs_ComponentSystem_MonoThread  | 0             |    45.579 μs |   1.0413 μs |         - |
+| Fennecs_Raw                            | 0             |    45.949 μs |   0.2371 μs |         - |
+| Arch_MonoThread                        | 0             |    46.696 μs |   0.2203 μs |         - |
+| Arch_MonoThread_SourceGenerated        | 0             |    47.506 μs |   0.3456 μs |         - |
+| Myriad_SingleThreadChunk               | 0             |    47.526 μs |   0.2036 μs |         - |
+| HypEcs_MultiThread                     | 0             |    49.295 μs |   0.3248 μs |    1832 B |
+| DefaultEcs_ComponentSystem_MultiThread | 0             |    49.427 μs |   8.2200 μs |         - |
+| Myriad_SingleThread                    | 0             |    49.564 μs |   0.2483 μs |         - |
+| Frent_QueryDelegate                    | 0             |    53.680 μs |   1.4546 μs |         - |
+| FlecsNet_Iter                          | 0             |    56.540 μs |   0.1969 μs |         - |
+| Myriad_MultiThread                     | 0             |    71.270 μs |   0.3873 μs |   16213 B |
+| DefaultEcs_EntitySetSystem_MonoThread  | 0             |    71.717 μs |   0.5674 μs |         - |
+| LeopotamEcs                            | 0             |    83.138 μs |   0.5633 μs |         - |
+| FlecsNet_Each                          | 0             |    90.498 μs |   0.4793 μs |         - |
+| Myriad_Delegate                        | 0             |    91.233 μs |   0.5065 μs |         - |
+| DefaultEcs_EntitySetSystem_MultiThread | 0             |   100.011 μs |   2.0387 μs |         - |
+| LeopotamEcsLite                        | 0             |   101.708 μs |   0.4140 μs |         - |
+| SveltoECS                              | 0             |   111.771 μs |   0.4182 μs |         - |
+| Myriad_Enumerable                      | 0             |   198.400 μs |   0.7397 μs |         - |
+| RelEcs                                 | 0             |   203.954 μs |   2.0630 μs |     121 B |
+| MonoGameExtended                       | 0             |   305.970 μs |   4.1697 μs |     161 B |
+| Morpeh_Stash                           | 0             | 2,354.802 μs |  55.0717 μs |       4 B |
+| Morpeh_Direct                          | 0             | 2,906.300 μs |  36.9789 μs |       4 B |
+|                                        |               |              |             |           |
+| DefaultEcs_ComponentSystem_MonoThread  | 10            |    44.760 μs |   0.6112 μs |         - |
+| DefaultEcs_ComponentSystem_MultiThread | 10            |    55.017 μs |  12.3385 μs |         - |
+| LeopotamEcs                            | 10            |    82.681 μs |   0.4651 μs |         - |
+| DefaultEcs_EntitySetSystem_MultiThread | 10            |   108.222 μs |   1.4470 μs |         - |
+| DefaultEcs_EntitySetSystem_MonoThread  | 10            |   109.532 μs |   3.1273 μs |         - |
+| LeopotamEcsLite                        | 10            |   122.782 μs |   1.7006 μs |         - |
+| SveltoECS                              | 10            |   133.520 μs |   0.7607 μs |         - |
+| RelEcs                                 | 10            |   506.912 μs |  13.9889 μs |     121 B |
+| MonoGameExtended                       | 10            | 1,456.219 μs |  45.6079 μs |     162 B |
+| Morpeh_Stash                           | 10            | 7,824.125 μs | 172.3176 μs |       8 B |
+| Morpeh_Direct                          | 10            | 8,998.948 μs | 187.5417 μs |      17 B |
 
 
 ## [SystemWithTwoComponents](results/Ecs.CSharp.Benchmark.SystemWithTwoComponents-report-github.md)
 Modify entities with two components. The padding aims to simulate real situation when processed entities and their components are not sequential.
 
-| Method                          | EntityPadding | Mean         | StdDev      | Allocated |
-|-------------------------------- |-------------- |-------------:|------------:|----------:|
-| Arch_MonoThread                 | 0             |    45.308 μs |   0.1236 μs |         - |
-| Arch_MonoThread_SourceGenerated | 0             |    28.794 μs |   0.0600 μs |         - |
-| Arch_MultiThread                | 0             |    57.264 μs |   0.0727 μs |         - |
-| DefaultEcs_MonoThread           | 0             |   110.189 μs |   0.0846 μs |         - |
-| DefaultEcs_MultiThread          | 0             |    16.247 μs |   0.8215 μs |         - |
-| Fennecs_ForEach                 | 0             |    44.249 μs |   0.1111 μs |         - |
-| Fennecs_Job                     | 0             |    50.736 μs |   0.1419 μs |         - |
-| Fennecs_Raw                     | 0             |    43.445 μs |   0.2376 μs |         - |
-| FlecsNet_Each                   | 0             |   196.370 μs |  17.8606 μs |         - |
-| FlecsNet_Iter                   | 0             |    62.017 μs |   0.2454 μs |         - |
-| FrifloEngineEcs_MonoThread      | 0             |    45.461 μs |   0.0384 μs |         - |
-| FrifloEngineEcs_MultiThread     | 0             |     8.368 μs |   0.4414 μs |         - |
-| FrifloEngineEcs_SIMD_MonoThread | 0             |     8.607 μs |   0.0630 μs |         - |
-| HypEcs_MonoThread               | 0             |    32.666 μs |   0.0306 μs |     112 B |
-| HypEcs_MultiThread              | 0             |    34.746 μs |   0.1640 μs |    1872 B |
-| LeopotamEcsLite                 | 0             |   155.337 μs |   0.4928 μs |         - |
-| LeopotamEcs                     | 0             |   125.247 μs |   0.3555 μs |         - |
-| MonoGameExtended                | 0             |   300.108 μs |   0.2734 μs |     160 B |
-| Morpeh_Direct                   | 0             | 1,842.942 μs |  31.7401 μs |       2 B |
-| Morpeh_Stash                    | 0             |   836.561 μs |   3.2319 μs |       1 B |
-| Myriad_SingleThread             | 0             |    54.268 μs |   0.2703 μs |         - |
-| Myriad_MultiThread              | 0             |   982.415 μs |   8.7288 μs |  472799 B |
-| Myriad_SingleThreadChunk        | 0             |    39.777 μs |   0.0332 μs |         - |
-| Myriad_MultiThreadChunk         | 0             |    22.829 μs |   0.0407 μs |    5464 B |
-| Myriad_Enumerable               | 0             |   234.799 μs |   0.9445 μs |         - |
-| Myriad_Delegate                 | 0             |    87.757 μs |   0.3752 μs |         - |
-| Myriad_SingleThreadChunk_SIMD   | 0             |    12.391 μs |   0.0837 μs |         - |
-| RelEcs                          | 0             |   204.882 μs |   0.2625 μs |     168 B |
-| SveltoECS                       | 0             |   217.040 μs |   0.6463 μs |         - |
-| TinyEcs_Each                    | 0             |    26.479 μs |   0.0787 μs |         - |
-| TinyEcs_EachJob                 | 0             |    18.590 μs |   0.0992 μs |    1552 B |
-|                                 |               |              |             |           |
-| DefaultEcs_MonoThread           | 10            |   135.716 μs |   0.6646 μs |         - |
-| DefaultEcs_MultiThread          | 10            |    35.017 μs |   7.2481 μs |         - |
-| LeopotamEcsLite                 | 10            |   182.237 μs |   0.6589 μs |         - |
-| LeopotamEcs                     | 10            |   133.385 μs |   0.3604 μs |         - |
-| MonoGameExtended                | 10            |   852.321 μs |   4.4179 μs |     161 B |
-| Morpeh_Direct                   | 10            | 8,316.462 μs | 159.6963 μs |      12 B |
-| Morpeh_Stash                    | 10            | 5,149.691 μs |  54.2104 μs |       6 B |
-| RelEcs                          | 10            |   294.985 μs |   2.3202 μs |     168 B |
-| SveltoECS                       | 10            | 1,304.605 μs |   5.5623 μs |       2 B |
+| Method                          | EntityPadding | Mean        | StdDev     | Allocated |
+|-------------------------------- |-------------- |------------:|-----------:|----------:|
+| FrifloEngineEcs_MultiThread     | 0             |    12.43 μs |   1.049 μs |         - |
+| Frent_Simd                      | 0             |    14.03 μs |   0.122 μs |         - |
+| FrifloEngineEcs_SIMD_MonoThread | 0             |    14.34 μs |   0.058 μs |         - |
+| Myriad_SingleThreadChunk_SIMD   | 0             |    16.32 μs |   0.128 μs |         - |
+| Myriad_MultiThreadChunk         | 0             |    17.14 μs |   0.115 μs |    9216 B |
+| TinyEcs_EachJob                 | 0             |    23.85 μs |   1.105 μs |    1552 B |
+| Arch_MultiThread                | 0             |    32.02 μs |   0.144 μs |         - |
+| TinyEcs_Each                    | 0             |    33.41 μs |   0.314 μs |         - |
+| HypEcs_MonoThread               | 0             |    44.68 μs |   0.205 μs |     112 B |
+| Frent_QueryInline               | 0             |    44.93 μs |   0.172 μs |         - |
+| Arch_MonoThread_SourceGenerated | 0             |    47.84 μs |   0.226 μs |         - |
+| Myriad_SingleThreadChunk        | 0             |    48.31 μs |   0.189 μs |         - |
+| HypEcs_MultiThread              | 0             |    49.12 μs |   0.274 μs |    1872 B |
+| Frent_QueryDelegate             | 0             |    51.48 μs |   0.174 μs |         - |
+| Myriad_SingleThread             | 0             |    52.64 μs |   0.246 μs |         - |
+| FrifloEngineEcs_MonoThread      | 0             |    56.93 μs |   0.327 μs |         - |
+| Arch_MonoThread                 | 0             |    57.47 μs |   0.314 μs |         - |
+| Fennecs_Raw                     | 0             |    58.86 μs |   0.215 μs |         - |
+| Fennecs_ForEach                 | 0             |    63.21 μs |   0.372 μs |         - |
+| Myriad_MultiThread              | 0             |    68.27 μs |   0.339 μs |   20865 B |
+| FlecsNet_Iter                   | 0             |    79.81 μs |   0.420 μs |         - |
+| Fennecs_Job                     | 0             |    94.79 μs |   1.576 μs |         - |
+| DefaultEcs_MultiThread          | 0             |   108.93 μs |   3.569 μs |         - |
+| Myriad_Delegate                 | 0             |   113.14 μs |   0.362 μs |         - |
+| DefaultEcs_MonoThread           | 0             |   124.09 μs |   0.978 μs |         - |
+| FlecsNet_Each                   | 0             |   134.08 μs |   0.238 μs |         - |
+| LeopotamEcs                     | 0             |   158.35 μs |   1.551 μs |         - |
+| Myriad_Enumerable               | 0             |   200.01 μs |   3.006 μs |         - |
+| LeopotamEcsLite                 | 0             |   216.20 μs |   1.068 μs |         - |
+| SveltoECS                       | 0             |   223.22 μs |   0.700 μs |         - |
+| RelEcs                          | 0             |   355.92 μs |   7.512 μs |     169 B |
+| MonoGameExtended                | 0             |   534.19 μs |  10.930 μs |     161 B |
+| Morpeh_Stash                    | 0             | 2,380.69 μs |  40.379 μs |       4 B |
+| Morpeh_Direct                   | 0             | 3,934.95 μs |  63.272 μs |       8 B |
+|                                 |               |             |            |           |
+| LeopotamEcs                     | 10            |   176.98 μs |   2.752 μs |         - |
+| DefaultEcs_MultiThread          | 10            |   209.11 μs |  10.346 μs |       1 B |
+| LeopotamEcsLite                 | 10            |   531.99 μs |  10.283 μs |       1 B |
+| DefaultEcs_MonoThread           | 10            |   571.35 μs |  12.808 μs |      97 B |
+| RelEcs                          | 10            | 1,138.55 μs |  35.671 μs |     170 B |
+| SveltoECS                       | 10            | 1,204.02 μs |   6.929 μs |       2 B |
+| MonoGameExtended                | 10            | 2,437.67 μs |  38.901 μs |     164 B |
+| Morpeh_Stash                    | 10            | 8,713.33 μs | 169.092 μs |      17 B |
+| Morpeh_Direct                   | 10            | 9,810.58 μs | 126.514 μs |      17 B |
 
 ## [SystemWithThreeComponents](results/Ecs.CSharp.Benchmark.SystemWithThreeComponents-report-github.md)
 Modify entities with three components. The padding aims to simulate real situation when processed entities and their components are not sequential.
 
-| Method                          | EntityPadding | Mean          | StdDev      | Allocated |
-|-------------------------------- |-------------- |--------------:|------------:|----------:|
-| Arch_MonoThread                 | 0             |     51.312 μs |   0.1633 μs |         - |
-| Arch_MonoThread_SourceGenerated | 0             |    135.426 μs |   0.6915 μs |         - |
-| Arch_MultiThread                | 0             |     61.860 μs |   0.4861 μs |         - |
-| DefaultEcs_MonoThread           | 0             |    141.616 μs |   0.4521 μs |         - |
-| DefaultEcs_MultiThread          | 0             |     23.877 μs |   1.1962 μs |         - |
-| Fennecs_ForEach                 | 0             |     64.932 μs |   0.2161 μs |         - |
-| Fennecs_Job                     | 0             |     53.470 μs |   0.0521 μs |         - |
-| Fennecs_Raw                     | 0             |     65.706 μs |   0.3044 μs |         - |
-| FlecsNet_Each                   | 0             |    220.183 μs |   0.4932 μs |         - |
-| FlecsNet_Iter                   | 0             |     76.079 μs |   0.4874 μs |         - |
-| FrifloEngineEcs_MonoThread      | 0             |     44.047 μs |   0.0184 μs |         - |
-| FrifloEngineEcs_MultiThread     | 0             |      9.069 μs |   0.3902 μs |         - |
-| FrifloEngineEcs_SIMD_MonoThread | 0             |     10.892 μs |   0.0844 μs |         - |
-| HypEcs_MonoThread               | 0             |     44.443 μs |   0.0298 μs |     152 B |
-| HypEcs_MultiThread              | 0             |     46.400 μs |   0.1855 μs |    1912 B |
-| LeopotamEcsLite                 | 0             |    234.923 μs |   0.3102 μs |         - |
-| LeopotamEcs                     | 0             |    184.047 μs |   0.6268 μs |         - |
-| MonoGameExtended                | 0             |    389.794 μs |   0.4324 μs |     160 B |
-| Morpeh_Direct                   | 0             |  2,346.662 μs |  10.2549 μs |       3 B |
-| Morpeh_Stash                    | 0             |    985.408 μs |   6.0252 μs |       2 B |
-| Myriad_SingleThread             | 0             |     55.562 μs |   0.3409 μs |         - |
-| Myriad_MultiThread              | 0             |  1,094.648 μs |   7.6782 μs |  490610 B |
-| Myriad_SingleThreadChunk        | 0             |     48.025 μs |   0.1687 μs |         - |
-| Myriad_MultiThreadChunk         | 0             |     24.359 μs |   0.0986 μs |    5515 B |
-| Myriad_Enumerable               | 0             |    245.209 μs |   1.3090 μs |         - |
-| Myriad_Delegate                 | 0             |     90.019 μs |   0.0226 μs |         - |
-| RelEcs                          | 0             |    247.398 μs |   0.6877 μs |     217 B |
-| SveltoECS                       | 0             |    322.910 μs |   2.8128 μs |         - |
-| TinyEcs_Each                    | 0             |     39.623 μs |   0.1817 μs |         - |
-| TinyEcs_EachJob                 | 0             |     20.120 μs |   0.0635 μs |    1560 B |
-|                                 |               |               |             |           |
-| DefaultEcs_MonoThread           | 10            |    200.186 μs |   1.2432 μs |         - |
-| DefaultEcs_MultiThread          | 10            |    124.775 μs |   9.4812 μs |         - |
-| LeopotamEcsLite                 | 10            |    255.790 μs |   1.3398 μs |         - |
-| LeopotamEcs                     | 10            |    188.907 μs |   0.1537 μs |         - |
-| MonoGameExtended                | 10            |  1,683.746 μs |  14.3184 μs |     162 B |
-| Morpeh_Direct                   | 10            | 10,861.445 μs | 222.8097 μs |      12 B |
-| Morpeh_Stash                    | 10            |  5,924.703 μs | 186.3500 μs |       6 B |
-| RelEcs                          | 10            |    365.176 μs |   3.8175 μs |     216 B |
-| SveltoECS                       | 10            |            NA |          NA |        NA |
+| Method                          | EntityPadding | Mean         | StdDev     | Allocated |
+|-------------------------------- |-------------- |-------------:|-----------:|----------:|
+| FrifloEngineEcs_MultiThread     | 0             |     15.47 μs |   0.288 μs |         - |
+| Frent_Simd                      | 0             |     19.48 μs |   0.083 μs |         - |
+| Myriad_MultiThreadChunk         | 0             |     20.14 μs |   0.143 μs |    9216 B |
+| FrifloEngineEcs_SIMD_MonoThread | 0             |     20.36 μs |   0.082 μs |         - |
+| TinyEcs_EachJob                 | 0             |     30.24 μs |   2.122 μs |    1560 B |
+| Arch_MultiThread                | 0             |     35.89 μs |   0.475 μs |         - |
+| HypEcs_MonoThread               | 0             |     53.08 μs |   0.415 μs |     152 B |
+| Frent_QueryInline               | 0             |     53.71 μs |   0.341 μs |         - |
+| TinyEcs_Each                    | 0             |     54.13 μs |   0.134 μs |         - |
+| HypEcs_MultiThread              | 0             |     56.12 μs |   0.281 μs |    1912 B |
+| Myriad_SingleThread             | 0             |     62.23 μs |   0.304 μs |         - |
+| Myriad_SingleThreadChunk        | 0             |     63.69 μs |   0.366 μs |         - |
+| Arch_MonoThread                 | 0             |     71.83 μs |   0.581 μs |         - |
+| Fennecs_Raw                     | 0             |     75.16 μs |   0.281 μs |         - |
+| FrifloEngineEcs_MonoThread      | 0             |     76.40 μs |   0.464 μs |         - |
+| Myriad_MultiThread              | 0             |     77.50 μs |   0.426 μs |   25560 B |
+| Fennecs_ForEach                 | 0             |     87.11 μs |   0.486 μs |         - |
+| Frent_QueryDelegate             | 0             |     88.61 μs |   0.468 μs |         - |
+| Myriad_Delegate                 | 0             |     93.16 μs |   0.483 μs |         - |
+| Fennecs_Job                     | 0             |    108.20 μs |   0.412 μs |         - |
+| FlecsNet_Iter                   | 0             |    114.56 μs |   1.236 μs |         - |
+| DefaultEcs_MultiThread          | 0             |    123.82 μs |   2.006 μs |         - |
+| FlecsNet_Each                   | 0             |    164.39 μs |   1.348 μs |         - |
+| Arch_MonoThread_SourceGenerated | 0             |    192.44 μs |   0.719 μs |         - |
+| DefaultEcs_MonoThread           | 0             |    233.46 μs |   1.049 μs |         - |
+| LeopotamEcs                     | 0             |    259.06 μs |   1.430 μs |       1 B |
+| Myriad_Enumerable               | 0             |    263.68 μs |   1.395 μs |       1 B |
+| SveltoECS                       | 0             |    310.69 μs |   0.254 μs |       1 B |
+| LeopotamEcsLite                 | 0             |    347.98 μs |   1.823 μs |       1 B |
+| RelEcs                          | 0             |    573.73 μs |  12.679 μs |     217 B |
+| MonoGameExtended                | 0             |    799.64 μs |   6.366 μs |     161 B |
+| Morpeh_Stash                    | 0             |  2,837.66 μs |  19.817 μs |       4 B |
+| Morpeh_Direct                   | 0             |  4,587.78 μs |  39.342 μs |       8 B |
+|                                 | 0             |              |            |           |
+| LeopotamEcs                     | 10            |    275.19 μs |   1.071 μs |       1 B |
+| DefaultEcs_MultiThread          | 10            |    768.71 μs |  17.955 μs |       1 B |
+| DefaultEcs_MonoThread           | 10            |    781.55 μs |   8.936 μs |       1 B |
+| LeopotamEcsLite                 | 10            |    819.39 μs |  10.878 μs |       1 B |
+| RelEcs                          | 10            |  1,701.47 μs |  54.946 μs |     218 B |
+| MonoGameExtended                | 10            |  3,126.94 μs |  30.319 μs |     164 B |
+| Morpeh_Stash                    | 10            |  9,875.96 μs | 129.094 μs |      17 B |
+| Morpeh_Direct                   | 10            | 11,816.66 μs | 106.962 μs |      17 B |
+| SveltoECS                       | 10            |           NA |         NA |        NA |
 
 
 ## [SystemWithTwoComponentsMultipleComposition](results/Ecs.CSharp.Benchmark.SystemWithTwoComponentsMultipleComposition-report-github.md)
 Modify entities with two components while different entity compositions match the the components query.
 
-| Method                          | Mean         | StdDev     | Allocated |
-|-------------------------------- |-------------:|-----------:|----------:|
-| Arch                            |    45.588 μs |  0.1559 μs |         - |
-| Arch_MonoThread_SourceGenerated |    28.864 μs |  0.1477 μs |         - |
-| Arch_MultiThread                |   216.326 μs |  0.4440 μs |         - |
-| DefaultEcs_MonoThread           |   111.634 μs |  0.2742 μs |         - |
-| DefaultEcs_MultiThread          |    17.336 μs |  0.7883 μs |         - |
-| Fennecs_ForEach                 |    45.614 μs |  0.2408 μs |         - |
-| Fennecs_Job                     |    54.985 μs |  0.1906 μs |         - |
-| Fennecs_Raw                     |    44.672 μs |  0.2179 μs |         - |
-| FlecsNet_Each                   |   206.724 μs |  0.1340 μs |         - |
-| FlecsNet_Iter                   |    58.126 μs |  0.2709 μs |         - |
-| FrifloEngineEcs_MonoThread      |    45.401 μs |  0.2210 μs |         - |
-| FrifloEngineEcs_MultiThread     |    21.822 μs |  0.9865 μs |         - |
-| FrifloEngineEcs_SIMD_MonoThread |     9.130 μs |  0.0388 μs |         - |
-| HypEcs_MonoThread               |    33.012 μs |  0.1687 μs |     352 B |
-| HypEcs_MultiThread              |    11.779 μs |  0.3269 μs |    2826 B |
-| LeopotamEcsLite                 |   155.412 μs |  0.0566 μs |         - |
-| LeopotamEcs                     |   124.123 μs |  0.5029 μs |         - |
-| MonoGameExtended                |   301.107 μs |  1.0381 μs |     160 B |
-| Morpeh_Direct                   | 1,518.622 μs | 11.4268 μs |       2 B |
-| Morpeh_Stash                    |   862.835 μs |  6.5229 μs |       1 B |
-| Myriad_SingleThread             |    54.953 μs |  0.1836 μs |         - |
-| Myriad_MultiThread              |   985.841 μs | 10.3412 μs |  477241 B |
-| Myriad_SingleThreadChunk        |    40.976 μs |  0.0621 μs |         - |
-| Myriad_MultiThreadChunk         |    54.084 μs |  0.2662 μs |   19365 B |
-| Myriad_Enumerable               |   241.300 μs |  1.0275 μs |         - |
-| Myriad_Delegate                 |    67.886 μs |  0.2663 μs |         - |
-| Myriad_SingleThreadChunk_SIMD   |    12.698 μs |  0.0845 μs |         - |
-| RelEcs                          |   327.387 μs |  5.2210 μs |     488 B |
-| SveltoECS                       |   195.377 μs |  0.8394 μs |         - |
-| TinyEcs_Each                    |    26.289 μs |  0.0699 μs |         - |
-| TinyEcs_EachJob                 |    18.676 μs |  0.0397 μs |    2080 B |
+| Method                          | Mean        | StdDev     | Allocated |
+|-------------------------------- |------------:|-----------:|----------:|
+| FrifloEngineEcs_MultiThread     |    12.43 μs |   1.049 μs |         - |
+| Frent_Simd                      |    14.03 μs |   0.122 μs |         - |
+| FrifloEngineEcs_SIMD_MonoThread |    14.34 μs |   0.058 μs |         - |
+| Myriad_SingleThreadChunk_SIMD   |    16.32 μs |   0.128 μs |         - |
+| Myriad_MultiThreadChunk         |    17.14 μs |   0.115 μs |    9216 B |
+| TinyEcs_EachJob                 |    23.85 μs |   1.105 μs |    1552 B |
+| Arch_MultiThread                |    32.02 μs |   0.144 μs |         - |
+| TinyEcs_Each                    |    33.41 μs |   0.314 μs |         - |
+| HypEcs_MonoThread               |    44.68 μs |   0.205 μs |     112 B |
+| Frent_QueryInline               |    44.93 μs |   0.172 μs |         - |
+| Arch_MonoThread_SourceGenerated |    47.84 μs |   0.226 μs |         - |
+| Myriad_SingleThreadChunk        |    48.31 μs |   0.189 μs |         - |
+| HypEcs_MultiThread              |    49.12 μs |   0.274 μs |    1872 B |
+| Frent_QueryDelegate             |    51.48 μs |   0.174 μs |         - |
+| Myriad_SingleThread             |    52.64 μs |   0.246 μs |         - |
+| FrifloEngineEcs_MonoThread      |    56.93 μs |   0.327 μs |         - |
+| Arch_MonoThread                 |    57.47 μs |   0.314 μs |         - |
+| Fennecs_Raw                     |    58.86 μs |   0.215 μs |         - |
+| Fennecs_ForEach                 |    63.21 μs |   0.372 μs |         - |
+| Myriad_MultiThread              |    68.27 μs |   0.339 μs |   20865 B |
+| FlecsNet_Iter                   |    79.81 μs |   0.420 μs |         - |
+| Fennecs_Job                     |    94.79 μs |   1.576 μs |         - |
+| DefaultEcs_MultiThread          |   108.93 μs |   3.569 μs |         - |
+| Myriad_Delegate                 |   113.14 μs |   0.362 μs |         - |
+| DefaultEcs_MonoThread           |   124.09 μs |   0.978 μs |         - |
+| FlecsNet_Each                   |   134.08 μs |   0.238 μs |         - |
+| LeopotamEcs                     |   158.35 μs |   1.551 μs |         - |
+| Myriad_Enumerable               |   200.01 μs |   3.006 μs |         - |
+| LeopotamEcsLite                 |   216.20 μs |   1.068 μs |         - |
+| SveltoECS                       |   223.22 μs |   0.700 μs |         - |
+| RelEcs                          |   355.92 μs |   7.512 μs |     169 B |
+| MonoGameExtended                |   534.19 μs |  10.930 μs |     161 B |
+| Morpeh_Stash                    | 2,380.69 μs |  40.379 μs |       4 B |
+| Morpeh_Direct                   | 3,934.95 μs |  63.272 μs |       8 B |
 
 
 # Other benchmarks
