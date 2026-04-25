@@ -19,7 +19,7 @@ namespace Ecs.CSharp.Benchmark
         public void Arch()
         {
             World world = _arch.World;
-            world.Reserve(_archetype, EntityCount);
+            world.EnsureCapacity(_archetype, EntityCount);
 
             for (int i = 0; i < EntityCount; ++i)
             {

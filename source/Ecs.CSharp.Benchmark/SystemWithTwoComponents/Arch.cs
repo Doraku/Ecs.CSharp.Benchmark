@@ -34,7 +34,7 @@ namespace Ecs.CSharp.Benchmark
         }
 
         private static readonly ComponentType[] _filter = [typeof(Component1), typeof(Component2)];
-        private static readonly QueryDescription _queryDescription = new() { All = _filter };
+        private static readonly QueryDescription _queryDescription = new(all: _filter);
 
         [Context]
         private readonly ArchContext _arch;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Arch.Core;
 using Arch.Core.Utils;
 using BenchmarkDotNet.Attributes;
 using Ecs.CSharp.Benchmark.Contexts;
@@ -18,7 +19,7 @@ namespace Ecs.CSharp.Benchmark
         public void Arch()
         {
             Arch.Core.World world = _arch.World;
-            world.Reserve(_archetype, EntityCount);
+            world.EnsureCapacity(_archetype, EntityCount);
 
             for (int i = 0; i < EntityCount; ++i)
             {
