@@ -60,7 +60,7 @@ namespace Ecs.CSharp.Benchmark
 
                 foreach (ComponentType[] archetype in archetypes)
                 {
-                    World.Reserve(archetype, entityCount / 4);
+                    World.EnsureCapacity(archetype, entityCount / 4);
                 }
 
                 for (int index = 0; index < entityCount; index++)
@@ -71,7 +71,7 @@ namespace Ecs.CSharp.Benchmark
         }
 
         private static readonly ComponentType[] _filter = [typeof(Component1), typeof(Component2)];
-        private static readonly QueryDescription _queryDescription = new() { All = _filter };
+        private static readonly QueryDescription _queryDescription = new(all: _filter);
 
         [Context]
         private readonly ArchContext _arch;
