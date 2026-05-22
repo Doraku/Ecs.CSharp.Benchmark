@@ -11,6 +11,7 @@
         public const string LeopotamEcsLite = "Leopotam.EcsLite";
         public const string MonoGameExtended = "MonoGame.Extended";
         public const string Myriad = "Myriad.ECS";
+        public const string PewPewEcs = "PewPew.Ecs";
         public const string RelEcs = "RelEcs";
         public const string SveltoECS = "Svelto.ECS";
         public const string Morpeh = "Morpeh";
