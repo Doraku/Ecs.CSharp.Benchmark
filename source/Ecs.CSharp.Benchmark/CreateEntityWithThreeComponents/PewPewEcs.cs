@@ -7,9 +7,6 @@ namespace Ecs.CSharp.Benchmark
 {
     public partial class CreateEntityWithThreeComponents
     {
-        [Context]
-        private readonly PewPewEcsBaseContext _pewEcsBaseContext;
-
         [BenchmarkCategory(Categories.PewPewEcs)]
         [Benchmark]
         public void PewPewEcs()

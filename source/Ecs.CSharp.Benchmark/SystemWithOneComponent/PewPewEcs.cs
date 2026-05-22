@@ -47,7 +47,7 @@ namespace Ecs.CSharp.Benchmark
             }
         }
 
-        public struct OneComponentsQuery : IQueryWithoutId<PPComponent1>
+        internal struct OneComponentsQuery : IQueryWithoutId<PPComponent1>
         {
             public void Update(ref PPComponent1 component1)
             {
@@ -55,7 +55,7 @@ namespace Ecs.CSharp.Benchmark
             }
         }
 
-        public struct OneComponentsBatchQuery : IBatchQuery<PPComponent1>
+        internal struct OneComponentsBatchQuery : IBatchQuery<PPComponent1>
         {
             public void BatchUpdate(Span<PPComponent1> component1)
             {

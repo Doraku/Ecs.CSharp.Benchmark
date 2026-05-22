@@ -23,7 +23,7 @@ namespace Ecs.CSharp.Benchmark
 namespace Ecs.CSharp.Benchmark.Contexts
 {
 
-    public class PewPewEcsBaseContext : IDisposable
+    public class PewPewEcsBaseContext
     {
         public HybridWorld HybridWorld { get; }
 
@@ -40,10 +40,6 @@ namespace Ecs.CSharp.Benchmark.Contexts
         public PewPewEcsBaseContext(int entityCount, int entityPadding)
         {
             HybridWorld = WorldFactory.Shared.CreateHybridWorld(c => c.MaxEntitiesCount = entityCount * entityPadding + entityCount);
-        }
-
-        public virtual void Dispose()
-        {
         }
     }
 }
