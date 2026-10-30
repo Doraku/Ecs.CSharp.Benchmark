@@ -48,7 +48,7 @@ namespace Ecs.CSharp.Benchmark
         [Benchmark]
         public void Frent_QueryDelegate()
         {
-            _frent.Query.Delegate((ref Component1 c1, ref Component2 c2, ref Component1 c3) => c1.Value += c2.Value + c3.Value);
+            _frent.Query.Delegate((ref Component1 c1, ref Component2 c2, ref Component3 c3) => c1.Value += c2.Value + c3.Value);
         }
 
         [BenchmarkCategory(Categories.Frent)]

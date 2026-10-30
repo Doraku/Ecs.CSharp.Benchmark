@@ -12,6 +12,7 @@ namespace Ecs.CSharp.Benchmark
         [Context]
         private readonly SveltoECSBaseContext _sveltoECS;
 
+        [BenchmarkCategory(Categories.SveltoECS)]
         [Benchmark]
         public void SveltoECS()
         {

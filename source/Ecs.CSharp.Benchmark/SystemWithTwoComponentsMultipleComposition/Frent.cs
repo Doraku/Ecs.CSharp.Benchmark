@@ -19,7 +19,7 @@ namespace Ecs.CSharp.Benchmark
             {
                 for (int i = 0; i < entityCount; i++)
                 {
-                    Entity e = (entityCount % 4) switch
+                    Entity e = (i % 4) switch
                     {
                         0 => World.Create<Component1, Component2, Padding1>(default, new() { Value = 1 }, default),
                         1 => World.Create<Component1, Component2, Padding2>(default, new() { Value = 1 }, default),
